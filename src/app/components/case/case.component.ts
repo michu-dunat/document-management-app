@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./case.component.css']
 })
 export class CaseComponent implements OnInit {
+  buttonText: string = "Załóż sprawę";
 
   constructor() { }
 

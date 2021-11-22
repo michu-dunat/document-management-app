@@ -1,4 +1,4 @@
-export interface ProceedingsSubject {
+export class ProceedingsSubject {
   id?: number;
   value: string;
   fillingDate: Date;

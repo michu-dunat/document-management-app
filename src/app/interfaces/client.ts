@@ -1,6 +1,6 @@
 import { Address } from "./address";
 
-export interface Client {
+export class Client {
   id?: number;
   firstnameAndLastNameOrCompanyName: string;
   PESEL: string;
@@ -9,6 +9,6 @@ export interface Client {
   KRS: string;
   phoneNumber: string;
   emailAddress: string;
-  residenceOrRegisteredOfficeAddress: Address;
-  mailingAddress?: Address;
+  residenceOrRegisteredOfficeAddress: Address = new Address();
+  mailingAddress: Address = new Address();
 }

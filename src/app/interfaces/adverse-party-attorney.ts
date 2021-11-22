@@ -1,10 +1,10 @@
 import { Address } from './address';
 
-export interface AdversePartyAttorney {
+export class AdversePartyAttorney {
   id?: number;
   firstnameAndLastName: string;
   phoneNumber: string;
-  residenceOrRegisteredOfficeAddress: Address;
+  residenceOrRegisteredOfficeAddress: Address = new Address();
   isAttorneyProfessional: boolean;
   jobTitle: string;
 }

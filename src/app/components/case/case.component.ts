@@ -1,16 +1,37 @@
 import { Component, OnInit } from '@angular/core';
+import { Address } from 'src/app/interfaces/address';
+import { Case } from 'src/app/interfaces/case';
+import { Client } from 'src/app/interfaces/client';
+import { Judge } from 'src/app/interfaces/judge';
+import { CaseService } from 'src/app/services/case.service';
 
 @Component({
   selector: 'app-case',
   templateUrl: './case.component.html',
-  styleUrls: ['./case.component.css']
+  styleUrls: ['./case.component.css'],
 })
 export class CaseComponent implements OnInit {
-  buttonText: string = "Załóż sprawę";
+  buttonText: string = 'Załóż sprawę';
+  aCase: Case = new Case();
+  judgingPanelString: string;
 
-  constructor() { }
+  constructor(private caseService: CaseService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  sendCase() {
+    let judgesAsStrings = this.judgingPanelString.split(',');
+    judgesAsStrings = judgesAsStrings.map((judge) => judge.trim());
+    judgesAsStrings.forEach((judge) => {
+      let newJudge = new Judge();
+      newJudge.firstnameAndLastName = judge;
+      this.aCase.court.judgingPanel.push(newJudge);
+    });
+
+    this.caseService.addCase(this.aCase).subscribe((result) => {
+      console.log(result);
+    });
+
+    console.log(this.aCase);
   }
-
 }

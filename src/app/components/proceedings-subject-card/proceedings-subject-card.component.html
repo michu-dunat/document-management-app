@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title>Przedmiot postępowania</mat-card-title>
+  <mat-card-content class="gap">
+    <mat-form-field appearance="fill">
+      <mat-label>Wartość</mat-label>
+      <input matInput type="text" [(ngModel)]="proceedingsSubject.value" />
+    </mat-form-field>
+
+    <mat-checkbox [(ngModel)]="proceedingsSubject.isMediationPossible">
+      Mediacja możliwa
+    </mat-checkbox>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Data wniesienia pozwu</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [(ngModel)]="proceedingsSubject.fillingDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Data otrzymania pozwu</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerr"
+        [(ngModel)]="proceedingsSubject.claimReceiptDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="pickerr"></mat-datepicker-toggle>
+      <mat-datepicker #pickerr></mat-datepicker>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>

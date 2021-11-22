@@ -1,186 +1,31 @@
 <mat-card>
   <mat-card-title>Nowa sprawa</mat-card-title>
   <mat-card-content class="gap-below">
-    <mat-card>
-      <mat-card-title>Dane klienta</mat-card-title>
-      <mat-card-content class="gap">
-        <mat-form-field appearance="fill">
-          <mat-label>Imię i nazwisko/Nazwa firmy</mat-label>
-          <input
-            matInput
-            type="text"
-            [(ngModel)]="aCase.client.firstnameAndLastNameOrCompanyName"
-          />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer telefonu</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.client.phoneNumber" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Adres email</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.client.emailAddress" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer PESEL</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.client.PESEL" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer NIP</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.client.NIP" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer KRS</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.client.KRS" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer REGON</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.client.REGON" />
-        </mat-form-field>
-
-        <app-address
-          [title]="'Adres zamieszkania'"
-          [address]="aCase.client.residenceOrRegisteredOfficeAddress"
-        ></app-address>
-        <app-address
-          [title]="'Adres do korespondencji'"
-          [address]="aCase.client.mailingAddress"
-        ></app-address>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>Dane strony przeciwnej</mat-card-title>
-      <mat-card-content class="gap">
-        <mat-form-field appearance="fill">
-          <mat-label>Imię i nazwisko/Nazwa firmy</mat-label>
-          <input
-            matInput
-            type="text"
-            [(ngModel)]="aCase.adverseParty.firstnameAndLastNameOrCompanyName"
-          />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer telefonu</mat-label>
-          <input
-            matInput
-            type="text"
-            [(ngModel)]="aCase.adverseParty.phoneNumber"
-          />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Adres email</mat-label>
-          <input
-            matInput
-            type="text"
-            [(ngModel)]="aCase.adverseParty.emailAddress"
-          />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer PESEL</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.adverseParty.PESEL" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer NIP</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.adverseParty.NIP" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer KRS</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.adverseParty.KRS" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer REGON</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.adverseParty.REGON" />
-        </mat-form-field>
-
-        <app-address
-          [title]="'Adres zamieszkania'"
-          [address]="aCase.adverseParty.residenceOrRegisteredOfficeAddress"
-        ></app-address>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>Dane sądu</mat-card-title>
-      <mat-card-content class="gap">
-        <mat-form-field appearance="fill">
-          <mat-label>Typ sądu</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.court.type" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Numer telefonu</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.court.phoneNumber" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Wydział</mat-label>
-          <input matInput type="text" [(ngModel)]="aCase.court.department" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Adres elektroniczny</mat-label>
-          <input
-            matInput
-            type="text"
-            [(ngModel)]="aCase.court.electronicAddressForDelivery"
-          />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Skład sędziowski</mat-label>
-          <input matInput type="text" [(ngModel)]="judgingPanelString" />
-        </mat-form-field>
-
-        <app-address
-          [title]="'Adres'"
-          [address]="aCase.court.address"
-        ></app-address>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-title>Przedmiot postępowania</mat-card-title>
-      <mat-card-content class="gap">
-        <mat-form-field appearance="fill">
-          <mat-label>Wartość</mat-label>
-          <input
-            matInput
-            type="text"
-            [(ngModel)]="aCase.proceedingsSubject.value"
-          />
-        </mat-form-field>
-
-        <mat-checkbox
-          [(ngModel)]="aCase.proceedingsSubject.isMediationPossible"
-        >
-          Mediacja możliwa
-        </mat-checkbox>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Data wniesienia pozwu</mat-label>
-          <input
-            matInput
-            [matDatepicker]="picker"
-            [(ngModel)]="aCase.proceedingsSubject.fillingDate"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Data otrzymania pozwu</mat-label>
-          <input
-            matInput
-            [matDatepicker]="pickerr"
-            [(ngModel)]="aCase.proceedingsSubject.claimReceiptDate"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="pickerr"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #pickerr></mat-datepicker>
-        </mat-form-field>
-      </mat-card-content>
-    </mat-card>
+    <mat-tab-group>
+      <mat-tab label="Dane klienta">
+        <app-client-and-adverse-party-card
+          [title]="'Dane klienta'"
+          [data]="aCase.client"
+        ></app-client-and-adverse-party-card>
+      </mat-tab>
+      <mat-tab label="Dane strony przeciwnej">
+        <app-client-and-adverse-party-card
+          [title]="'Dane strony przeciwnej'"
+          [data]="aCase.adverseParty"
+        ></app-client-and-adverse-party-card>
+      </mat-tab>
+      <mat-tab label="Dane sądu">
+        <app-court-card
+          [court]="aCase.court"
+          [judgingPanelString]="judgingPanelString"
+        ></app-court-card>
+      </mat-tab>
+      <mat-tab label="Przedmiot postępowania">
+        <app-proceedings-subject-card
+          [proceedingsSubject]="aCase.proceedingsSubject"
+        ></app-proceedings-subject-card>
+      </mat-tab>
+    </mat-tab-group>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="sendCase()">{{ buttonText }}</button>

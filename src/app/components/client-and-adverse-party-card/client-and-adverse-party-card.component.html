@@ -1,0 +1,46 @@
+<mat-card>
+  <mat-card-title>{{ title }}</mat-card-title>
+  <mat-card-content class="gap">
+    <mat-form-field appearance="fill">
+      <mat-label>Imię i nazwisko/Nazwa firmy</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.firstnameAndLastNameOrCompanyName"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Numer telefonu</mat-label>
+      <input matInput type="text" [(ngModel)]="data.phoneNumber" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adres email</mat-label>
+      <input matInput type="text" [(ngModel)]="data.emailAddress" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Numer PESEL</mat-label>
+      <input matInput type="text" [(ngModel)]="data.PESEL" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Numer NIP</mat-label>
+      <input matInput type="text" [(ngModel)]="data.NIP" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Numer KRS</mat-label>
+      <input matInput type="text" [(ngModel)]="data.KRS" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Numer REGON</mat-label>
+      <input matInput type="text" [(ngModel)]="data.REGON" />
+    </mat-form-field>
+
+    <app-address
+      [title]="'Adres zamieszkania'"
+      [address]="data.residenceOrRegisteredOfficeAddress"
+    ></app-address>
+    <app-address
+      [title]="'Adres do korespondencji'"
+      [address]="data.mailingAddress"
+    ></app-address>
+  </mat-card-content>
+</mat-card>

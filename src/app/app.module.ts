@@ -8,11 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { CaseComponent } from './components/case/case.component';
 import { FormsModule } from '@angular/forms';
-import { AddressComponent } from './components/address/address.component';
+import { AddressCardComponent } from './components/address-card/address-card.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ProceedingsSubjectCardComponent } from './components/proceedings-subject-card/proceedings-subject-card.component';
+import { ClientAndAdversePartyCardComponent } from './components/client-and-adverse-party-card/client-and-adverse-party-card.component';
+import { CourtCardComponent } from './components/court-card/court-card.component';
 
 @NgModule({
-  declarations: [AppComponent, CaseComponent, AddressComponent],
+  declarations: [AppComponent, CaseComponent, AddressCardComponent, ProceedingsSubjectCardComponent, ClientAndAdversePartyCardComponent, CourtCardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

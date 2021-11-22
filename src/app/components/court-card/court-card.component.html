@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-title>Dane sądu</mat-card-title>
+  <mat-card-content class="gap">
+    <mat-form-field appearance="fill">
+      <mat-label>Typ sądu</mat-label>
+      <input matInput type="text" [(ngModel)]="court.type" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Numer telefonu</mat-label>
+      <input matInput type="text" [(ngModel)]="court.phoneNumber" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Wydział</mat-label>
+      <input matInput type="text" [(ngModel)]="court.department" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adres elektroniczny</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="court.electronicAddressForDelivery"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Skład sędziowski</mat-label>
+      <input matInput type="text" [(ngModel)]="judgingPanelString" />
+    </mat-form-field>
+
+    <app-address [title]="'Adres'" [address]="court.address"></app-address>
+  </mat-card-content>
+</mat-card>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Address } from 'src/app/interfaces/address';
-import { Case } from 'src/app/interfaces/case';
-import { Client } from 'src/app/interfaces/client';
-import { Judge } from 'src/app/interfaces/judge';
+import { Address } from 'src/app/classes/address';
+import { Case } from 'src/app/classes/case';
+import { Client } from 'src/app/classes/client';
+import { Judge } from 'src/app/classes/judge';
 import { CaseService } from 'src/app/services/case.service';
 
 @Component({

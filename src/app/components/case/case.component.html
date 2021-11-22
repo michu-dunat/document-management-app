@@ -1,5 +1,10 @@
 <mat-card>
   <mat-card-title>Nowa sprawa</mat-card-title>
+
+  <mat-checkbox [(ngModel)]="isAdversePartyPresent">
+    Sprawa dotyczy strony przeciwnej
+  </mat-checkbox>
+
   <mat-card-content class="gap-below">
     <mat-tab-group>
       <mat-tab label="Dane klienta">
@@ -8,7 +13,7 @@
           [data]="aCase.client"
         ></app-client-and-adverse-party-card>
       </mat-tab>
-      <mat-tab label="Dane strony przeciwnej">
+      <mat-tab *ngIf="isAdversePartyPresent" label="Dane strony przeciwnej">
         <app-client-and-adverse-party-card
           [title]="'Dane strony przeciwnej'"
           [data]="aCase.adverseParty"

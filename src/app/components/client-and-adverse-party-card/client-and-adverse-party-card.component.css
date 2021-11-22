@@ -2,6 +2,6 @@
   margin-right: 10px;
 }
 
-mat-card {
+mat-card mat-checkbox {
   margin-bottom: 10px;
 }

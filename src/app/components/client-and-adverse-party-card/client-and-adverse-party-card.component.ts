@@ -11,6 +11,7 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   @Input() title: string;
   @Input() data: any;
   @Input() isAdverseParty: boolean = false;
+  isMailingAddressNeeded: boolean = false;
 
   constructor() { }
 

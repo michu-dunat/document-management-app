@@ -14,6 +14,7 @@ export class CaseComponent implements OnInit {
   buttonText: string = 'Załóż sprawę';
   aCase: Case = new Case();
   judgingPanelString: string;
+  isAdversePartyPresent: boolean = false;
 
   constructor(private caseService: CaseService) {}
 

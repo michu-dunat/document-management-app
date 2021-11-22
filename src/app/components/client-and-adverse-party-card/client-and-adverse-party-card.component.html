@@ -1,5 +1,4 @@
 <mat-card>
-  <mat-card-title>{{ title }}</mat-card-title>
   <mat-card-content class="gap">
     <mat-form-field appearance="fill">
       <mat-label>Imię i nazwisko/Nazwa firmy</mat-label>
@@ -35,10 +34,16 @@
     </mat-form-field>
 
     <app-address
-      [title]="'Adres zamieszkania'"
+      [title]="'Adres zamieszkania/siedziby'"
       [address]="data.residenceOrRegisteredOfficeAddress"
     ></app-address>
+
+    <mat-checkbox [(ngModel)]="isMailingAddressNeeded">
+      Użyj adresu do korespondencji
+    </mat-checkbox>
+
     <app-address
+      *ngIf="isMailingAddressNeeded"
       [title]="'Adres do korespondencji'"
       [address]="data.mailingAddress"
     ></app-address>

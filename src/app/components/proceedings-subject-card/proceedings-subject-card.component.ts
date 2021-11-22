@@ -8,4 +8,6 @@ import { ProceedingsSubject } from 'src/app/classes/proceedings-subject';
 })
 export class ProceedingsSubjectCardComponent {
   @Input() proceedingsSubject: ProceedingsSubject = new ProceedingsSubject();
+  wasClaimReceived: boolean = false;
+
 }

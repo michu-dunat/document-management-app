@@ -42,5 +42,10 @@
       [title]="'Adres do korespondencji'"
       [address]="data.mailingAddress"
     ></app-address>
+
+    <app-adverse-party-attoreny-card
+      *ngIf="isAdverseParty"
+      [adversePartyAttorney]="data.adversePartyAttorney"
+    ></app-adverse-party-attoreny-card>
   </mat-card-content>
 </mat-card>

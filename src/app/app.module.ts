@@ -13,9 +13,18 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ProceedingsSubjectCardComponent } from './components/proceedings-subject-card/proceedings-subject-card.component';
 import { ClientAndAdversePartyCardComponent } from './components/client-and-adverse-party-card/client-and-adverse-party-card.component';
 import { CourtCardComponent } from './components/court-card/court-card.component';
+import { AdversePartyAttorenyCardComponent } from './components/adverse-party-attoreny-card/adverse-party-attoreny-card.component';
 
 @NgModule({
-  declarations: [AppComponent, CaseComponent, AddressCardComponent, ProceedingsSubjectCardComponent, ClientAndAdversePartyCardComponent, CourtCardComponent],
+  declarations: [
+    AppComponent,
+    CaseComponent,
+    AddressCardComponent,
+    ProceedingsSubjectCardComponent,
+    ClientAndAdversePartyCardComponent,
+    CourtCardComponent,
+    AdversePartyAttorenyCardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,7 +32,7 @@ import { CourtCardComponent } from './components/court-card/court-card.component
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

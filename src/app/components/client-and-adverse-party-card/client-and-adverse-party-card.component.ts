@@ -9,7 +9,8 @@ import { Client } from 'src/app/classes/client';
 })
 export class ClientAndAdversePartyCardComponent implements OnInit {
   @Input() title: string;
-  @Input() data: Client | AdverseParty;
+  @Input() data: any;
+  @Input() isAdverseParty: boolean = false;
 
   constructor() { }
 

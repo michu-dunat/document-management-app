@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCheckboxModule,
     MatDatepickerModule,
     MatTabsModule,
+    MatListModule,
   ],
   exports: [
     MatButtonModule,
@@ -29,6 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatCheckboxModule,
     MatDatepickerModule,
     MatTabsModule,
+    MatListModule,
   ],
 })
 export class MaterialModule {}

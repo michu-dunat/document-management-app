@@ -21,17 +21,17 @@ export class CaseComponent implements OnInit {
   ngOnInit(): void {}
 
   sendCase() {
-    let judgesAsStrings = this.judgingPanelString.split(',');
-    judgesAsStrings = judgesAsStrings.map((judge) => judge.trim());
-    judgesAsStrings.forEach((judge) => {
-      let newJudge = new Judge();
-      newJudge.firstnameAndLastName = judge;
-      this.aCase.court.judgingPanel.push(newJudge);
-    });
+    // let judgesAsStrings = this.judgingPanelString.split(',');
+    // judgesAsStrings = judgesAsStrings.map((judge) => judge.trim());
+    // judgesAsStrings.forEach((judge) => {
+    //   let newJudge = new Judge();
+    //   newJudge.firstnameAndLastName = judge;
+    //   this.aCase.court.judgingPanel.push(newJudge);
+    // });
 
-    this.caseService.addCase(this.aCase).subscribe((result) => {
-      console.log(result);
-    });
+    // this.caseService.addCase(this.aCase).subscribe((result) => {
+    //   console.log(result);
+    // });
 
     console.log(this.aCase);
   }

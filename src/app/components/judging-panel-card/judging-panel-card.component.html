@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title>Skład sędziowski</mat-card-title>
+  <mat-card-content class="gap">
+    <mat-form-field appearance="fill">
+      <mat-label>Imię i nazwisko</mat-label>
+      <input matInput type="text" [(ngModel)]="firstnameAndLastName" />
+    </mat-form-field>
+
+    <button mat-raised-button (click)="addJudge()">Dodaj sędziego</button>
+    
+    <mat-list>
+      <div mat-subheader>Lista sędziów:</div>
+      <mat-list-item *ngFor="let judge of judgingPanel">
+        {{ judge.firstnameAndLastName }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

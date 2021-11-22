@@ -20,10 +20,8 @@
         [(ngModel)]="court.electronicAddressForDelivery"
       />
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Skład sędziowski</mat-label>
-      <input matInput type="text" [(ngModel)]="judgingPanelString" />
-    </mat-form-field>
+    
+    <app-judging-panel-card [judgingPanel]="court.judgingPanel"></app-judging-panel-card>
 
     <app-address [title]="'Adres'" [address]="court.address"></app-address>
   </mat-card-content>

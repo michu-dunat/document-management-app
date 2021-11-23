@@ -5,15 +5,15 @@ import { ProceedingsSubject } from './proceedings-subject';
 
 export class Case {
   id?: number;
-  client: Client;
-  court: Court;
-  proceedingsSubject: ProceedingsSubject;
-  adverseParty: AdverseParty;
+  client: Client = new Client();
+  court: Court = new Court();
+  proceedingsSubject: ProceedingsSubject = new ProceedingsSubject();
+  adverseParty: AdverseParty= new AdverseParty();
 
-  constructor() {
-    this.client = new Client();
-    this.court = new Court();
-    this.proceedingsSubject = new ProceedingsSubject();
-    this.adverseParty = new AdverseParty();
-  }
+  // constructor() {
+  //   this.client ;
+  //   this.court ;
+  //   this.proceedingsSubject ;
+  //   this.adverseParty ;
+  // }
 }

@@ -40,9 +40,22 @@
     </mat-checkbox>
 
     <app-address
-      [parentName]="'adversePartyAttorney'"
-      [title]="'Adres'"
+      [parentName]="'adversePartyAttorneyResidenceOrRegisteredOfficeAddress'"
+      [title]="'Adres zamieszkania/siedziby'"
       [address]="adversePartyAttorney.residenceOrRegisteredOfficeAddress"
+    ></app-address>
+
+    <mat-checkbox
+      [(ngModel)]="isMailingAddressNeeded"
+      name="isMailingAddressNeeded"
+    >
+      Użyj adresu do korespondencji
+    </mat-checkbox>
+
+    <app-address *ngIf="isMailingAddressNeeded"
+      [parentName]="'adversePartyAttorneyMailingAddress'"
+      [title]="'Adres do korespondencji'"
+      [address]="adversePartyAttorney.mailingAddress"
     ></app-address>
   </mat-card-content>
 </mat-card>

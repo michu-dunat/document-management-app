@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AdverseParty } from 'src/app/classes/adverse-party';
 import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
 
@@ -15,15 +16,25 @@ export class CaseComponent {
 
   constructor(private caseService: CaseService) {}
 
+  ngOnInit() {
+    if(this.isAdversePartyPresent) {
+      this.aCase.adverseParty = new AdverseParty()
+    }
+  }
+
   sendCase() {
     // this.caseService.addCase(this.aCase).subscribe((result) => {
     //   console.log(result);
     // });
+    console.log(Object.keys(this.aCase.adverseParty.mailingAddress).length);
+    
+  console.log(this.aCase.adverseParty);
+      
+
     if(this.aCase.court.judgingPanel.length == 0) {
       console.log('EJ');
-      
     }
     
-    console.log(this.aCase);
+    //console.log(this.aCase);
   }
 }

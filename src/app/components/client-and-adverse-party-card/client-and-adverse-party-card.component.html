@@ -6,7 +6,7 @@
         matInput
         type="text"
         [(ngModel)]="data.firstnameAndLastNameOrCompanyName"
-        name="firstnameAndLastNameOrCompanyName"
+        name="{{ nameDistinguisher }} + firstnameAndLastNameOrCompanyName"
         required
       />
     </mat-form-field>
@@ -16,7 +16,7 @@
         matInput
         type="text"
         [(ngModel)]="data.phoneNumber"
-        name="phoneNumber"
+        name="{{ nameDistinguisher }} + phoneNumber"
         required
       />
     </mat-form-field>
@@ -26,7 +26,7 @@
         matInput
         type="email"
         [(ngModel)]="data.emailAddress"
-        name="email"
+        name="{{ nameDistinguisher }} + email"
         required
       />
     </mat-form-field>
@@ -36,17 +36,17 @@
         matInput
         type="text"
         [(ngModel)]="data.PESEL"
-        name="PESEL"
+        name="{{ nameDistinguisher }} + PESEL"
         required
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer NIP</mat-label>
-      <input matInput type="text" [(ngModel)]="data.NIP" name="NIP" required />
+      <input matInput type="text" [(ngModel)]="data.NIP" name="{{ nameDistinguisher }} + NIP" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer KRS</mat-label>
-      <input matInput type="text" [(ngModel)]="data.KRS" name="KRS" required />
+      <input matInput type="text" [(ngModel)]="data.KRS" name="{{ nameDistinguisher }} + KRS" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer REGON</mat-label>
@@ -54,26 +54,27 @@
         matInput
         type="text"
         [(ngModel)]="data.REGON"
-        name="REGON"
+        name="{{ nameDistinguisher }} + REGON"
         required
       />
     </mat-form-field>
 
     <app-address
-      [parentName]="'client'"
+      [parentName]="nameDistinguisher + 'residenceOrRegisteredOfficeAddress'"
       [title]="'Adres zamieszkania/siedziby'"
       [address]="data.residenceOrRegisteredOfficeAddress"
     ></app-address>
 
     <mat-checkbox
       [(ngModel)]="isMailingAddressNeeded"
-      name="isMailingAddressNeeded"
+      name="{{ nameDistinguisher }} + isMailingAddressNeeded"
     >
       Użyj adresu do korespondencji
     </mat-checkbox>
 
     <app-address
       *ngIf="isMailingAddressNeeded"
+      [parentName]="nameDistinguisher + 'mailingAddress'"
       [title]="'Adres do korespondencji'"
       [address]="data.mailingAddress"
     ></app-address>

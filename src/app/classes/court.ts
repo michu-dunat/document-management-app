@@ -4,9 +4,9 @@ import { Judge } from './judge';
 export class Court {
   id?: number;
   type: string;
-  address: Address = new Address();
   department: string;
+  judgingPanel: Judge[] = [];
   phoneNumber: string;
   electronicAddressForDelivery: string;
-  judgingPanel: Judge[] = [];
+  address: Address = new Address();
 }

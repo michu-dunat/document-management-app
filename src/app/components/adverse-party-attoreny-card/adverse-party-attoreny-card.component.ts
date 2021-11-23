@@ -10,6 +10,7 @@ import { AdversePartyAttorney } from 'src/app/classes/adverse-party-attorney';
 })
 export class AdversePartyAttorenyCardComponent implements OnInit {
   @Input() adversePartyAttorney: AdversePartyAttorney;
+  isMailingAddressNeeded: boolean = false;
   constructor() {}
 
   ngOnInit(): void {}

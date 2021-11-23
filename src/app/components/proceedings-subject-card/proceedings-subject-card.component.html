@@ -2,14 +2,23 @@
   <mat-card-content class="gap">
     <mat-form-field appearance="fill">
       <mat-label>Wartość</mat-label>
-      <input matInput type="text" [(ngModel)]="proceedingsSubject.value" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="proceedingsSubject.value"
+        name="value"
+        required
+      />
     </mat-form-field>
 
-    <mat-checkbox [(ngModel)]="proceedingsSubject.isMediationPossible">
+    <mat-checkbox
+      [(ngModel)]="proceedingsSubject.isMediationPossible"
+      name="isMediationPossible"
+    >
       Mediacja możliwa
     </mat-checkbox>
 
-    <mat-checkbox [(ngModel)]="wasClaimReceived">
+    <mat-checkbox [(ngModel)]="wasClaimReceived" name="wasClaimReceived">
       Pozew otrzymany
     </mat-checkbox>
 
@@ -19,8 +28,13 @@
         matInput
         [matDatepicker]="pickerForFilling"
         [(ngModel)]="proceedingsSubject.fillingDate"
+        name="fillingDate"
+        required
       />
-      <mat-datepicker-toggle matSuffix [for]="pickerForFilling"></mat-datepicker-toggle>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerForFilling"
+      ></mat-datepicker-toggle>
       <mat-datepicker #pickerForFilling></mat-datepicker>
     </mat-form-field>
 
@@ -30,8 +44,13 @@
         matInput
         [matDatepicker]="pickerForClaiming"
         [(ngModel)]="proceedingsSubject.claimReceiptDate"
+        name="claimReceiptDate"
+        required
       />
-      <mat-datepicker-toggle matSuffix [for]="pickerForClaiming"></mat-datepicker-toggle>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerForClaiming"
+      ></mat-datepicker-toggle>
       <mat-datepicker #pickerForClaiming></mat-datepicker>
     </mat-form-field>
   </mat-card-content>

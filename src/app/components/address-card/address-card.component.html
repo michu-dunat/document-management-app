@@ -3,23 +3,52 @@
   <mat-card-content class="gap">
     <mat-form-field appearance="fill">
       <mat-label>Miasto</mat-label>
-      <input matInput type="text" [(ngModel)]="address.city" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="address.city"
+        name="{{ parentName }} + city"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Kod pocztowy</mat-label>
-      <input matInput type="text" [(ngModel)]="address.postcode" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="address.postcode"
+        name="{{ parentName }} + postcode"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Ulica</mat-label>
-      <input matInput type="text" [(ngModel)]="address.street" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="address.street"
+        name="{{ parentName }} + street"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer budynku</mat-label>
-      <input matInput type="text" [(ngModel)]="address.buildingNumber" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="address.buildingNumber"
+        name="{{ parentName }} + buildingNumber"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer mieszkania</mat-label>
-      <input matInput type="text" [(ngModel)]="address.apartmentNumber" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="address.apartmentNumber"
+        name="{{ parentName }} + city"
+      />
     </mat-form-field>
   </mat-card-content>
 </mat-card>

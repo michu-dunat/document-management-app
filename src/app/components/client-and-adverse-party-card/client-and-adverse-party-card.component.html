@@ -6,39 +6,69 @@
         matInput
         type="text"
         [(ngModel)]="data.firstnameAndLastNameOrCompanyName"
+        name="firstnameAndLastNameOrCompanyName"
+        required
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer telefonu</mat-label>
-      <input matInput type="text" [(ngModel)]="data.phoneNumber" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.phoneNumber"
+        name="phoneNumber"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Adres email</mat-label>
-      <input matInput type="text" [(ngModel)]="data.emailAddress" />
+      <input
+        matInput
+        type="email"
+        [(ngModel)]="data.emailAddress"
+        name="email"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer PESEL</mat-label>
-      <input matInput type="text" [(ngModel)]="data.PESEL" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.PESEL"
+        name="PESEL"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer NIP</mat-label>
-      <input matInput type="text" [(ngModel)]="data.NIP" />
+      <input matInput type="text" [(ngModel)]="data.NIP" name="NIP" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer KRS</mat-label>
-      <input matInput type="text" [(ngModel)]="data.KRS" />
+      <input matInput type="text" [(ngModel)]="data.KRS" name="KRS" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer REGON</mat-label>
-      <input matInput type="text" [(ngModel)]="data.REGON" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="data.REGON"
+        name="REGON"
+        required
+      />
     </mat-form-field>
 
     <app-address
+      [parentName]="'client'"
       [title]="'Adres zamieszkania/siedziby'"
       [address]="data.residenceOrRegisteredOfficeAddress"
     ></app-address>
 
-    <mat-checkbox [(ngModel)]="isMailingAddressNeeded">
+    <mat-checkbox
+      [(ngModel)]="isMailingAddressNeeded"
+      name="isMailingAddressNeeded"
+    >
       Użyj adresu do korespondencji
     </mat-checkbox>
 

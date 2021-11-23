@@ -4,36 +4,39 @@
   <mat-checkbox [(ngModel)]="isAdversePartyPresent">
     Sprawa dotyczy strony przeciwnej
   </mat-checkbox>
-
-  <mat-card-content class="gap-below">
-    <mat-tab-group>
-      <mat-tab label="Dane klienta">
-        <app-client-and-adverse-party-card
-          [title]="'Dane klienta'"
-          [data]="aCase.client"
-        ></app-client-and-adverse-party-card>
-      </mat-tab>
-      <mat-tab *ngIf="isAdversePartyPresent" label="Dane strony przeciwnej">
-        <app-client-and-adverse-party-card
-          [title]="'Dane strony przeciwnej'"
-          [data]="aCase.adverseParty"
-          [isAdverseParty]="true"
-        ></app-client-and-adverse-party-card>
-      </mat-tab>
-      <mat-tab label="Dane sądu">
-        <app-court-card
-          [court]="aCase.court"
-          [judgingPanelString]="judgingPanelString"
-        ></app-court-card>
-      </mat-tab>
-      <mat-tab label="Przedmiot postępowania">
-        <app-proceedings-subject-card
-          [proceedingsSubject]="aCase.proceedingsSubject"
-        ></app-proceedings-subject-card>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button (click)="sendCase()">{{ buttonText }}</button>
-  </mat-card-actions>
+  <form #myForm="ngForm" (ngSubmit)="sendCase()">
+    <mat-card-content class="gap-below">
+      <mat-tab-group>
+        <mat-tab label="Dane klienta">
+          <app-client-and-adverse-party-card
+            [title]="'Dane klienta'"
+            [data]="aCase.client"
+          ></app-client-and-adverse-party-card>
+        </mat-tab>
+        <mat-tab *ngIf="isAdversePartyPresent" label="Dane strony przeciwnej">
+          <app-client-and-adverse-party-card
+            [title]="'Dane strony przeciwnej'"
+            [data]="aCase.adverseParty"
+            [isAdverseParty]="true"
+          ></app-client-and-adverse-party-card>
+        </mat-tab>
+        <mat-tab label="Dane sądu">
+          <app-court-card
+            [court]="aCase.court"
+            [judgingPanelString]="judgingPanelString"
+          ></app-court-card>
+        </mat-tab>
+        <mat-tab label="Przedmiot postępowania">
+          <app-proceedings-subject-card
+            [proceedingsSubject]="aCase.proceedingsSubject"
+          ></app-proceedings-subject-card>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit" [disabled]="!myForm.valid">
+        {{ buttonText }}
+      </button>
+    </mat-card-actions>
+  </form>
 </mat-card>

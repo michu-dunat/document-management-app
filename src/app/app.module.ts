@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material/material.module';
 import { CaseComponent } from './components/case/case.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddressCardComponent } from './components/address-card/address-card.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ProceedingsSubjectCardComponent } from './components/proceedings-subject-card/proceedings-subject-card.component';
@@ -35,6 +35,7 @@ import { JudgingPanelCardComponent } from './components/judging-panel-card/judgi
     HttpClientModule,
     FormsModule,
     MatNativeDateModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AdverseParty } from 'src/app/classes/adverse-party';
-import { Client } from 'src/app/classes/client';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-client-and-adverse-party-card',
   templateUrl: './client-and-adverse-party-card.component.html',
-  styleUrls: ['./client-and-adverse-party-card.component.css']
+  styleUrls: ['./client-and-adverse-party-card.component.css'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class ClientAndAdversePartyCardComponent implements OnInit {
   @Input() title: string;
@@ -13,9 +13,7 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   @Input() isAdverseParty: boolean = false;
   isMailingAddressNeeded: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit() {}
 }

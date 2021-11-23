@@ -7,6 +7,8 @@
         matInput
         type="text"
         [(ngModel)]="adversePartyAttorney.firstnameAndLastName"
+        name="firstnameAndLastName"
+        required
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -15,18 +17,30 @@
         matInput
         type="text"
         [(ngModel)]="adversePartyAttorney.phoneNumber"
+        name="phoneNumber"
+        required
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Tytuł zawodowy</mat-label>
-      <input matInput type="text" [(ngModel)]="adversePartyAttorney.jobTitle" />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="adversePartyAttorney.jobTitle"
+        name="jobTitle"
+        required
+      />
     </mat-form-field>
 
-    <mat-checkbox [(ngModel)]="adversePartyAttorney.isAttorneyProfessional">
+    <mat-checkbox
+      [(ngModel)]="adversePartyAttorney.isAttorneyProfessional"
+      name="isAttorneyProfessional"
+    >
       Profesjonalny pełnomocnik
     </mat-checkbox>
 
     <app-address
+      [parentName]="'adversePartyAttorney'"
       [title]="'Adres'"
       [address]="adversePartyAttorney.residenceOrRegisteredOfficeAddress"
     ></app-address>

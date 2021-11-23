@@ -2,15 +2,15 @@
   <mat-card-content class="gap">
     <mat-form-field appearance="fill">
       <mat-label>Typ sądu</mat-label>
-      <input matInput type="text" [(ngModel)]="court.type" />
+      <input matInput type="text" [(ngModel)]="court.type" name="type" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer telefonu</mat-label>
-      <input matInput type="text" [(ngModel)]="court.phoneNumber" />
+      <input matInput type="text" [(ngModel)]="court.phoneNumber" name="phoneNumber" required/>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Wydział</mat-label>
-      <input matInput type="text" [(ngModel)]="court.department" />
+      <input matInput type="text" [(ngModel)]="court.department" name="department" required />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Adres elektroniczny</mat-label>
@@ -18,11 +18,18 @@
         matInput
         type="text"
         [(ngModel)]="court.electronicAddressForDelivery"
+        name="electronicAddressForDelivery" required
       />
     </mat-form-field>
-    
-    <app-judging-panel-card [judgingPanel]="court.judgingPanel"></app-judging-panel-card>
 
-    <app-address [title]="'Adres'" [address]="court.address"></app-address>
+    <app-judging-panel-card
+      [judgingPanel]="court.judgingPanel"
+    ></app-judging-panel-card>
+
+    <app-address
+      [parentName]="'court'"
+      [title]="'Adres'"
+      [address]="court.address"
+    ></app-address>
   </mat-card-content>
 </mat-card>

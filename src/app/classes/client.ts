@@ -10,5 +10,5 @@ export class Client {
   REGON: string;
   KRS: string;
   residenceOrRegisteredOfficeAddress: Address = new Address();
-  mailingAddress: Address = new Address();
+  mailingAddress?: Address = new Address();
 }

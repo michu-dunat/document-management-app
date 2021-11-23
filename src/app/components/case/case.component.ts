@@ -26,15 +26,23 @@ export class CaseComponent {
     // this.caseService.addCase(this.aCase).subscribe((result) => {
     //   console.log(result);
     // });
-    console.log(Object.keys(this.aCase.adverseParty.mailingAddress).length);
-    
-  console.log(this.aCase.adverseParty);
-      
+    if(this.aCase.adverseParty!.adversePartyAttorney.mailingAddress!.city == undefined) {
+      delete this.aCase.adverseParty!.adversePartyAttorney.mailingAddress
+    }
+    if(this.aCase.adverseParty!.mailingAddress!.city == undefined) {
+      delete this.aCase.adverseParty!.mailingAddress
+    }
+    if(this.aCase.client.mailingAddress!.city == undefined) {
+      delete this.aCase.client.mailingAddress
+    }
+    if(this.aCase.adverseParty!.firstnameAndLastNameOrCompanyName == undefined) {
+      delete this.aCase.adverseParty
+    }
 
     if(this.aCase.court.judgingPanel.length == 0) {
-      console.log('EJ');
+      //TODO snackBar
     }
     
-    //console.log(this.aCase);
+    console.log(this.aCase);
   }
 }

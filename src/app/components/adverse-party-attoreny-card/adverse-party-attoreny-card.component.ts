@@ -9,7 +9,7 @@ import { AdversePartyAttorney } from 'src/app/classes/adverse-party-attorney';
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class AdversePartyAttorenyCardComponent implements OnInit {
-  @Input() adversePartyAttorney: AdversePartyAttorney;
+  @Input() adversePartyAttorney: any;
   isMailingAddressNeeded: boolean = false;
   constructor() {}
 

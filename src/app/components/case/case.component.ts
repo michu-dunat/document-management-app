@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {  Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdverseParty } from 'src/app/classes/adverse-party';
@@ -19,12 +19,14 @@ export class CaseComponent {
   constructor(
     private caseService: CaseService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {}
 
   sendCase() {
+    console.log(this.aCase.court.judgingPanel);
+    
     if (this.aCase.court.judgingPanel.length == 0) {
       this.snackBar.open('Skład sędziowski nie może być pusty!', 'Rozumiem', {
         duration: 3000,

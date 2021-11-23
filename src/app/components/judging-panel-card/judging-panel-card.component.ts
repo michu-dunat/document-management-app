@@ -12,4 +12,11 @@ export class JudgingPanelCardComponent {
   addJudge() {
     this.judgingPanel.push(new Judge(this.firstnameAndLastName.trim()));
   }
+
+  delete(judge: Judge) {
+    const index = this.judgingPanel.indexOf(judge, 0);
+    if (index > -1) {
+      this.judgingPanel.splice(index, 1);
+    }
+  }
 }

@@ -11,7 +11,7 @@
     <mat-list>
       <div mat-subheader>Lista sędziów:</div>
       <mat-list-item *ngFor="let judge of judgingPanel">
-        {{ judge.firstnameAndLastName }}
+        {{ judge.firstnameAndLastName }} <button mat-icon-button (click)="delete(judge)"><mat-icon>delete</mat-icon></button>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

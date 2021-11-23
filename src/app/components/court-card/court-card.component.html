@@ -2,15 +2,33 @@
   <mat-card-content class="gap">
     <mat-form-field appearance="fill">
       <mat-label>Typ sądu</mat-label>
-      <input matInput type="text" [(ngModel)]="court.type" name="type" required />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="court.type"
+        name="type"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer telefonu</mat-label>
-      <input matInput type="text" [(ngModel)]="court.phoneNumber" name="phoneNumber" required/>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="court.phoneNumber"
+        name="phoneNumber"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Wydział</mat-label>
-      <input matInput type="text" [(ngModel)]="court.department" name="department" required />
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="court.department"
+        name="department"
+        required
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Adres elektroniczny</mat-label>
@@ -18,7 +36,8 @@
         matInput
         type="text"
         [(ngModel)]="court.electronicAddressForDelivery"
-        name="electronicAddressForDelivery" required
+        name="electronicAddressForDelivery"
+        required
       />
     </mat-form-field>
 

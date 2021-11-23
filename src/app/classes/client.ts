@@ -5,10 +5,10 @@ export class Client {
   firstnameAndLastNameOrCompanyName: string;
   phoneNumber: string;
   emailAddress: string;
-  PESEL: string;
-  NIP: string;
-  REGON: string;
-  KRS: string;
+  pesel: string;
+  nip: string;
+  regon: string;
+  krs: string;
   residenceOrRegisteredOfficeAddress: Address = new Address();
   mailingAddress?: Address = new Address();
 }

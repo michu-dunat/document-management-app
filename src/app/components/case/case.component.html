@@ -1,9 +1,6 @@
 <mat-card>
   <mat-card-title>Nowa sprawa</mat-card-title>
 
-  <mat-checkbox [(ngModel)]="isAdversePartyPresent">
-    Sprawa dotyczy strony przeciwnej
-  </mat-checkbox>
   <form #myForm="ngForm" (ngSubmit)="sendCase()">
     <mat-card-content class="gap-below">
       <mat-tab-group>
@@ -13,22 +10,20 @@
             [data]="aCase.client"
           ></app-client-and-adverse-party-card>
         </mat-tab>
-        <mat-tab *ngIf="isAdversePartyPresent" label="Dane strony przeciwnej">
+        <mat-tab label="Dane strony przeciwnej">
           <app-client-and-adverse-party-card
             [title]="'Dane strony przeciwnej'"
             [data]="aCase.adverseParty"
             [isAdverseParty]="true"
           ></app-client-and-adverse-party-card>
         </mat-tab>
-        <mat-tab label="Dane sądu">
-          <app-court-card
-            [court]="aCase.court"      
-          ></app-court-card>
-        </mat-tab>
         <mat-tab label="Przedmiot postępowania">
           <app-proceedings-subject-card
             [proceedingsSubject]="aCase.proceedingsSubject"
           ></app-proceedings-subject-card>
+        </mat-tab>
+        <mat-tab label="Dane sądu">
+          <app-court-card [court]="aCase.court"></app-court-card>
         </mat-tab>
       </mat-tab-group>
     </mat-card-content>

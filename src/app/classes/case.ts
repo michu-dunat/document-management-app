@@ -8,12 +8,5 @@ export class Case {
   client: Client = new Client();
   court: Court = new Court();
   proceedingsSubject: ProceedingsSubject = new ProceedingsSubject();
-  adverseParty?: AdverseParty= new AdverseParty();
-
-  // constructor() {
-  //   this.client ;
-  //   this.court ;
-  //   this.proceedingsSubject ;
-  //   this.adverseParty ;
-  // }
+  adverseParty: AdverseParty= new AdverseParty();
 }

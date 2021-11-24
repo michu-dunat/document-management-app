@@ -15,7 +15,6 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class CaseComponent {
   buttonText: string = 'Załóż sprawę';
   aCase: Case = new Case();
-  isAdversePartyPresent: boolean = false;
 
   constructor(
     private caseService: CaseService,
@@ -76,11 +75,6 @@ export class CaseComponent {
     }
     if (this.aCase.client.mailingAddress!.city == undefined) {
       delete this.aCase.client.mailingAddress;
-    }
-    if (
-      this.aCase.adverseParty!.firstnameAndLastNameOrCompanyName == undefined
-    ) {
-      delete this.aCase.adverseParty;
     }
   }
 }

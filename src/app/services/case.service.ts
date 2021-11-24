@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Case } from '../classes/case';
+import { CaseForTable } from '../interfaces/case-for-table';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,13 @@ export class CaseService {
     return this.http.post<any>(this.casesUrl + 'add', aCase, {
       observe: 'response',
     });
+  }
+
+  getCasesForTable() {
+    return this.http.get<CaseForTable[]>(this.casesUrl + 'table');
+  }
+
+  deleteCase(id: number) {
+    return this.http.delete<any>(`${this.casesUrl}delete/${id}`);
   }
 }

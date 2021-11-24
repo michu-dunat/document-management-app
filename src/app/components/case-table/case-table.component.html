@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="caseList">
+  <ng-container matColumnDef="label">
+    <th mat-header-cell *matHeaderCellDef>Etykieta sprawy</th>
+    <td mat-cell *matCellDef="let case">{{ case.label }}</td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Data złożenia/otrzymania pozwu</th>
+    <td mat-cell *matCellDef="let case">
+      {{ case.fillingOrClaimingDate }}
+    </td>
+  </ng-container>
+
+   <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let case">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="delete(case)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!--<ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let user">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="edit(user)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container> -->
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+</table>

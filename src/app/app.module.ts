@@ -15,6 +15,7 @@ import { ClientAndAdversePartyCardComponent } from './components/client-and-adve
 import { CourtCardComponent } from './components/court-card/court-card.component';
 import { AdversePartyAttorenyCardComponent } from './components/adverse-party-attoreny-card/adverse-party-attoreny-card.component';
 import { JudgingPanelCardComponent } from './components/judging-panel-card/judging-panel-card.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { JudgingPanelCardComponent } from './components/judging-panel-card/judgi
     CourtCardComponent,
     AdversePartyAttorenyCardComponent,
     JudgingPanelCardComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,

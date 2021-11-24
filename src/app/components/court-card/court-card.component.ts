@@ -9,12 +9,9 @@ import { Court } from 'src/app/classes/court';
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class CourtCardComponent implements OnInit {
-  @Input() judgingPanelString: string;
   @Input() court: Court;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

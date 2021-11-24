@@ -1,9 +1,11 @@
-import {  Component } from '@angular/core';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AdverseParty } from 'src/app/classes/adverse-party';
 import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-case',
@@ -13,20 +15,18 @@ import { CaseService } from 'src/app/services/case.service';
 export class CaseComponent {
   buttonText: string = 'Załóż sprawę';
   aCase: Case = new Case();
-  judgingPanelString: string;
   isAdversePartyPresent: boolean = false;
 
   constructor(
     private caseService: CaseService,
     private router: Router,
     private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {}
 
   sendCase() {
-    console.log(this.aCase.court.judgingPanel);
-    
     if (this.aCase.court.judgingPanel.length == 0) {
       this.snackBar.open('Skład sędziowski nie może być pusty!', 'Rozumiem', {
         duration: 3000,
@@ -34,6 +34,31 @@ export class CaseComponent {
       return;
     }
 
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: { title: 'Kontynuować?' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.clearCaseObject();
+
+        console.log(this.aCase);
+
+        this.caseService.addCase(this.aCase).subscribe(
+          (result) => {
+            console.log(result);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+
+        this.router.navigate(['']);
+      }
+    });
+  }
+
+  clearCaseObject() {
     if (
       this.aCase.adverseParty!.adversePartyAttorney.mailingAddress!.city ==
       undefined
@@ -51,13 +76,5 @@ export class CaseComponent {
     ) {
       delete this.aCase.adverseParty;
     }
-
-    this.caseService.addCase(this.aCase).subscribe((result) => {
-      console.log(result);
-    });
-
-    console.log(this.aCase);
-    
-    this.router.navigate(['']);
   }
 }

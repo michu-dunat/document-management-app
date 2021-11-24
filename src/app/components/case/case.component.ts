@@ -47,9 +47,15 @@ export class CaseComponent {
         this.caseService.addCase(this.aCase).subscribe(
           (result) => {
             console.log(result);
+            this.snackBar.open('Sprawa została zapisana w systemie!', 'Rozumiem', {
+              duration: 3000,
+            });
           },
           (error) => {
             console.error(error);
+            this.snackBar.open('Nie udało się zapisać sprawy w systemie!', 'Rozumiem', {
+              duration: 3000,
+            });
           }
         );
 

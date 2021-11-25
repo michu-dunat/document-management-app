@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>Nowa sprawa</mat-card-title>
+  <mat-card-title *ngIf="!isCaseForUpdating">Nowa sprawa</mat-card-title>
 
   <form #myForm="ngForm" (ngSubmit)="sendCase()">
     <mat-card-content class="gap-below">
@@ -8,6 +8,7 @@
           <app-client-and-adverse-party-card
             [title]="'Dane klienta'"
             [data]="aCase.client"
+            [isCaseForUpdating]="isCaseForUpdating"
           ></app-client-and-adverse-party-card>
         </mat-tab>
         <mat-tab label="Dane strony przeciwnej">
@@ -15,11 +16,13 @@
             [title]="'Dane strony przeciwnej'"
             [data]="aCase.adverseParty"
             [isAdverseParty]="true"
+            [isCaseForUpdating]="isCaseForUpdating"
           ></app-client-and-adverse-party-card>
         </mat-tab>
         <mat-tab label="Przedmiot postępowania">
           <app-proceedings-subject-card
             [proceedingsSubject]="aCase.proceedingsSubject"
+            [isCaseForUpdating]="isCaseForUpdating"
           ></app-proceedings-subject-card>
         </mat-tab>
         <mat-tab label="Dane sądu">
@@ -28,8 +31,8 @@
       </mat-tab-group>
     </mat-card-content>
     <mat-card-actions>
-      <!-- <button mat-raised-button type="submit"> -->
-      <button mat-raised-button type="submit" [disabled]="!myForm.valid">
+      <button mat-raised-button type="submit">
+      <!-- <button mat-raised-button type="submit" [disabled]="!myForm.valid"> -->
         {{ buttonText }}
       </button>
     </mat-card-actions>

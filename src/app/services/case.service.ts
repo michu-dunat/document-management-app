@@ -29,4 +29,12 @@ export class CaseService {
       observe: 'response',
     });
   }
+
+  getCase(id: number) {
+    return this.http.get<any>(`${this.casesUrl}${id}`);
+  }
+
+  updateCase(aCase: Case) {
+    return this.http.put<any>(`${this.casesUrl}update`, aCase);
+  }
 }

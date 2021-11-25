@@ -13,7 +13,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 })
 export class CaseTableComponent implements OnInit {
   caseList: CaseForTable[] = [];
-  columnsToDisplay = ['label', 'date', 'status', 'delete', 'changeStatus'];
+  columnsToDisplay = ['label', 'date', 'status', 'delete', 'changeStatus', 'edit'];
 
   constructor(
     private caseService: CaseService,

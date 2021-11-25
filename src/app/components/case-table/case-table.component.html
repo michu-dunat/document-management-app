@@ -16,44 +16,34 @@
     </td>
   </ng-container>
 
-   <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let case">
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="delete(case)"
-        >
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let case">
+      <button mat-icon-button color="primary" (click)="delete(case)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
 
-    <ng-container matColumnDef="changeStatus">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let case">
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="changeStatus(case)"
-        >
-          <mat-icon>menu</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+  <ng-container matColumnDef="changeStatus">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let case">
+      <button mat-icon-button color="primary" (click)="changeStatus(case)">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </td>
+  </ng-container>
 
-    <!--<ng-container matColumnDef="edit">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let user">
-        <button
-          mat-icon-button
-          color="primary"
-          (click)="edit(user)"
-        >
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let case">
+      <a routerLink="/case/update" [queryParams]="{id: case.id}">
+        <button mat-icon-button color="primary">
           <mat-icon>edit</mat-icon>
         </button>
-      </td>
-    </ng-container> -->
+      </a>
+    </td>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
   <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>

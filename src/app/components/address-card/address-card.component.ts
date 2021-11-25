@@ -12,4 +12,8 @@ export class AddressCardComponent {
   @Input() title: string;
   @Input() address: Address = new Address();
   @Input() parentName: string;
-}
+
+  ngOnInit() {
+    
+  }
+ }

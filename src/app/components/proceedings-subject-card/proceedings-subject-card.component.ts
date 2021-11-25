@@ -10,5 +10,15 @@ import { ProceedingsSubject } from 'src/app/classes/proceedings-subject';
 })
 export class ProceedingsSubjectCardComponent {
   @Input() proceedingsSubject: ProceedingsSubject = new ProceedingsSubject();
+  @Input() isCaseForUpdating: boolean = false;
   wasClaimReceived: boolean = false;
+
+  ngOnInit() {
+    if (
+      this.isCaseForUpdating &&
+      this.proceedingsSubject.claimReceiptDate !== null
+    ) {
+      this.wasClaimReceived = true;
+    }
+  }
 }

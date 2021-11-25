@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { AdverseParty } from 'src/app/classes/adverse-party';
 import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ProceedingsSubjectCardComponent } from '../proceedings-subject-card/proceedings-subject-card.component';
 
 @Component({
   selector: 'app-case',
@@ -13,8 +14,11 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   styleUrls: ['./case.component.css'],
 })
 export class CaseComponent {
-  buttonText: string = 'Załóż sprawę';
-  aCase: Case = new Case();
+  @Input() buttonText: string = 'Załóż sprawę';
+  @Input() aCase: Case = new Case();
+  @Input() isCaseForUpdating: boolean = false;
+
+  @ViewChild(ProceedingsSubjectCardComponent) proceedingsSubjectCardComponent: ProceedingsSubjectCardComponent;
 
   constructor(
     private caseService: CaseService,
@@ -23,7 +27,9 @@ export class CaseComponent {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.isCaseForUpdating);
+  }
 
   sendCase() {
     if (this.aCase.court.judgingPanel.length == 0) {
@@ -39,28 +45,72 @@ export class CaseComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.clearCaseObject();
+        if (this.isCaseForUpdating) {
+          this.cleanUp()
+          console.log(this.aCase.proceedingsSubject);
+          
+          this.caseService.updateCase(this.aCase).subscribe(
+            (result) => {
+              console.log(result);
+              this.snackBar.open(
+                'Dane sprawy zostały zaktualizowane!',
+                'Rozumiem',
+                {
+                  duration: 3000,
+                }
+              );
+            },
+            (error) => {
+              console.error(error);
+              this.snackBar.open(
+                'Nie udało się zaktualizować danych sprawy!',
+                'Rozumiem',
+                {
+                  duration: 3000,
+                }
+              );
+            }
+          );
+        } else {
+          this.clearCaseObject();
 
-        console.log(this.aCase);
+          console.log(this.aCase);
 
-        this.caseService.addCase(this.aCase).subscribe(
-          (result) => {
-            console.log(result);
-            this.snackBar.open('Sprawa została zapisana w systemie!', 'Rozumiem', {
-              duration: 3000,
-            });
-          },
-          (error) => {
-            console.error(error);
-            this.snackBar.open('Nie udało się zapisać sprawy w systemie!', 'Rozumiem', {
-              duration: 3000,
-            });
-          }
-        );
+          this.caseService.addCase(this.aCase).subscribe(
+            (result) => {
+              console.log(result);
+              this.snackBar.open(
+                'Sprawa została zapisana w systemie!',
+                'Rozumiem',
+                {
+                  duration: 3000,
+                }
+              );
+            },
+            (error) => {
+              console.error(error);
+              this.snackBar.open(
+                'Nie udało się zapisać sprawy w systemie!',
+                'Rozumiem',
+                {
+                  duration: 3000,
+                }
+              );
+            }
+          );
+        }
 
         this.router.navigate(['']);
       }
     });
+  }
+
+  cleanUp() {
+    if(this.proceedingsSubjectCardComponent.wasClaimReceived) {
+      this.aCase.proceedingsSubject.fillingDate = undefined;
+    } else {
+      this.aCase.proceedingsSubject.claimReceiptDate = undefined;
+    }
   }
 
   clearCaseObject() {

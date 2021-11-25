@@ -18,6 +18,7 @@ import { JudgingPanelCardComponent } from './components/judging-panel-card/judgi
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CaseTableComponent } from './components/case-table/case-table.component';
 import { CaseStatusChangeDialogComponent } from './components/case-status-change-dialog/case-status-change-dialog.component';
+import { UpdateCaseComponent } from './components/update-case/update-case.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CaseStatusChangeDialogComponent } from './components/case-status-change
     ConfirmationDialogComponent,
     CaseTableComponent,
     CaseStatusChangeDialogComponent,
+    UpdateCaseComponent,
   ],
   imports: [
     BrowserModule,

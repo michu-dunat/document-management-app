@@ -17,6 +17,7 @@ import { AdversePartyAttorenyCardComponent } from './components/adverse-party-at
 import { JudgingPanelCardComponent } from './components/judging-panel-card/judging-panel-card.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CaseTableComponent } from './components/case-table/case-table.component';
+import { CaseStatusChangeDialogComponent } from './components/case-status-change-dialog/case-status-change-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CaseTableComponent } from './components/case-table/case-table.component
     JudgingPanelCardComponent,
     ConfirmationDialogComponent,
     CaseTableComponent,
+    CaseStatusChangeDialogComponent,
   ],
   imports: [
     BrowserModule,

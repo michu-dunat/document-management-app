@@ -23,4 +23,10 @@ export class CaseService {
   deleteCase(id: number) {
     return this.http.delete<any>(`${this.casesUrl}delete/${id}`);
   }
+
+  updateCaseStatus(id: number, status: string) {
+    return this.http.patch<any>(`${this.casesUrl}status/${id}`, status, {
+      observe: 'response',
+    });
+  }
 }

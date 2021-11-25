@@ -9,6 +9,7 @@
             [title]="'Dane klienta'"
             [data]="aCase.client"
             [isCaseForUpdating]="isCaseForUpdating"
+            #clientCard
           ></app-client-and-adverse-party-card>
         </mat-tab>
         <mat-tab label="Dane strony przeciwnej">
@@ -17,6 +18,7 @@
             [data]="aCase.adverseParty"
             [isAdverseParty]="true"
             [isCaseForUpdating]="isCaseForUpdating"
+            #adversePartyCard
           ></app-client-and-adverse-party-card>
         </mat-tab>
         <mat-tab label="Przedmiot postępowania">

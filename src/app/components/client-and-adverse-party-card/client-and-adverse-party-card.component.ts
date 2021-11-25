@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { AdversePartyAttorenyCardComponent } from '../adverse-party-attoreny-card/adverse-party-attoreny-card.component';
 
 @Component({
   selector: 'app-client-and-adverse-party-card',
@@ -14,6 +15,7 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   @Input() isCaseForUpdating: boolean = false;
   isMailingAddressNeeded: boolean = false;
   nameDistinguisher: string;
+  @ViewChild('adversePartyAttorneyCard') adverseParyAttorneyCard: AdversePartyAttorenyCardComponent;
   
   constructor() {}
   

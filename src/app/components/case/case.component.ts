@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AdverseParty } from 'src/app/classes/adverse-party';
 import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
+import { ClientAndAdversePartyCardComponent } from '../client-and-adverse-party-card/client-and-adverse-party-card.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ProceedingsSubjectCardComponent } from '../proceedings-subject-card/proceedings-subject-card.component';
 
@@ -18,7 +19,12 @@ export class CaseComponent {
   @Input() aCase: Case = new Case();
   @Input() isCaseForUpdating: boolean = false;
 
-  @ViewChild(ProceedingsSubjectCardComponent) proceedingsSubjectCardComponent: ProceedingsSubjectCardComponent;
+  @ViewChild(ProceedingsSubjectCardComponent)
+  proceedingsSubjectCardComponent: ProceedingsSubjectCardComponent;
+  @ViewChild('clientCard')
+  clientCardComponent: ClientAndAdversePartyCardComponent;
+  @ViewChild('adversePartyCard')
+  adversePartyCardComponent: ClientAndAdversePartyCardComponent;
 
   constructor(
     private caseService: CaseService,
@@ -27,9 +33,7 @@ export class CaseComponent {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {
-    console.log(this.isCaseForUpdating);
-  }
+  ngOnInit() {}
 
   sendCase() {
     if (this.aCase.court.judgingPanel.length == 0) {
@@ -46,9 +50,8 @@ export class CaseComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (this.isCaseForUpdating) {
-          this.cleanUp()
-          console.log(this.aCase.proceedingsSubject);
-          
+          this.cleanUp();
+
           this.caseService.updateCase(this.aCase).subscribe(
             (result) => {
               console.log(result);
@@ -106,10 +109,19 @@ export class CaseComponent {
   }
 
   cleanUp() {
-    if(this.proceedingsSubjectCardComponent.wasClaimReceived) {
+    if (this.proceedingsSubjectCardComponent.wasClaimReceived) {
       this.aCase.proceedingsSubject.fillingDate = undefined;
     } else {
       this.aCase.proceedingsSubject.claimReceiptDate = undefined;
+    }
+    if (!this.clientCardComponent.isMailingAddressNeeded) {
+      this.aCase.client.mailingAddress = undefined;
+    }
+    if (!this.adversePartyCardComponent.isMailingAddressNeeded) {
+      this.aCase.adverseParty.mailingAddress = undefined;
+    }
+    if (!this.adversePartyCardComponent.adverseParyAttorneyCard.isMailingAddressNeeded) {
+      this.aCase.adverseParty.adversePartyAttorney.mailingAddress = undefined;
     }
   }
 

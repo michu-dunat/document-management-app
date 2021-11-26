@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/classes/address';
-import { AdverseParty } from 'src/app/classes/adverse-party';
 import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
 import { ClientAndAdversePartyCardComponent } from '../client-and-adverse-party-card/client-and-adverse-party-card.component';
@@ -65,12 +64,10 @@ export class CaseComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        this.cleanUp();
         if (this.isCaseForUpdating) {
-          this.cleanUp();
-
           this.caseService.updateCase(this.aCase).subscribe(
             (result) => {
-              console.log(result);
               this.snackBar.open(
                 'Dane sprawy zostały zaktualizowane!',
                 'Rozumiem',
@@ -91,13 +88,8 @@ export class CaseComponent {
             }
           );
         } else {
-          this.clearCaseObject();
-
-          console.log(this.aCase);
-
           this.caseService.addCase(this.aCase).subscribe(
             (result) => {
-              console.log(result);
               this.snackBar.open(
                 'Sprawa została zapisana w systemie!',
                 'Rozumiem',
@@ -141,21 +133,6 @@ export class CaseComponent {
         .isMailingAddressNeeded
     ) {
       this.aCase.adverseParty.adversePartyAttorney.mailingAddress = undefined;
-    }
-  }
-
-  clearCaseObject() {
-    if (
-      this.aCase.adverseParty!.adversePartyAttorney.mailingAddress!.city ==
-      undefined
-    ) {
-      delete this.aCase.adverseParty!.adversePartyAttorney.mailingAddress;
-    }
-    if (this.aCase.adverseParty!.mailingAddress!.city == undefined) {
-      delete this.aCase.adverseParty!.mailingAddress;
-    }
-    if (this.aCase.client.mailingAddress!.city == undefined) {
-      delete this.aCase.client.mailingAddress;
     }
   }
 }

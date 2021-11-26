@@ -9,4 +9,6 @@ export class Court {
   phoneNumber: string;
   electronicAddressForDelivery: string;
   address: Address = new Address();
+  emailAddress: string;
+  caseSignature: string;
 }

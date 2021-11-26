@@ -38,6 +38,27 @@
         required
       />
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adres email</mat-label>
+      <input
+        matInput
+        type="email"
+        [(ngModel)]="court.emailAddress"
+        name="courtemailAddress"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Sygnatura sprawy</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="court.caseSignature"
+        name="caseSignature"
+        required
+      />
+    </mat-form-field>
 
     <app-judging-panel-card
       [judgingPanel]="court.judgingPanel"

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { Court } from 'src/app/classes/court';
 
@@ -8,10 +8,7 @@ import { Court } from 'src/app/classes/court';
   styleUrls: ['./court-card.component.css'],
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
-export class CourtCardComponent implements OnInit {
+export class CourtCardComponent {
   @Input() court: Court;
-
-  constructor() {}
-
-  ngOnInit(): void {}
+  courtTypeList: string[] = ['Rejonowy', 'Okręgowy']
 }

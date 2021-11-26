@@ -2,13 +2,11 @@
   <mat-card-content class="gap">
     <mat-form-field appearance="fill">
       <mat-label>Typ sądu</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="court.type"
-        name="type"
-        required
-      />
+      <mat-select [(ngModel)]="court.type" name="type" required>
+        <mat-option *ngFor="let courtType of courtTypeList" [value]="courtType">
+          {{ courtType }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Numer telefonu</mat-label>

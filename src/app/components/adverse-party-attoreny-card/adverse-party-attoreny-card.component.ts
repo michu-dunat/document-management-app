@@ -11,6 +11,7 @@ export class AdversePartyAttorenyCardComponent implements OnInit {
   @Input() adversePartyAttorney: any;
   @Input() isCaseForUpdating: boolean = false;
   isMailingAddressNeeded: boolean = false;
+  jobTitleList: string[] = ['Brak', 'Adwokat', 'Radca prawny']
 
   ngOnInit(): void {
     if (

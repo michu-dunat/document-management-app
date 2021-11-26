@@ -65,6 +65,8 @@ export class CaseComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.cleanUp();
+        console.log(this.aCase);
+        
         if (this.isCaseForUpdating) {
           this.caseService.updateCase(this.aCase).subscribe(
             (result) => {

@@ -2,6 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Address } from 'src/app/classes/address';
 import { AdverseParty } from 'src/app/classes/adverse-party';
 import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
@@ -33,7 +34,22 @@ export class CaseComponent {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.isCaseForUpdating) {
+      if (this.aCase.client.mailingAddress === null) {
+        this.aCase.client.mailingAddress = new Address();
+      }
+      if (this.aCase.adverseParty.mailingAddress === null) {
+        this.aCase.adverseParty.mailingAddress = new Address();
+      }
+      if (
+        this.aCase.adverseParty.adversePartyAttorney.mailingAddress === null
+      ) {
+        this.aCase.adverseParty.adversePartyAttorney.mailingAddress =
+          new Address();
+      }
+    }
+  }
 
   sendCase() {
     if (this.aCase.court.judgingPanel.length == 0) {
@@ -120,7 +136,10 @@ export class CaseComponent {
     if (!this.adversePartyCardComponent.isMailingAddressNeeded) {
       this.aCase.adverseParty.mailingAddress = undefined;
     }
-    if (!this.adversePartyCardComponent.adverseParyAttorneyCard.isMailingAddressNeeded) {
+    if (
+      !this.adversePartyCardComponent.adverseParyAttorneyCard
+        .isMailingAddressNeeded
+    ) {
       this.aCase.adverseParty.adversePartyAttorney.mailingAddress = undefined;
     }
   }

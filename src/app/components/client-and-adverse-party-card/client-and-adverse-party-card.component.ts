@@ -21,7 +21,7 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   
   ngOnInit() {
     this.nameDistinguisher = this.isAdverseParty ? "adverseParty" : "client";
-    if(this.isCaseForUpdating && this.data.mailingAddress) {
+    if(this.isCaseForUpdating && this.data.mailingAddress.city !== undefined) {
       this.isMailingAddressNeeded = true;
     }
   }

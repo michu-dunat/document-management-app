@@ -15,7 +15,7 @@ export class AdversePartyAttorenyCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    if (this.isCaseForUpdating && this.adversePartyAttorney.mailingAddress) {
+    if (this.isCaseForUpdating && this.adversePartyAttorney.mailingAddress.city !== undefined) {
       this.isMailingAddressNeeded = true;
     }
   }

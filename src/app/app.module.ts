@@ -19,6 +19,7 @@ import { ConfirmationDialogComponent } from './components/confirmation-dialog/co
 import { CaseTableComponent } from './components/case-table/case-table.component';
 import { CaseStatusChangeDialogComponent } from './components/case-status-change-dialog/case-status-change-dialog.component';
 import { UpdateCaseComponent } from './components/update-case/update-case.component';
+import { DocumentCardComponent } from './components/document-card/document-card.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UpdateCaseComponent } from './components/update-case/update-case.compon
     CaseTableComponent,
     CaseStatusChangeDialogComponent,
     UpdateCaseComponent,
+    DocumentCardComponent,
   ],
   imports: [
     BrowserModule,

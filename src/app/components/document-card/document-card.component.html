@@ -1,0 +1,83 @@
+<mat-card>
+  <mat-card-title></mat-card-title>
+  <form #documentForm="ngForm"(ngSubmit)="sendJson()">
+    
+    <mat-card-content class="gap">
+      <mat-form-field appearance="fill">
+        <mat-label>Rodzaj pisma</mat-label>
+        <mat-select [(ngModel)]="document.type" name="type" required>
+          <mat-option
+            *ngFor="let documentType of documentTypeList"
+            [value]="documentType"
+          >
+            {{ documentType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label *ngIf="!document.isIncoming">Adresat</mat-label>
+        <mat-label *ngIf="document.isIncoming">Nadawca</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="document.addresseeOrSender"
+          name="addresseeOrSender"
+          required
+        />
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="document.isIncoming" name="isIncoming">
+        Pismo przychodzące
+      </mat-checkbox>
+
+      <mat-form-field appearance="fill">
+        <mat-label *ngIf="document.isIncoming">Data wpływu</mat-label>
+        <mat-label *ngIf="!document.isIncoming">Data wysyłki</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerForReceiptOrDispatch"
+          [(ngModel)]="document.dateOfReceiptOrDispatch"
+          name="dateOfReceiptOrDispatch"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerForReceiptOrDispatch"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerForReceiptOrDispatch></mat-datepicker>
+      </mat-form-field>
+
+      <mat-checkbox *ngIf="document.isIncoming"
+        [(ngModel)]="document.isResponseRequired"
+        name="isResponseRequired"
+      >
+        Obowiązek odpowiedzi
+      </mat-checkbox>
+
+      <mat-form-field appearance="fill" *ngIf="document.isResponseRequired">
+        <mat-label>Termin na przesłanie odpowiedzi</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerForDeadlineForResponse"
+          [(ngModel)]="document.deadlineForResponse"
+          name="deadlineForResponse"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerForDeadlineForResponse"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerForDeadlineForResponse></mat-datepicker>
+      </mat-form-field>
+
+      <label for="file">Wybierz plik: </label>
+      <input type="file" id="file" name="file" accept=".pdf" required (change)="handleFileInput($any($event.target).files)" />
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button type="submit">
+        <!-- <button mat-raised-button type="submit" [disabled]="!documentForm.valid"> -->
+        Zapisz
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

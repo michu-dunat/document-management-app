@@ -1,4 +1,28 @@
-<div *ngFor="let document of documentList">
-  <app-document-card [document]="document" [shouldBeDisabled]="true"></app-document-card>
-  <button mat-raised-button (click)="delete(document)">Usuń dokument</button>
-</div>
+<mat-card>
+  <mat-card-title>{{caseLabel}}</mat-card-title>
+  <mat-card-content class="gap-below">
+    <div *ngFor="let document of documentList">
+      <app-document-card
+        *ngIf="document.id"
+        [document]="document"
+        [shouldBeDisabled]="true"
+        [caseId]="caseId"
+      ></app-document-card>
+      <app-document-card
+        *ngIf="!document.id"
+        [caseId]="caseId"
+        (delete)="discardNewDocument($event)"
+      >
+      </app-document-card>
+      <button mat-raised-button (click)="delete(document)">
+        Usuń dokument
+      </button>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button (click)="addNewDocument()">
+      Dodaj nowy dokument
+    </button>
+  </mat-card-actions>
+</mat-card>

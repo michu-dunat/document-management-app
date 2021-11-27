@@ -7,6 +7,4 @@ export class Document {
   isResponseRequired?: boolean;
   deadlineForResponse?: Date;
   file: any[];
-
-  // aCase;
 }

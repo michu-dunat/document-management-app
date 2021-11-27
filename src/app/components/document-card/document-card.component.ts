@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Document } from 'src/app/classes/document';
 import { DocumentService } from 'src/app/services/document.service';
 
@@ -17,6 +17,8 @@ export class DocumentCardComponent implements OnInit {
   ];
   file: File | null;
   @Input() shouldBeDisabled: boolean = false;
+  @Output() delete: EventEmitter<boolean> = new EventEmitter();
+  @Input() caseId: number;
 
   async handleFileInput(files: FileList) {
     this.document.file = await this.fileToByteArrayy(files.item(0));
@@ -45,9 +47,10 @@ export class DocumentCardComponent implements OnInit {
   }
 
   sendJson() {
-    this.documentService.addDocument(1, this.document).subscribe(
+    this.documentService.addDocument(this.caseId, this.document).subscribe(
       (response) => {
-        console.log(response);
+        this.document.id = response.body;
+        this.shouldBeDisabled = true;
       },
       (error) => {
         console.error(error);
@@ -55,9 +58,11 @@ export class DocumentCardComponent implements OnInit {
     );
   }
 
+  discard() {
+    this.delete.emit(true);
+  }
+
   constructor(private documentService: DocumentService) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 }

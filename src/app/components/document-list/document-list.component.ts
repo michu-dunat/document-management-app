@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { Document } from 'src/app/classes/document';
 import { DocumentService } from 'src/app/services/document.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-document-list',
@@ -14,21 +15,25 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class DocumentListComponent implements OnInit {
   caseId: number;
   documentList: Document[] = [];
+  caseLabel: string | null;
   constructor(
     private route: ActivatedRoute,
     private documentService: DocumentService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe((queryParams) => {
+      this.caseLabel = queryParams.get('caseLabel');
+    });
     this.route.params.subscribe((param) => {
       this.caseId = param.caseId;
     });
     this.documentService.getDocumentsForCase(this.caseId).subscribe(
       (response) => {
         this.documentList = response;
-        console.log(this.documentList);
       },
       (error) => {
         console.error(error);
@@ -65,5 +70,13 @@ export class DocumentListComponent implements OnInit {
         );
       }
     });
+  }
+
+  discardNewDocument(_: boolean) {
+    this.documentList.pop();
+  }
+
+  addNewDocument() {
+    this.documentList.push(new Document());
   }
 }

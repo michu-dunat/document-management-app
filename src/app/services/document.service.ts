@@ -18,4 +18,8 @@ export class DocumentService {
   getDocumentsForCase(caseId: number) {
     return this.http.get<Document[]>(`${this.documentUrl}list/${caseId}`);
   }
+
+  deleteDocument(documentId: number) {
+    return this.http.delete<any>(`${this.documentUrl}delete/${documentId}`);
+  }
 }

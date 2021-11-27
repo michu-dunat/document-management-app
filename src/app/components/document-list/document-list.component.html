@@ -1,3 +1,4 @@
 <div *ngFor="let document of documentList">
   <app-document-card [document]="document" [shouldBeDisabled]="true"></app-document-card>
+  <button mat-raised-button (click)="delete(document)">Usuń dokument</button>
 </div>

@@ -20,6 +20,7 @@ import { CaseTableComponent } from './components/case-table/case-table.component
 import { CaseStatusChangeDialogComponent } from './components/case-status-change-dialog/case-status-change-dialog.component';
 import { UpdateCaseComponent } from './components/update-case/update-case.component';
 import { DocumentCardComponent } from './components/document-card/document-card.component';
+import { DocumentListComponent } from './components/document-list/document-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DocumentCardComponent } from './components/document-card/document-card.
     CaseStatusChangeDialogComponent,
     UpdateCaseComponent,
     DocumentCardComponent,
+    DocumentListComponent,
   ],
   imports: [
     BrowserModule,

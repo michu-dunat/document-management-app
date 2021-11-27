@@ -1,11 +1,15 @@
 <mat-card>
   <mat-card-title></mat-card-title>
-  <form #documentForm="ngForm"(ngSubmit)="sendJson()">
-    
+  <form #documentForm="ngForm" (ngSubmit)="sendJson()">
     <mat-card-content class="gap">
       <mat-form-field appearance="fill">
         <mat-label>Rodzaj pisma</mat-label>
-        <mat-select [(ngModel)]="document.type" name="type" required>
+        <mat-select
+          [(ngModel)]="document.type"
+          name="type"
+          required
+          [disabled]="shouldBeDisabled"
+        >
           <mat-option
             *ngFor="let documentType of documentTypeList"
             [value]="documentType"
@@ -24,10 +28,15 @@
           [(ngModel)]="document.addresseeOrSender"
           name="addresseeOrSender"
           required
+          [disabled]="shouldBeDisabled"
         />
       </mat-form-field>
 
-      <mat-checkbox [(ngModel)]="document.isIncoming" name="isIncoming">
+      <mat-checkbox
+        [(ngModel)]="document.isIncoming"
+        name="isIncoming"
+        [disabled]="shouldBeDisabled"
+      >
         Pismo przychodzące
       </mat-checkbox>
 
@@ -40,6 +49,7 @@
           [(ngModel)]="document.dateOfReceiptOrDispatch"
           name="dateOfReceiptOrDispatch"
           required
+          [disabled]="shouldBeDisabled"
         />
         <mat-datepicker-toggle
           matSuffix
@@ -48,9 +58,11 @@
         <mat-datepicker #pickerForReceiptOrDispatch></mat-datepicker>
       </mat-form-field>
 
-      <mat-checkbox *ngIf="document.isIncoming"
+      <mat-checkbox
+        *ngIf="document.isIncoming"
         [(ngModel)]="document.isResponseRequired"
         name="isResponseRequired"
+        [disabled]="shouldBeDisabled"
       >
         Obowiązek odpowiedzi
       </mat-checkbox>
@@ -62,6 +74,7 @@
           [matDatepicker]="pickerForDeadlineForResponse"
           [(ngModel)]="document.deadlineForResponse"
           name="deadlineForResponse"
+          [disabled]="shouldBeDisabled"
         />
         <mat-datepicker-toggle
           matSuffix
@@ -71,10 +84,18 @@
       </mat-form-field>
 
       <label for="file">Wybierz plik: </label>
-      <input type="file" id="file" name="file" accept=".pdf" required (change)="handleFileInput($any($event.target).files)" />
+      <input
+        type="file"
+        id="file"
+        name="file"
+        accept=".pdf"
+        required
+        (change)="handleFileInput($any($event.target).files)"
+        [disabled]="shouldBeDisabled"
+      />
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button type="submit">
+      <button mat-raised-button type="submit" *ngIf="!shouldBeDisabled">
         <!-- <button mat-raised-button type="submit" [disabled]="!documentForm.valid"> -->
         Zapisz
       </button>

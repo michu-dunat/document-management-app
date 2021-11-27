@@ -16,6 +16,7 @@ export class DocumentCardComponent implements OnInit {
     'Wniosek o przeprowadzenie dowodu',
   ];
   file: File | null;
+  @Input() shouldBeDisabled: boolean = false;
 
   async handleFileInput(files: FileList) {
     this.document.file = await this.fileToByteArrayy(files.item(0));
@@ -56,5 +57,7 @@ export class DocumentCardComponent implements OnInit {
 
   constructor(private documentService: DocumentService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 }

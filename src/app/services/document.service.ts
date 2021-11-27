@@ -14,4 +14,8 @@ export class DocumentService {
       observe: 'response',
     });
   }
+
+  getDocumentsForCase(caseId: number) {
+    return this.http.get<Document[]>(`${this.documentUrl}list/${caseId}`);
+  }
 }

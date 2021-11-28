@@ -21,6 +21,8 @@ export class DocumentCardComponent implements OnInit {
     new EventEmitter();
   @Input() caseId: number;
   fileName: string = 'Nowy plik';
+  isBeingEdited: boolean = false;
+  clone: any;
 
   constructor(private documentService: DocumentService) {}
 
@@ -59,22 +61,47 @@ export class DocumentCardComponent implements OnInit {
   }
 
   sendJson() {
-    this.document.fileName = this.file!.name;
-    this.documentService.addDocument(this.caseId, this.document).subscribe(
-      (response) => {
-        this.document.id = response.body;
-        this.shouldBeDisabled = true;
-        this.fileName = this.file!.name;
-        this.whatHappendWithNewDocument.emit('saved');
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+    if (this.file != null) {
+      this.document.fileName = this.file.name;
+    }
+    if (!this.document.isResponseRequired) {
+      this.document.deadlineForResponse = undefined;
+    }
+    if (this.isBeingEdited) {
+      this.documentService.updateDocument(this.document).subscribe(
+        (response) => {
+          this.shouldBeDisabled = true;
+          if (this.file != null) {
+            this.fileName = this.file.name;
+          }
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      this.documentService.addDocument(this.caseId, this.document).subscribe(
+        (response) => {
+          this.document.id = response.body;
+          this.shouldBeDisabled = true;
+          this.fileName = this.file!.name;
+          this.whatHappendWithNewDocument.emit('saved');
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
   }
 
   discard() {
-    this.whatHappendWithNewDocument.emit('discarded');
+    if (!this.isBeingEdited) {
+      this.whatHappendWithNewDocument.emit('discarded');
+    } else {
+      this.shouldBeDisabled = true;
+      this.isBeingEdited = false;
+      this.document = this.clone;
+    }
   }
 
   download() {
@@ -88,5 +115,11 @@ export class DocumentCardComponent implements OnInit {
     var fileURL = URL.createObjectURL(file);
     window.open(fileURL);
     URL.revokeObjectURL(fileURL);
+  }
+
+  edit() {
+    this.clone = Object.assign({}, this.document);
+    this.shouldBeDisabled = false;
+    this.isBeingEdited = true;
   }
 }

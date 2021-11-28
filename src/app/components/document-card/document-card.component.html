@@ -98,10 +98,11 @@
       <button mat-raised-button type="button" (click)="discard()" *ngIf="!shouldBeDisabled">
         Anuluj
       </button>
-      <button mat-raised-button type="submit" *ngIf="!shouldBeDisabled">
-        <!-- <button mat-raised-button type="submit" [disabled]="!documentForm.valid"> -->
+      <!-- <button mat-raised-button type="submit" *ngIf="!shouldBeDisabled"> -->
+        <button mat-raised-button type="submit" [disabled]="!documentForm.valid" *ngIf="!shouldBeDisabled">
         Zapisz
       </button>
+      <button mat-raised-button type="button" (click)="edit()" *ngIf="shouldBeDisabled">Edytuj</button>
       <button mat-raised-button type="button" (click)="download()" *ngIf="shouldBeDisabled">Pobierz plik</button>
     </mat-card-actions>
   </form>

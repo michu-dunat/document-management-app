@@ -16,6 +16,7 @@ export class DocumentListComponent implements OnInit {
   caseId: number;
   documentList: Document[] = [];
   caseLabel: string | null;
+  isAddButtonHidden: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private documentService: DocumentService,
@@ -72,11 +73,15 @@ export class DocumentListComponent implements OnInit {
     });
   }
 
-  discardNewDocument(_: boolean) {
-    this.documentList.pop();
+  handleWhatHappenedWithNewDocument(info: string) {
+    if (info === 'discarded') {
+      this.documentList.pop();
+    }
+    this.isAddButtonHidden = false;
   }
 
   addNewDocument() {
     this.documentList.push(new Document());
+    this.isAddButtonHidden = true;
   }
 }

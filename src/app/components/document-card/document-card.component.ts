@@ -17,11 +17,14 @@ export class DocumentCardComponent implements OnInit {
   ];
   file: File | null;
   @Input() shouldBeDisabled: boolean = false;
-  @Output() delete: EventEmitter<boolean> = new EventEmitter();
+  @Output() whatHappendWithNewDocument: EventEmitter<string> =
+    new EventEmitter();
   @Input() caseId: number;
+  fileName: string = 'Nowy plik';
 
   async handleFileInput(files: FileList) {
-    this.document.file = await this.fileToByteArrayy(files.item(0));
+    this.file = files.item(0);
+    this.document.file = await this.fileToByteArrayy(this.file);
   }
 
   fileToByteArrayy(file: any) {
@@ -38,6 +41,7 @@ export class DocumentCardComponent implements OnInit {
               fileByteArray.push(byte);
             }
           }
+          console.log(fileByteArray);
           resolve(fileByteArray);
         };
       } catch (e) {
@@ -47,10 +51,13 @@ export class DocumentCardComponent implements OnInit {
   }
 
   sendJson() {
+    this.document.fileName = this.file!.name;
     this.documentService.addDocument(this.caseId, this.document).subscribe(
       (response) => {
         this.document.id = response.body;
         this.shouldBeDisabled = true;
+        this.fileName = this.file!.name;
+        this.whatHappendWithNewDocument.emit('saved');
       },
       (error) => {
         console.error(error);
@@ -59,10 +66,26 @@ export class DocumentCardComponent implements OnInit {
   }
 
   discard() {
-    this.delete.emit(true);
+    this.whatHappendWithNewDocument.emit('discarded');
   }
 
   constructor(private documentService: DocumentService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.document.id) {
+      this.fileName = this.document.fileName;
+    }
+  }
+
+  download() {
+    console.log(this.document.file);
+
+    const blob = new Blob([new Uint8Array(this.document.file)], {
+      type: 'application/pdf',
+    });
+    console.log(blob);
+
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
+  }
 }

@@ -6,5 +6,6 @@ export class Document {
   dateOfReceiptOrDispatch: Date;
   isResponseRequired?: boolean;
   deadlineForResponse?: Date;
+  fileName: string;
   file: any[];
 }

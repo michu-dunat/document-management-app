@@ -11,7 +11,7 @@
       <app-document-card
         *ngIf="!document.id"
         [caseId]="caseId"
-        (delete)="discardNewDocument($event)"
+        (whatHappendWithNewDocument)="handleWhatHappenedWithNewDocument($event)"
       >
       </app-document-card>
       <button mat-raised-button (click)="delete(document)">
@@ -21,7 +21,7 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-raised-button (click)="addNewDocument()">
+    <button mat-raised-button (click)="addNewDocument()" *ngIf="!isAddButtonHidden">
       Dodaj nowy dokument
     </button>
   </mat-card-actions>

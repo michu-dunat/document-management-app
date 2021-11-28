@@ -61,6 +61,8 @@ export class DocumentCardComponent implements OnInit {
   }
 
   sendJson() {
+    console.log(this.document);
+
     if (this.file != null) {
       this.document.fileName = this.file.name;
     }
@@ -105,16 +107,24 @@ export class DocumentCardComponent implements OnInit {
   }
 
   download() {
-    var byteCharacters = atob(this.document.file.toString());
-    var byteNumbers = new Array(byteCharacters.length);
-    for (var i = 0; i < byteCharacters.length; i++) {
-      byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    var byteArray = new Uint8Array(byteNumbers);
-    var file = new Blob([byteArray], { type: 'application/pdf;base64' });
-    var fileURL = URL.createObjectURL(file);
-    window.open(fileURL);
-    URL.revokeObjectURL(fileURL);
+    this.documentService.getFile(<number>this.document!.id).subscribe(
+      (response) => {
+        this.document.file = response.file;
+        var byteCharacters = atob(this.document.file!.toString());
+        var byteNumbers = new Array(byteCharacters.length);
+        for (var i = 0; i < byteCharacters.length; i++) {
+          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        var byteArray = new Uint8Array(byteNumbers);
+        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+        URL.revokeObjectURL(fileURL);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   edit() {

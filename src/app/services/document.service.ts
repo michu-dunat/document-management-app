@@ -26,4 +26,8 @@ export class DocumentService {
   updateDocument(document: Document) {
     return this.http.put<any>(this.documentUrl + 'update', document);
   }
+
+  getFile(documentId: number) {
+    return this.http.get<any>(`${this.documentUrl}file/${documentId}`);
+  }
 }

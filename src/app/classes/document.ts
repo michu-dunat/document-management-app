@@ -7,5 +7,5 @@ export class Document {
   isResponseRequired?: boolean;
   deadlineForResponse?: Date;
   fileName: string;
-  file: any[];
+  file?: any[];
 }

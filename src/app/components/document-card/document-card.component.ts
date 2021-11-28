@@ -22,6 +22,14 @@ export class DocumentCardComponent implements OnInit {
   @Input() caseId: number;
   fileName: string = 'Nowy plik';
 
+  constructor(private documentService: DocumentService) {}
+
+  ngOnInit(): void {
+    if (this.document.id) {
+      this.fileName = this.document.fileName;
+    }
+  }
+
   async handleFileInput(files: FileList) {
     this.file = files.item(0);
     this.document.file = await this.fileToByteArrayy(this.file);
@@ -69,23 +77,16 @@ export class DocumentCardComponent implements OnInit {
     this.whatHappendWithNewDocument.emit('discarded');
   }
 
-  constructor(private documentService: DocumentService) {}
-
-  ngOnInit(): void {
-    if (this.document.id) {
-      this.fileName = this.document.fileName;
-    }
-  }
-
   download() {
-    console.log(this.document.file);
-
-    const blob = new Blob([new Uint8Array(this.document.file)], {
-      type: 'application/pdf',
-    });
-    console.log(blob);
-
-    const url = window.URL.createObjectURL(blob);
-    window.open(url);
+    var byteCharacters = atob(this.document.file.toString());
+    var byteNumbers = new Array(byteCharacters.length);
+    for (var i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    var byteArray = new Uint8Array(byteNumbers);
+    var file = new Blob([byteArray], { type: 'application/pdf;base64' });
+    var fileURL = URL.createObjectURL(file);
+    window.open(fileURL);
+    URL.revokeObjectURL(fileURL);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Document } from 'src/app/classes/document';
 import { DocumentService } from 'src/app/services/document.service';
 
@@ -17,14 +18,17 @@ export class DocumentCardComponent implements OnInit {
   ];
   file: File | null;
   @Input() shouldBeDisabled: boolean = false;
-  @Output() whatHappendWithNewDocument: EventEmitter<string> =
+  @Output() whatHappendWithNewDocument: EventEmitter<Document> =
     new EventEmitter();
   @Input() caseId: number;
   fileName: string = 'Nowy plik';
   isBeingEdited: boolean = false;
   clone: any;
 
-  constructor(private documentService: DocumentService) {}
+  constructor(
+    private documentService: DocumentService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     if (this.document.id) {
@@ -51,7 +55,6 @@ export class DocumentCardComponent implements OnInit {
               fileByteArray.push(byte);
             }
           }
-          console.log(fileByteArray);
           resolve(fileByteArray);
         };
       } catch (e) {
@@ -61,8 +64,6 @@ export class DocumentCardComponent implements OnInit {
   }
 
   sendJson() {
-    console.log(this.document);
-
     if (this.file != null) {
       this.document.fileName = this.file.name;
     }
@@ -76,21 +77,32 @@ export class DocumentCardComponent implements OnInit {
           if (this.file != null) {
             this.fileName = this.file.name;
           }
+          this.snackBar.open('Dokument został zauktalizowany', 'Zamknij');
         },
         (error) => {
           console.error(error);
+          this.snackBar.open(
+            'Aktualizacja dokumentu nie powiodła się',
+            'Zamknij'
+          );
         }
       );
     } else {
       this.documentService.addDocument(this.caseId, this.document).subscribe(
         (response) => {
+          console.log(response.body);
+
           this.document.id = response.body;
+          console.log(this.document.id);
+
           this.shouldBeDisabled = true;
           this.fileName = this.file!.name;
-          this.whatHappendWithNewDocument.emit('saved');
+          this.whatHappendWithNewDocument.emit(this.document);
+          this.snackBar.open('Dokument został dodany', 'Zamknij');
         },
         (error) => {
           console.error(error);
+          this.snackBar.open('Dokument nie został dodany', 'Zamknij');
         }
       );
     }
@@ -98,7 +110,7 @@ export class DocumentCardComponent implements OnInit {
 
   discard() {
     if (!this.isBeingEdited) {
-      this.whatHappendWithNewDocument.emit('discarded');
+      this.whatHappendWithNewDocument.emit(this.document);
     } else {
       this.shouldBeDisabled = true;
       this.isBeingEdited = false;

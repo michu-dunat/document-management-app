@@ -52,9 +52,7 @@ export class CaseComponent {
 
   sendCase() {
     if (this.aCase.court.judgingPanel.length == 0) {
-      this.snackBar.open('Skład sędziowski nie może być pusty!', 'Rozumiem', {
-        duration: 3000,
-      });
+      this.snackBar.open('Skład sędziowski nie może być pusty!', 'Rozumiem');
       return;
     }
 
@@ -66,26 +64,20 @@ export class CaseComponent {
       if (result) {
         this.cleanUp();
         console.log(this.aCase);
-        
+
         if (this.isCaseForUpdating) {
           this.caseService.updateCase(this.aCase).subscribe(
             (result) => {
               this.snackBar.open(
                 'Dane sprawy zostały zaktualizowane!',
-                'Rozumiem',
-                {
-                  duration: 3000,
-                }
+                'Rozumiem'
               );
             },
             (error) => {
               console.error(error);
               this.snackBar.open(
                 'Nie udało się zaktualizować danych sprawy!',
-                'Rozumiem',
-                {
-                  duration: 3000,
-                }
+                'Rozumiem'
               );
             }
           );
@@ -94,20 +86,14 @@ export class CaseComponent {
             (result) => {
               this.snackBar.open(
                 'Sprawa została zapisana w systemie!',
-                'Rozumiem',
-                {
-                  duration: 3000,
-                }
+                'Rozumiem'
               );
             },
             (error) => {
               console.error(error);
               this.snackBar.open(
                 'Nie udało się zapisać sprawy w systemie!',
-                'Rozumiem',
-                {
-                  duration: 3000,
-                }
+                'Rozumiem'
               );
             }
           );

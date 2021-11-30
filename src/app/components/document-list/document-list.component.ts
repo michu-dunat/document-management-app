@@ -51,9 +51,7 @@ export class DocumentListComponent implements OnInit {
       if (result) {
         this.documentService.deleteDocument(<number>document.id).subscribe(
           (response) => {
-            this.snackBar.open('Dokument została usunięty!', 'Zamknij', {
-              duration: 3000,
-            });
+            this.snackBar.open('Dokument została usunięty!', 'Zamknij');
             this.documentList = this.documentList.filter(
               (documentInList) => documentInList !== document
             );
@@ -61,10 +59,7 @@ export class DocumentListComponent implements OnInit {
           (error) => {
             this.snackBar.open(
               'Błąd, dokument nie został usunięty!',
-              'Zamknij',
-              {
-                duration: 3000,
-              }
+              'Zamknij'
             );
             console.error(error);
           }
@@ -73,9 +68,10 @@ export class DocumentListComponent implements OnInit {
     });
   }
 
-  handleWhatHappenedWithNewDocument(info: string) {
-    if (info === 'discarded') {
-      this.documentList.pop();
+  handleWhatHappenedWithNewDocument(newDocument: Document) {
+    this.documentList.pop();
+    if (newDocument.id != undefined) {
+      this.documentList.push(newDocument);
     }
     this.isAddButtonHidden = false;
   }

@@ -13,7 +13,14 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 })
 export class CaseTableComponent implements OnInit {
   caseList: CaseForTable[] = [];
-  columnsToDisplay = ['label', 'date', 'status', 'delete', 'changeStatus', 'edit'];
+  columnsToDisplay = [
+    'label',
+    'date',
+    'status',
+    'delete',
+    'changeStatus',
+    'edit',
+  ];
 
   constructor(
     private caseService: CaseService,
@@ -37,22 +44,14 @@ export class CaseTableComponent implements OnInit {
         this.caseService.deleteCase(aCase.id).subscribe(
           (response) => {
             if (response) {
-              this.snackBar.open('Sprawa została usunięta!', 'Zamknij', {
-                duration: 3000,
-              });
+              this.snackBar.open('Sprawa została usunięta!', 'Zamknij');
               this.caseList = this.caseList.filter(
                 (caseInList) => caseInList !== aCase
               );
             }
           },
           (error) => {
-            this.snackBar.open(
-              'Błąd, sprawa nie została usunięta!',
-              'Zamknij',
-              {
-                duration: 3000,
-              }
-            );
+            this.snackBar.open('Błąd, sprawa nie została usunięta!', 'Zamknij');
             console.error(error);
           }
         );
@@ -74,27 +73,19 @@ export class CaseTableComponent implements OnInit {
               aCase.status = result.newCaseStatus;
               this.snackBar.open(
                 'Status sprawy został zauktualizowany!',
-                'Zamknij',
-                {
-                  duration: 3000,
-                }
+                'Zamknij'
               );
             },
             (error) => {
               console.error(error);
               this.snackBar.open(
                 'Błąd, status nie został zauktualizowany!',
-                'Zamknij',
-                {
-                  duration: 3000,
-                }
+                'Zamknij'
               );
             }
           );
       } else {
-        this.snackBar.open('Wybrano ten sam status!', 'Zamknij', {
-          duration: 3000,
-        });
+        this.snackBar.open('Wybrano ten sam status!', 'Zamknij');
       }
     });
   }

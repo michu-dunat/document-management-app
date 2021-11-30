@@ -8,6 +8,6 @@ export class Case {
   client: Client = new Client();
   court: Court = new Court();
   proceedingsSubject: ProceedingsSubject = new ProceedingsSubject();
-  adverseParty: AdverseParty= new AdverseParty();
-  status: string = "W toku"
+  adverseParty: AdverseParty = new AdverseParty();
+  status: string = 'W toku';
 }

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Document } from 'src/app/classes/document';
 import { DocumentService } from 'src/app/services/document.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-document-list',
@@ -21,8 +20,7 @@ export class DocumentListComponent implements OnInit {
     private route: ActivatedRoute,
     private documentService: DocumentService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar,
-    private router: Router
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {

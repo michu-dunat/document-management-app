@@ -10,6 +10,10 @@ import { DocumentService } from 'src/app/services/document.service';
 })
 export class DocumentCardComponent implements OnInit {
   @Input() document: Document = new Document();
+  @Input() shouldBeDisabled: boolean = false;
+  @Input() caseId: number;
+  @Output() whatHappendWithNewDocument: EventEmitter<Document> =
+    new EventEmitter();
   documentTypeList: string[] = [
     'Pozew',
     'Wniosek o wszczęcie postępowania nieprocesowego',
@@ -17,10 +21,6 @@ export class DocumentCardComponent implements OnInit {
     'Wniosek o przeprowadzenie dowodu',
   ];
   file: File | null;
-  @Input() shouldBeDisabled: boolean = false;
-  @Output() whatHappendWithNewDocument: EventEmitter<Document> =
-    new EventEmitter();
-  @Input() caseId: number;
   fileName: string = 'Nowy plik';
   isBeingEdited: boolean = false;
   clone: any;
@@ -90,11 +90,7 @@ export class DocumentCardComponent implements OnInit {
     } else {
       this.documentService.addDocument(this.caseId, this.document).subscribe(
         (response) => {
-          console.log(response.body);
-
           this.document.id = response.body;
-          console.log(this.document.id);
-
           this.shouldBeDisabled = true;
           this.fileName = this.file!.name;
           this.whatHappendWithNewDocument.emit(this.document);

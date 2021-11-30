@@ -6,12 +6,17 @@
       <input matInput type="text" [(ngModel)]="firstnameAndLastName" />
     </mat-form-field>
 
-    <button mat-raised-button (click)="addJudge()" type="button">Dodaj sędziego</button>
-    
+    <button mat-raised-button (click)="addJudge()" type="button">
+      Dodaj sędziego
+    </button>
+
     <mat-list>
       <div mat-subheader>Lista sędziów:</div>
       <mat-list-item *ngFor="let judge of judgingPanel">
-        {{ judge.firstnameAndLastName }} <button mat-icon-button (click)="delete(judge)"><mat-icon>delete</mat-icon></button>
+        {{ judge.firstnameAndLastName }}
+        <button mat-icon-button (click)="delete(judge)">
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

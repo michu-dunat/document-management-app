@@ -47,7 +47,7 @@ import { DocumentListComponent } from './components/document-list/document-list.
     HttpClientModule,
     FormsModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

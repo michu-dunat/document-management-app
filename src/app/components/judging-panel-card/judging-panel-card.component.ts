@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Judge } from 'src/app/classes/judge';
+
 @Component({
   selector: 'app-judging-panel-card',
   templateUrl: './judging-panel-card.component.html',

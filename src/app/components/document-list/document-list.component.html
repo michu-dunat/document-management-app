@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>{{caseLabel}}</mat-card-title>
+  <mat-card-title>{{ caseLabel }}</mat-card-title>
   <mat-card-content class="gap-below">
     <div *ngFor="let document of documentList">
       <app-document-card
@@ -21,7 +21,11 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-raised-button (click)="addNewDocument()" *ngIf="!isAddButtonHidden">
+    <button
+      mat-raised-button
+      (click)="addNewDocument()"
+      *ngIf="!isAddButtonHidden"
+    >
       Dodaj nowy dokument
     </button>
   </mat-card-actions>

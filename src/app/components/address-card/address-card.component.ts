@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { Address } from 'src/app/classes/address';
 
@@ -12,8 +12,4 @@ export class AddressCardComponent {
   @Input() title: string;
   @Input() address: Address = new Address();
   @Input() parentName: string;
-
-  ngOnInit() {
-    
-  }
- }
+}

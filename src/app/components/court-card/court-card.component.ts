@@ -10,5 +10,5 @@ import { Court } from 'src/app/classes/court';
 })
 export class CourtCardComponent {
   @Input() court: Court;
-  courtTypeList: string[] = ['Rejonowy', 'Okręgowy']
+  courtTypeList: string[] = ['Rejonowy', 'Okręgowy'];
 }

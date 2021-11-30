@@ -77,12 +77,12 @@ export class DocumentCardComponent implements OnInit {
           if (this.file != null) {
             this.fileName = this.file.name;
           }
-          this.snackBar.open('Dokument został zauktalizowany', 'Zamknij');
+          this.snackBar.open('Dokument został zaktualizowany', 'Zamknij');
         },
         (error) => {
           console.error(error);
           this.snackBar.open(
-            'Aktualizacja dokumentu nie powiodła się',
+            'Dokument nie został zaktualizowany!',
             'Zamknij'
           );
         }
@@ -98,7 +98,7 @@ export class DocumentCardComponent implements OnInit {
         },
         (error) => {
           console.error(error);
-          this.snackBar.open('Dokument nie został dodany', 'Zamknij');
+          this.snackBar.open('Dokument nie został dodany!', 'Zamknij');
         }
       );
     }

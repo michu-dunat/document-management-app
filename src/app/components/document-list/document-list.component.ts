@@ -49,14 +49,14 @@ export class DocumentListComponent implements OnInit {
       if (result) {
         this.documentService.deleteDocument(<number>document.id).subscribe(
           (response) => {
-            this.snackBar.open('Dokument została usunięty!', 'Zamknij');
+            this.snackBar.open('Dokument został usunięty', 'Zamknij');
             this.documentList = this.documentList.filter(
               (documentInList) => documentInList !== document
             );
           },
           (error) => {
             this.snackBar.open(
-              'Błąd, dokument nie został usunięty!',
+              'Dokument nie został usunięty!',
               'Zamknij'
             );
             console.error(error);

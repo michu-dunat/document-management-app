@@ -44,14 +44,14 @@ export class CaseTableComponent implements OnInit {
         this.caseService.deleteCase(aCase.id).subscribe(
           (response) => {
             if (response) {
-              this.snackBar.open('Sprawa została usunięta!', 'Zamknij');
+              this.snackBar.open('Sprawa została usunięta', 'Zamknij');
               this.caseList = this.caseList.filter(
                 (caseInList) => caseInList !== aCase
               );
             }
           },
           (error) => {
-            this.snackBar.open('Błąd, sprawa nie została usunięta!', 'Zamknij');
+            this.snackBar.open('Sprawa nie została usunięta!', 'Zamknij');
             console.error(error);
           }
         );
@@ -79,13 +79,13 @@ export class CaseTableComponent implements OnInit {
             (error) => {
               console.error(error);
               this.snackBar.open(
-                'Błąd, status nie został zauktualizowany!',
+                'Status sprawy nie został zauktualizowany!',
                 'Zamknij'
               );
             }
           );
       } else {
-        this.snackBar.open('Wybrano ten sam status!', 'Zamknij');
+        this.snackBar.open('Wybrano ten sam status', 'Zamknij');
       }
     });
   }

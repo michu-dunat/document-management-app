@@ -8,3 +8,19 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+table {
+  width: 100%;
+}
+mat-form-field,
+mat-checkbox {
+  margin-right: 10px;
+}
+
+mat-card {
+  margin-bottom: 10px;
+}
+
+.mat-checkbox-mailing-address {
+  margin-bottom: 10px;
+}

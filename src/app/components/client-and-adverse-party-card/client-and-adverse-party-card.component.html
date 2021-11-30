@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-content class="gap">
+  <mat-card-content>
     <mat-form-field appearance="fill">
       <mat-label>Imię i nazwisko/Nazwa firmy</mat-label>
       <input
@@ -80,6 +80,7 @@
     <mat-checkbox
       [(ngModel)]="isMailingAddressNeeded"
       name="{{ nameDistinguisher }} + isMailingAddressNeeded"
+      class="mat-checkbox-mailing-address"
     >
       Użyj adresu do korespondencji
     </mat-checkbox>

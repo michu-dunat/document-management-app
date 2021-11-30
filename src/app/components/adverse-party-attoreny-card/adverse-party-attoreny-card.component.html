@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>Dane pełnomocnika strony przeciwnej</mat-card-title>
-  <mat-card-content class="gap">
+  <mat-card-content>
     <mat-form-field appearance="fill">
       <mat-label>Imię i nazwisko</mat-label>
       <input
@@ -53,6 +53,7 @@
     <mat-checkbox
       [(ngModel)]="isMailingAddressNeeded"
       name="isMailingAddressNeeded"
+      class="mat-checkbox-mailing-address"
     >
       Użyj adresu do korespondencji
     </mat-checkbox>

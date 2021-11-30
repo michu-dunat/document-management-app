@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>{{ caseLabel }}</mat-card-title>
-  <mat-card-content class="gap-below">
+  <mat-card-content>
     <div *ngFor="let document of documentList">
       <app-document-card
         *ngIf="document.id"
@@ -14,7 +14,12 @@
         (whatHappendWithNewDocument)="handleWhatHappenedWithNewDocument($event)"
       >
       </app-document-card>
-      <button mat-raised-button (click)="delete(document)">
+      <button
+        mat-raised-button
+        (click)="delete(document)"
+        class="mat-button-delete-document"
+        *ngIf="document.id"
+      >
         Usuń dokument
       </button>
     </div>

@@ -2,7 +2,7 @@
   <mat-card-title *ngIf="!isCaseForUpdating">Nowa sprawa</mat-card-title>
 
   <form #myForm="ngForm" (ngSubmit)="sendCase()">
-    <mat-card-content class="gap-below">
+    <mat-card-content>
       <mat-tab-group>
         <mat-tab label="Dane klienta">
           <app-client-and-adverse-party-card

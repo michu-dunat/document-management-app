@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,6 +17,8 @@ export class UserCardComponent implements OnInit {
   @Input() user: User = new User();
   roleList: Role[] = [];
   buttonText: string = 'Dodaj użytkownika';
+  repeatedPassword: string;
+  repeatedEmailAddress: string;
 
   constructor(
     private roleService: RoleService,
@@ -34,6 +37,15 @@ export class UserCardComponent implements OnInit {
       }
     );
   }
+
+  passwordEqualityCheck() {
+    return this.user.password === this.repeatedPassword;
+  }
+
+  emailAddressEqualityCheck() {
+    return this.user.emailAddress === this.repeatedEmailAddress
+  }
+
 
   sendUser() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {

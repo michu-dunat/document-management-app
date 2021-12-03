@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-title>Nowy użytkownik</mat-card-title>
+  <form #userForm="ngForm" (ngSubmit)="sendUser()">
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Imię i nazwisko</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="user.firstnameAndLastName"
+          name="firstnameAndLastName"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Adres email</mat-label>
+        <input
+          matInput
+          type="email"
+          [(ngModel)]="user.emailAddress"
+          name="emailAddress"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Hasło</mat-label>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="user.password"
+          name="password"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Rola</mat-label>
+        <mat-select [(ngModel)]="user.role" name="role" required>
+          <mat-option *ngFor="let roleInList of roleList" [value]="roleInList">
+            {{ roleInList.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- <button mat-raised-button type="submit"> -->
+      <button mat-raised-button type="submit" [disabled]="!userForm.valid">
+        {{ buttonText }}
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

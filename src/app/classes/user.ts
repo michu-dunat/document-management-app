@@ -2,8 +2,8 @@ import { Role } from '../interfaces/role';
 
 export class User {
   id?: number;
-  firstnameAndLastName: String;
-  emailAddress: String;
-  password: String;
+  firstnameAndLastName: string;
+  emailAddress: string;
+  password: string;
   role: Role;
 }

@@ -22,6 +22,8 @@ import { UpdateCaseComponent } from './components/update-case/update-case.compon
 import { DocumentCardComponent } from './components/document-card/document-card.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     DocumentCardComponent,
     DocumentListComponent,
     UserCardComponent,
+    UserTableComponent,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/classes/user';
@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { SHA3, enc } from 'crypto-js';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-card',
@@ -30,6 +31,7 @@ export class UserCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     this.roleService.getRoles().subscribe(
       (response) => {
         this.roleList = response;
@@ -38,6 +40,7 @@ export class UserCardComponent implements OnInit {
         console.error(error);
       }
     );
+    this.repeatedEmailAddress = this.user.emailAddress;
   }
 
   passwordEqualityCheck() {

@@ -21,6 +21,7 @@ export class UserCardComponent implements OnInit {
   buttonText: string = 'Dodaj użytkownika';
   repeatedPassword: string;
   repeatedEmailAddress: string;
+  shouldPasswordBeChanged: boolean = true;
 
   constructor(
     private roleService: RoleService,
@@ -31,10 +32,22 @@ export class UserCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+    if (this.user.id !== undefined) {
+      this.shouldPasswordBeChanged = false;
+      this.buttonText = 'Aktualizuj dane użytkownika';
+    }
     this.roleService.getRoles().subscribe(
       (response) => {
         this.roleList = response;
+        if (this.user.id !== undefined) {
+          this.roleList.forEach((roleInList) => {
+            if (roleInList.id === this.user.role.id) {
+              console.log(roleInList.id);
+              
+              this.user.role = roleInList;
+            }
+          });
+        }
       },
       (error) => {
         console.error(error);
@@ -44,7 +57,11 @@ export class UserCardComponent implements OnInit {
   }
 
   passwordEqualityCheck() {
-    return this.user.password === this.repeatedPassword;
+    if (this.shouldPasswordBeChanged) {
+      return this.user.password === this.repeatedPassword;
+    } else {
+      return true;
+    }
   }
 
   emailAddressEqualityCheck() {
@@ -86,18 +103,38 @@ export class UserCardComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.user.password = this.hashPassowrd(this.user.password);
-        this.userService.addUser(this.user).subscribe(
-          (response) => {
-            this.snackBar.open('Użytkownik został dodany', 'Zamknij');
-            this.router.navigate(['']);
-          },
-          (error) => {
-            console.error(error);
-            this.snackBar.open('Użytkownik nie został dodany!', 'Zamknij');
-            this.user.password = this.repeatedPassword;
+        if (this.user.id !== undefined) {
+          if (this.shouldPasswordBeChanged) {
+            this.user.password = this.hashPassowrd(this.user.password);
           }
-        );
+          this.userService.updateUser(this.user).subscribe(
+            (response) => {
+              this.snackBar.open('Użytkownik został zaktualizowany', 'Zamknij');
+              this.router.navigate(['']);
+            },
+            (error) => {
+              console.error(error);
+              this.snackBar.open(
+                'Użytkownik nie został zaktualizowany!',
+                'Zamknij'
+              );
+              this.user.password = this.repeatedPassword;
+            }
+          );
+        } else {
+          this.user.password = this.hashPassowrd(this.user.password);
+          this.userService.addUser(this.user).subscribe(
+            (response) => {
+              this.snackBar.open('Użytkownik został dodany', 'Zamknij');
+              this.router.navigate(['']);
+            },
+            (error) => {
+              console.error(error);
+              this.snackBar.open('Użytkownik nie został dodany!', 'Zamknij');
+              this.user.password = this.repeatedPassword;
+            }
+          );
+        }
       }
     });
   }

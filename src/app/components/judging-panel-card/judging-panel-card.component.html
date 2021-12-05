@@ -3,7 +3,7 @@
   <mat-card-content>
     <mat-form-field appearance="fill">
       <mat-label>Imię i nazwisko</mat-label>
-      <input matInput type="text" [(ngModel)]="firstnameAndLastName" />
+      <input matInput type="text" [(ngModel)]="firstNameLastName" />
     </mat-form-field>
 
     <button mat-raised-button (click)="addJudge()" type="button">
@@ -13,7 +13,7 @@
     <mat-list>
       <div mat-subheader>Lista sędziów:</div>
       <mat-list-item *ngFor="let judge of judgingPanel">
-        {{ judge.firstnameAndLastName }}
+        {{ judge.firstNameLastName }}
         <button mat-icon-button (click)="delete(judge)">
           <mat-icon>delete</mat-icon>
         </button>

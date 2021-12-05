@@ -1,8 +1,8 @@
 <table mat-table [dataSource]="userList">
-  <ng-container matColumnDef="firstnameAndLastName">
+  <ng-container matColumnDef="firstNameLastName">
     <th mat-header-cell *matHeaderCellDef>Imię i nazwisko</th>
     <td mat-cell *matCellDef="let user">
-      {{ user.firstnameAndLastName }}
+      {{ user.firstNameLastName }}
     </td>
   </ng-container>
   <ng-container matColumnDef="emailAddress">

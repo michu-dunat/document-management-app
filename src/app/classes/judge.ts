@@ -1,8 +1,8 @@
 export class Judge {
     id?: number;
-    firstnameAndLastName: string;
+    firstNameLastName: string;
 
-    constructor(firstnameAndLastName: string) {
-        this.firstnameAndLastName = firstnameAndLastName;
+    constructor(firstNameLastName: string) {
+        this.firstNameLastName = firstNameLastName;
     }
 }

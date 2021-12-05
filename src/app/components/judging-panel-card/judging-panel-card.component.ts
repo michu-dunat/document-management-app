@@ -8,10 +8,10 @@ import { Judge } from 'src/app/classes/judge';
 })
 export class JudgingPanelCardComponent {
   @Input() judgingPanel: Judge[] = [];
-  firstnameAndLastName: string;
+  firstNameLastName: string;
 
   addJudge() {
-    this.judgingPanel.push(new Judge(this.firstnameAndLastName.trim()));
+    this.judgingPanel.push(new Judge(this.firstNameLastName.trim()));
   }
 
   delete(judge: Judge) {

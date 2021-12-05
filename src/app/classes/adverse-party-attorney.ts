@@ -2,7 +2,7 @@ import { Address } from './address';
 
 export class AdversePartyAttorney {
   id?: number;
-  firstnameAndLastName: string;
+  firstNameLastName: string;
   phoneNumber: string;
   isAttorneyProfessional: boolean = false;
   jobTitle: string;

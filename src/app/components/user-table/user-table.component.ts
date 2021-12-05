@@ -13,7 +13,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class UserTableComponent implements OnInit {
   userList: User[] = [];
   columnsToDisplay = [
-    'firstnameAndLastName',
+    'firstNameLastName',
     'emailAddress',
     'role',
     'delete',

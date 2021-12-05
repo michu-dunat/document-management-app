@@ -2,7 +2,7 @@ import { Address } from "./address";
 
 export class Client {
   id?: number;
-  firstnameAndLastNameOrCompanyName: string;
+  firstNameLastNameCompanyName: string;
   phoneNumber: string;
   emailAddress: string;
   pesel: string;

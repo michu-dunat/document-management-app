@@ -1,3 +1,17 @@
+<div style="margin: auto; width: 10%; margin-top: 20px">
+  <form (ngSubmit)="search()">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter input</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="searchInput"
+        name="searchInput"
+      />
+    </mat-form-field>
+  </form>
+</div>
+
 <table mat-table [dataSource]="caseList">
   <ng-container matColumnDef="label">
     <th mat-header-cell *matHeaderCellDef>Etykieta</th>

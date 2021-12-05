@@ -21,6 +21,7 @@ export class CaseTableComponent implements OnInit {
     'changeStatus',
     'edit',
   ];
+  searchInput: string;
 
   constructor(
     private caseService: CaseService,
@@ -88,5 +89,14 @@ export class CaseTableComponent implements OnInit {
         this.snackBar.open('Wybrano ten sam status', 'Zamknij');
       }
     });
+  }
+
+  search() {
+    console.log(this.searchInput);
+    if (this.searchInput !== undefined) {
+      this.caseService.searchCases(this.searchInput).subscribe((response) => {
+        this.caseList = response;
+      });
+    }
   }
 }

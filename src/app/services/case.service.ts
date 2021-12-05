@@ -37,4 +37,8 @@ export class CaseService {
   updateCase(aCase: Case) {
     return this.http.put<any>(`${this.casesUrl}update`, aCase);
   }
+
+  searchCases(searchInput: string) {
+    return this.http.get<CaseForTable[]>(`${this.casesUrl}search/${searchInput}`);
+  }
 }

@@ -1,1 +1,10 @@
+.search-functionality-div {
+  margin: auto;
+  width: 40%;
+  margin-top: 20px;
+  text-align: center;
+}
 
+.search-functionality-div mat-form-field, button {
+    display: inline-block;
+}

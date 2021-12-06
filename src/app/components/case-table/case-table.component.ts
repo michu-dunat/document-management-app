@@ -22,6 +22,9 @@ export class CaseTableComponent implements OnInit {
     'edit',
   ];
   searchInput: string;
+  caseStatusDisplay: string = '---';
+  statusOptions = ['---', 'W toku', 'Zakończona'];
+  caseListCopy: CaseForTable[] = [];
 
   constructor(
     private caseService: CaseService,
@@ -30,9 +33,7 @@ export class CaseTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.caseService.getCasesForTable().subscribe((response) => {
-      this.caseList = response;
-    });
+    this.getAllCases();
   }
 
   delete(aCase: CaseForTable) {
@@ -96,7 +97,31 @@ export class CaseTableComponent implements OnInit {
     if (this.searchInput !== undefined) {
       this.caseService.searchCases(this.searchInput).subscribe((response) => {
         this.caseList = response;
+        this.caseListCopy = response;
       });
     }
+  }
+
+  getAllCases() {
+    this.caseService.getCasesForTable().subscribe((response) => {
+      this.caseList = response;
+      this.caseListCopy = response;
+    });
+  }
+
+  resetSearchAndFilters() {
+    this.searchInput = '';
+    this.caseStatusDisplay = '---';
+    this.getAllCases();
+  }
+
+  caseStatusDisplayChange() {
+    this.caseList = this.caseListCopy;
+    if (this.caseStatusDisplay === '---') {
+      return;
+    }
+    this.caseList = this.caseList.filter(
+      (caseInList) => caseInList.status === this.caseStatusDisplay
+    );
   }
 }

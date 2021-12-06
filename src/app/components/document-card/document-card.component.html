@@ -19,70 +19,6 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label *ngIf="!document.isIncoming">Adresat</mat-label>
-        <mat-label *ngIf="document.isIncoming">Nadawca</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="document.addresseeOrSender"
-          name="addresseeOrSender"
-          required
-          [disabled]="shouldBeDisabled"
-        />
-      </mat-form-field>
-
-      <mat-checkbox
-        [(ngModel)]="document.isIncoming"
-        name="isIncoming"
-        [disabled]="shouldBeDisabled"
-      >
-        Pismo przychodzące
-      </mat-checkbox>
-
-      <mat-form-field appearance="fill">
-        <mat-label *ngIf="document.isIncoming">Data wpływu</mat-label>
-        <mat-label *ngIf="!document.isIncoming">Data wysyłki</mat-label>
-        <input
-          matInput
-          [matDatepicker]="pickerForReceiptOrDispatch"
-          [(ngModel)]="document.dateOfReceiptOrDispatch"
-          name="dateOfReceiptOrDispatch"
-          required
-          [disabled]="shouldBeDisabled"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="pickerForReceiptOrDispatch"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #pickerForReceiptOrDispatch></mat-datepicker>
-      </mat-form-field>
-
-      <mat-checkbox
-        *ngIf="document.isIncoming"
-        [(ngModel)]="document.isResponseRequired"
-        name="isResponseRequired"
-        [disabled]="shouldBeDisabled"
-      >
-        Obowiązek odpowiedzi
-      </mat-checkbox>
-
-      <mat-form-field appearance="fill" *ngIf="document.isResponseRequired">
-        <mat-label>Termin na przesłanie odpowiedzi</mat-label>
-        <input
-          matInput
-          [matDatepicker]="pickerForDeadlineForResponse"
-          [(ngModel)]="document.deadlineForResponse"
-          name="deadlineForResponse"
-          [disabled]="shouldBeDisabled"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="pickerForDeadlineForResponse"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #pickerForDeadlineForResponse></mat-datepicker>
-      </mat-form-field>
-
       <label for="file" [hidden]="shouldBeDisabled">Wybierz plik: </label>
       <input
         type="file"
@@ -93,6 +29,71 @@
         (change)="handleFileInput($any($event.target).files)"
         [hidden]="shouldBeDisabled"
       />
+      <div>
+        <mat-checkbox
+          [(ngModel)]="document.isIncoming"
+          name="isIncoming"
+          [disabled]="shouldBeDisabled"
+        >
+          Pismo przychodzące
+        </mat-checkbox>
+
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="!document.isIncoming">Adresat</mat-label>
+          <mat-label *ngIf="document.isIncoming">Nadawca</mat-label>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="document.addresseeOrSender"
+            name="addresseeOrSender"
+            required
+            [disabled]="shouldBeDisabled"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label *ngIf="document.isIncoming">Data wpływu</mat-label>
+          <mat-label *ngIf="!document.isIncoming">Data wysyłki</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickerForReceiptOrDispatch"
+            [(ngModel)]="document.dateOfReceiptOrDispatch"
+            name="dateOfReceiptOrDispatch"
+            required
+            [disabled]="shouldBeDisabled"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerForReceiptOrDispatch"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerForReceiptOrDispatch></mat-datepicker>
+        </mat-form-field>
+      </div>  
+        <mat-checkbox
+          *ngIf="document.isIncoming"
+          [(ngModel)]="document.isResponseRequired"
+          name="isResponseRequired"
+          [disabled]="shouldBeDisabled"
+        >
+          Obowiązek odpowiedzi
+        </mat-checkbox>
+
+        <mat-form-field appearance="fill" *ngIf="document.isResponseRequired">
+          <mat-label>Termin na przesłanie odpowiedzi</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickerForDeadlineForResponse"
+            [(ngModel)]="document.deadlineForResponse"
+            name="deadlineForResponse"
+            [disabled]="shouldBeDisabled"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerForDeadlineForResponse"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerForDeadlineForResponse></mat-datepicker>
+        </mat-form-field>
+      
     </mat-card-content>
     <mat-card-actions>
       <button

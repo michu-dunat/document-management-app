@@ -30,47 +30,48 @@
         required
       />
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Numer PESEL</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="data.pesel"
-        name="{{ nameDistinguisher }} + PESEL"
-        required
-      />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Numer NIP</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="data.nip"
-        name="{{ nameDistinguisher }} + NIP"
-        required
-      />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Numer KRS</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="data.krs"
-        name="{{ nameDistinguisher }} + KRS"
-        required
-      />
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Numer REGON</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="data.regon"
-        name="{{ nameDistinguisher }} + REGON"
-        required
-      />
-    </mat-form-field>
-
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Numer PESEL</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.pesel"
+          name="{{ nameDistinguisher }} + PESEL"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Numer NIP</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.nip"
+          name="{{ nameDistinguisher }} + NIP"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Numer KRS</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.krs"
+          name="{{ nameDistinguisher }} + KRS"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Numer REGON</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="data.regon"
+          name="{{ nameDistinguisher }} + REGON"
+          required
+        />
+      </mat-form-field>
+    </div>
     <app-address
       [parentName]="nameDistinguisher + 'residenceOrRegisteredOfficeAddress'"
       [title]="'Adres zamieszkania/siedziby'"

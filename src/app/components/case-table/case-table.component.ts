@@ -93,11 +93,14 @@ export class CaseTableComponent implements OnInit {
   }
 
   search() {
-    console.log(this.searchInput);
     if (this.searchInput !== undefined) {
       this.caseService.searchCases(this.searchInput).subscribe((response) => {
         this.caseList = response;
         this.caseListCopy = response;
+        this.snackBar.open(
+          'Ilość pasujących spraw: ' + response.length,
+          'Zamknij'
+        );
       });
     }
   }

@@ -9,6 +9,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 import { SHA3, enc } from 'crypto-js';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { EncryptionService } from 'src/app/services/encryption.service';
 
 @Component({
   selector: 'app-user-card',
@@ -28,7 +29,8 @@ export class UserCardComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private encryptionService: EncryptionService
   ) {}
 
   ngOnInit(): void {
@@ -68,34 +70,7 @@ export class UserCardComponent implements OnInit {
     return this.user.emailAddress === this.repeatedEmailAddress;
   }
 
-  hashPassowrd(plainText: string) {
-    let hashedPassword = SHA3(plainText);
-    for (let index = 0; index < 63999; index++) {
-      hashedPassword = SHA3(hashedPassword);
-    }
-    let encodedPassword = hashedPassword.toString(enc.Hex);
-    const charBeforeHash = String.fromCharCode(
-      this.getRandomIntInclusive(97, 122)
-    );
-    const step = (charBeforeHash.charCodeAt(0) % 7) + 2;
-    let hashedPasswordWithSalt: string = '';
-    hashedPasswordWithSalt += charBeforeHash;
-    for (let index = 0; index < encodedPassword.length; index++) {
-      if (index % step == 0) {
-        hashedPasswordWithSalt += String.fromCharCode(
-          this.getRandomIntInclusive(97, 122)
-        );
-      }
-      hashedPasswordWithSalt += encodedPassword[index];
-    }
-    return hashedPasswordWithSalt;
-  }
-
-  getRandomIntInclusive(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-  }
+  
 
   sendUser() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -105,7 +80,7 @@ export class UserCardComponent implements OnInit {
       if (result) {
         if (this.user.id !== undefined) {
           if (this.shouldPasswordBeChanged) {
-            this.user.password = this.hashPassowrd(this.user.password);
+            this.user.password = this.encryptionService.hashPassowrd(this.user.password);
           }
           this.userService.updateUser(this.user).subscribe(
             (response) => {
@@ -122,7 +97,7 @@ export class UserCardComponent implements OnInit {
             }
           );
         } else {
-          this.user.password = this.hashPassowrd(this.user.password);
+          this.user.password = this.encryptionService.hashPassowrd(this.user.password);
           this.userService.addUser(this.user).subscribe(
             (response) => {
               this.snackBar.open('Użytkownik został dodany', 'Zamknij');

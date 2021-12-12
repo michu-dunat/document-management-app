@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,8 @@ import { DocumentListComponent } from './components/document-list/document-list.
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './classes/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
     UserCardComponent,
     UserTableComponent,
     UpdateUserComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

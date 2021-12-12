@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CaseTableComponent } from './components/case-table/case-table.component';
 import { CaseComponent } from './components/case/case.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';
+import { LoginComponent } from './components/login/login.component';
 import { UpdateCaseComponent } from './components/update-case/update-case.component';
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'user/add', component: UserCardComponent },
   { path: 'user/table', component: UserTableComponent },
   { path: 'user/update', component: UpdateUserComponent },
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

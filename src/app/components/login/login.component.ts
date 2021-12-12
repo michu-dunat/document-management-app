@@ -26,13 +26,12 @@ export class LoginComponent implements OnInit {
       this.loginCredentials.password
     );
     this.loginService.sendLogin(this.loginCredentials).subscribe(
-      (response) => {
-        console.log(response);
-        sessionStorage.setItem(
-          'token',
+      (response: any) => {
+        this.loginService.setTokenAndRole(
           btoa(
             `${this.loginCredentials.emailAddress}:${this.loginCredentials.password}`
-          )
+          ),
+          response.code
         );
         this.router.navigate(['']);
       },

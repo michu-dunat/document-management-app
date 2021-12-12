@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from './app.component';
 import { CaseTableComponent } from './components/case-table/case-table.component';
 import { CaseComponent } from './components/case/case.component';
 import { DocumentListComponent } from './components/document-list/document-list.component';

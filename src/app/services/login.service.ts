@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LoginCredentials } from '../classes/login-credentials';
 
 @Injectable({
@@ -9,13 +9,13 @@ import { LoginCredentials } from '../classes/login-credentials';
 export class LoginService {
   constructor(private http: HttpClient) {}
 
-  private tokenSource = new Subject<string>();
-  private roleSource = new Subject<string>();
+  private tokenSource = new BehaviorSubject<string | undefined>(undefined);
+  private roleSource = new BehaviorSubject<string | undefined>(undefined);
 
   token$ = this.tokenSource.asObservable();
   role$ = this.roleSource.asObservable();
 
-  setTokenAndRole(token: string, role: string) {
+  setTokenAndRole(token: string | undefined, role: string | undefined) {
     this.tokenSource.next(token);
     this.roleSource.next(role);
   }

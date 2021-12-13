@@ -5,7 +5,7 @@ import { LoginService } from '../services/login.service';
 
 @Injectable()
 export class AuthInterceptor {
-  token: string;
+  token: string | undefined;
 
   constructor(private loginService: LoginService) {
     this.loginService.token$.subscribe((token) => {

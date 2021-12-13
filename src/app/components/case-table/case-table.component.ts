@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CaseForTable } from 'src/app/interfaces/case-for-table';
 import { CaseService } from 'src/app/services/case.service';
+import { LoginService } from 'src/app/services/login.service';
 import { CaseStatusChangeDialogComponent } from '../case-status-change-dialog/case-status-change-dialog.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
@@ -25,14 +26,19 @@ export class CaseTableComponent implements OnInit {
   caseStatusDisplay: string = '---';
   statusOptions = ['---', 'W toku', 'Zakończona'];
   caseListCopy: CaseForTable[] = [];
+  role: string | undefined = '';
 
   constructor(
     private caseService: CaseService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.loginService.role$.subscribe((role) => {
+      this.role = role;
+    });
     this.getAllCases();
   }
 

@@ -9,7 +9,7 @@ import { LoginService } from './services/login.service';
 })
 export class AppComponent implements OnInit {
   title = 'document-management-app';
-  role: string;
+  role: string | undefined;
 
   constructor(private loginService: LoginService, private router: Router) {}
 

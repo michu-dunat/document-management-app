@@ -52,7 +52,7 @@
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let case">
-      <button mat-icon-button color="primary" (click)="delete(case)">
+      <button mat-icon-button color="primary" (click)="delete(case)" *ngIf="role === 'ROLE_ADMIN'">
         <mat-icon>delete</mat-icon>
       </button>
     </td>

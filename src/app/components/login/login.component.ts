@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginCredentials } from 'src/app/classes/login-credentials';
 import { LoginService } from 'src/app/services/login.service';
@@ -11,13 +12,18 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
   loginCredentials: LoginCredentials = new LoginCredentials();
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {}
 
   login() {
     this.loginService.sendLogin(this.loginCredentials).subscribe(
       (response: any) => {
+        this.snackBar.open('Zalogowano pomyślnie', 'Zamknij');
         this.loginService.setTokenAndRole(
           btoa(
             `${this.loginCredentials.emailAddress}:${this.loginCredentials.password}`
@@ -28,6 +34,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+        this.snackBar.open('Nieprawidłowy login/hasło!', 'Zamknij');
       }
     );
   }
@@ -41,16 +48,6 @@ export class LoginComponent implements OnInit {
       this.loginCredentials.password = 'Useruseruser1';
     }
 
-    this.loginService
-      .sendLogin(this.loginCredentials)
-      .subscribe((response: any) => {
-        this.loginService.setTokenAndRole(
-          btoa(
-            `${this.loginCredentials.emailAddress}:${this.loginCredentials.password}`
-          ),
-          response.code
-        );
-        this.router.navigate(['']);
-      });
+    this.login();
   }
 }

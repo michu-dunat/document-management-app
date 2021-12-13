@@ -32,9 +32,15 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  fastLogin() {
-    this.loginCredentials.emailAddress = 'michu@gmail.com';
-    this.loginCredentials.password = 'Useruseruser1';
+  fastLogin(isAdmin: boolean) {
+    if (isAdmin) {
+      this.loginCredentials.emailAddress = 'michu@gmail.com';
+      this.loginCredentials.password = 'Useruseruser1';
+    } else {
+      this.loginCredentials.emailAddress = 'ola@gmail.com';
+      this.loginCredentials.password = 'Useruseruser1';
+    }
+
     this.loginService
       .sendLogin(this.loginCredentials)
       .subscribe((response: any) => {

@@ -29,8 +29,11 @@
       <button mat-raised-button type="submit" [disabled]="!loginForm.valid">
         Zaloguj
       </button>
-      <button mat-raised-button type="button" (click)="fastLogin()">
-        Zaloguj automatycznie
+      <button mat-raised-button type="button" (click)="fastLogin(true)">
+        Administrator
+      </button>
+      <button mat-raised-button type="button" (click)="fastLogin(false)">
+        Użytkownik
       </button>
     </mat-card-actions>
   </form>

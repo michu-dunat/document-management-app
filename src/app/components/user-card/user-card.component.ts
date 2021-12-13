@@ -6,10 +6,7 @@ import { Role } from 'src/app/interfaces/role';
 import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { SHA3, enc } from 'crypto-js';
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
-import { EncryptionService } from 'src/app/services/encryption.service';
 
 @Component({
   selector: 'app-user-card',
@@ -29,8 +26,7 @@ export class UserCardComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private userService: UserService,
-    private router: Router,
-    private encryptionService: EncryptionService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +41,7 @@ export class UserCardComponent implements OnInit {
           this.roleList.forEach((roleInList) => {
             if (roleInList.id === this.user.role.id) {
               console.log(roleInList.id);
-              
+
               this.user.role = roleInList;
             }
           });
@@ -70,8 +66,6 @@ export class UserCardComponent implements OnInit {
     return this.user.emailAddress === this.repeatedEmailAddress;
   }
 
-  
-
   sendUser() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: { title: 'Kontynuować?' },
@@ -79,9 +73,6 @@ export class UserCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         if (this.user.id !== undefined) {
-          if (this.shouldPasswordBeChanged) {
-            this.user.password = this.encryptionService.hashPassowrd(this.user.password);
-          }
           this.userService.updateUser(this.user).subscribe(
             (response) => {
               this.snackBar.open('Użytkownik został zaktualizowany', 'Zamknij');
@@ -97,7 +88,6 @@ export class UserCardComponent implements OnInit {
             }
           );
         } else {
-          this.user.password = this.encryptionService.hashPassowrd(this.user.password);
           this.userService.addUser(this.user).subscribe(
             (response) => {
               this.snackBar.open('Użytkownik został dodany', 'Zamknij');

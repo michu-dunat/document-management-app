@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginCredentials } from 'src/app/classes/login-credentials';
-import { EncryptionService } from 'src/app/services/encryption.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -12,19 +11,11 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent implements OnInit {
   loginCredentials: LoginCredentials = new LoginCredentials();
 
-  constructor(
-    private loginService: LoginService,
-    private encryptionService: EncryptionService,
-    private router: Router
-  ) {}
+  constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {}
 
   login() {
-    const inputPassword = this.loginCredentials.password;
-    this.loginCredentials.password = this.encryptionService.hashPassowrd(
-      this.loginCredentials.password
-    );
     this.loginService.sendLogin(this.loginCredentials).subscribe(
       (response: any) => {
         this.loginService.setTokenAndRole(
@@ -37,8 +28,23 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.error(error);
-        this.loginCredentials.password = inputPassword;
       }
     );
+  }
+
+  fastLogin() {
+    this.loginCredentials.emailAddress = 'michu@gmail.com';
+    this.loginCredentials.password = 'Useruseruser1';
+    this.loginService
+      .sendLogin(this.loginCredentials)
+      .subscribe((response: any) => {
+        this.loginService.setTokenAndRole(
+          btoa(
+            `${this.loginCredentials.emailAddress}:${this.loginCredentials.password}`
+          ),
+          response.code
+        );
+        this.router.navigate(['']);
+      });
   }
 }

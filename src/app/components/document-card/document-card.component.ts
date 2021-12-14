@@ -12,6 +12,7 @@ export class DocumentCardComponent implements OnInit {
   @Input() document: Document = new Document();
   @Input() shouldBeDisabled: boolean = false;
   @Input() caseId: number;
+  @Input() shouldBePossibleToEdit: boolean;
   @Output() whatHappendWithNewDocument: EventEmitter<Document> =
     new EventEmitter();
   documentTypeList: string[] = [

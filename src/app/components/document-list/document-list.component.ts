@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Document } from 'src/app/classes/document';
 import { DocumentService } from 'src/app/services/document.service';
+import { LoginService } from 'src/app/services/login.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -16,16 +17,24 @@ export class DocumentListComponent implements OnInit {
   documentList: Document[] = [];
   caseLabel: string | null;
   isAddButtonHidden: boolean = false;
+  role: string | undefined;
+  caseStatus: string | null;
+
   constructor(
     private route: ActivatedRoute,
     private documentService: DocumentService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.loginService.role$.subscribe((role) => {
+      this.role = role;
+    });
     this.route.queryParamMap.subscribe((queryParams) => {
       this.caseLabel = queryParams.get('caseLabel');
+      this.caseStatus = queryParams.get('caseStatus');
     });
     this.route.params.subscribe((param) => {
       this.caseId = param.caseId;
@@ -55,10 +64,7 @@ export class DocumentListComponent implements OnInit {
             );
           },
           (error) => {
-            this.snackBar.open(
-              'Dokument nie został usunięty!',
-              'Zamknij'
-            );
+            this.snackBar.open('Dokument nie został usunięty!', 'Zamknij');
             console.error(error);
           }
         );

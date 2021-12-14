@@ -7,6 +7,7 @@
         [document]="document"
         [shouldBeDisabled]="true"
         [caseId]="caseId"
+        [shouldBePossibleToEdit]="caseStatus !== 'Zakończona'"
       ></app-document-card>
       <app-document-card
         *ngIf="!document.id"
@@ -18,7 +19,7 @@
         mat-raised-button
         (click)="delete(document)"
         class="mat-button-delete-document"
-        *ngIf="document.id"
+        *ngIf="document.id && role === 'ROLE_ADMIN' && caseStatus !== 'Zakończona'"
       >
         Usuń dokument
       </button>
@@ -29,7 +30,7 @@
     <button
       mat-raised-button
       (click)="addNewDocument()"
-      *ngIf="!isAddButtonHidden"
+      *ngIf="!isAddButtonHidden && caseStatus !== 'Zakończona'"
     >
       Dodaj nowy dokument
     </button>

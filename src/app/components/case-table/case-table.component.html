@@ -31,7 +31,7 @@
     <td mat-cell *matCellDef="let case">
       <a
         [routerLink]="'/document/list/' + case.id"
-        [queryParams]="{ caseLabel: case.label }"
+        [queryParams]="{ caseLabel: case.label, caseStatus: case.status }"
         >{{ case.label }}</a
       >
     </td>

@@ -7,6 +7,7 @@ import { RoleService } from 'src/app/services/role.service';
 import { UserService } from 'src/app/services/user.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-card',
@@ -20,19 +21,30 @@ export class UserCardComponent implements OnInit {
   repeatedPassword: string;
   repeatedEmailAddress: string;
   shouldPasswordBeChanged: boolean = true;
+  copiedPassword: string;
+  userToken: string | undefined;
 
   constructor(
     private roleService: RoleService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.loginService.token$.subscribe((token) => {
+      let decodedToken = atob(<string>token);
+      if (decodedToken.split(':')[0] === this.user.emailAddress) {
+        this.userToken = decodedToken;
+      }
+    });
     if (this.user.id !== undefined) {
       this.shouldPasswordBeChanged = false;
       this.buttonText = 'Aktualizuj dane użytkownika';
+      this.copiedPassword = this.user.password;
+      this.user.password = '';
     }
     this.roleService.getRoles().subscribe(
       (response) => {
@@ -76,6 +88,19 @@ export class UserCardComponent implements OnInit {
           this.userService.updateUser(this.user).subscribe(
             (response) => {
               this.snackBar.open('Użytkownik został zaktualizowany', 'Zamknij');
+              if (this.userToken) {
+                let newToken: string;
+                if (this.user.password === '') {
+                  newToken = btoa(
+                    `${this.user.emailAddress}:${this.userToken.split(':')[1]}`
+                  );
+                } else {
+                  newToken = btoa(
+                    `${this.user.emailAddress}:${this.user.password}`
+                  );
+                }
+                this.loginService.setTokenAndRole(newToken, 'ROLE_ADMIN');
+              }
               this.router.navigate(['']);
             },
             (error) => {

@@ -2,6 +2,7 @@
   <mat-card-title *ngIf="!isCaseForUpdating">Nowa sprawa</mat-card-title>
 
   <form #myForm="ngForm" (ngSubmit)="sendCase()">
+    <fieldset [disabled]="aCase.status === 'Zakończona'">
     <mat-card-content>
       <mat-tab-group>
         <mat-tab label="Dane klienta">
@@ -34,9 +35,10 @@
     </mat-card-content>
     <mat-card-actions>
       <!-- <button mat-raised-button type="submit"> -->
-      <button mat-raised-button type="submit" [disabled]="!myForm.valid">
+      <button mat-raised-button type="submit" [disabled]="!myForm.valid || aCase.status === 'Zakończona'">
         {{ buttonText }}
       </button>
     </mat-card-actions>
+  </fieldset>
   </form>
 </mat-card>

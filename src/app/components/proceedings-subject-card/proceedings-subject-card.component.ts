@@ -18,6 +18,7 @@ export class ProceedingsSubjectCardComponent {
     'Powiatowy rzecznik konsumentów',
     'Miejski rzecznik konsumentów',
   ];
+  basisForMediationList: string[] = ['Umowa o mediację', 'Postanowienie sądu'];
 
   ngOnInit() {}
 }

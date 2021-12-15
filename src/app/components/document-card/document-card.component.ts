@@ -36,6 +36,7 @@ export class DocumentCardComponent implements OnInit {
     'Inne pismo przychodzące',
     'Inne pismo wychodzące',
     'Potwierdzenie odbioru',
+    'Umowa o mediację'
   ];
   methodOfReceiptList: string[] = [
     'Poczta Polska',

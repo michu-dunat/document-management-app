@@ -18,6 +18,25 @@
       >
         Mediacja możliwa
       </mat-checkbox>
+
+      <mat-form-field
+        appearance="fill"
+        *ngIf="proceedingsSubject.isMediationPossible"
+      >
+        <mat-label>Tytuł</mat-label>
+        <mat-select
+          [(ngModel)]="proceedingsSubject.basisForMediation"
+          name="basisForMediation"
+        >
+          <mat-option>Brak</mat-option>
+          <mat-option
+            *ngFor="let basis of basisForMediationList"
+            [value]="basis"
+          >
+            {{ basis }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div>
       <mat-form-field appearance="fill">

@@ -1,6 +1,4 @@
 <mat-card style="width: 80%; margin: auto">
-  <mat-card-title *ngIf="!isCaseForUpdating">Nowa sprawa</mat-card-title>
-
   <form #myForm="ngForm" (ngSubmit)="sendCase()">
     <fieldset [disabled]="aCase.status === 'Zakończona'">
       <mat-card-content>

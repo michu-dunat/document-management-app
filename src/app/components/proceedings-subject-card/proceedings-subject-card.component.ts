@@ -11,8 +11,13 @@ import { ProceedingsSubject } from 'src/app/classes/proceedings-subject';
 export class ProceedingsSubjectCardComponent {
   @Input() proceedingsSubject: ProceedingsSubject = new ProceedingsSubject();
   @Input() isCaseForUpdating: boolean = false;
+  otherProceedingsSubjectTypeList: string[] = [
+    'Prokurator',
+    'Organizacja pozarządowa',
+    'Inspektor pracy',
+    'Powiatowy rzecznik konsumentów',
+    'Miejski rzecznik konsumentów',
+  ];
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 }

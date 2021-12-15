@@ -16,7 +16,6 @@ export class CaseTableComponent implements OnInit {
   caseList: CaseForTable[] = [];
   columnsToDisplay = [
     'label',
-    'date',
     'status',
     'delete',
     'changeStatus',

@@ -105,11 +105,6 @@ export class CaseComponent {
   }
 
   cleanUp() {
-    if (this.proceedingsSubjectCardComponent.wasClaimReceived) {
-      this.aCase.proceedingsSubject.fillingDate = undefined;
-    } else {
-      this.aCase.proceedingsSubject.claimReceiptDate = undefined;
-    }
     if (!this.clientCardComponent.isMailingAddressNeeded) {
       this.aCase.client.mailingAddress = undefined;
     }

@@ -18,42 +18,6 @@
         Mediacja możliwa
       </mat-checkbox>
     </div>
-    <div>
-      <mat-checkbox [(ngModel)]="wasClaimReceived" name="wasClaimReceived">
-        Pozew otrzymany
-      </mat-checkbox>
-
-      <mat-form-field appearance="fill" *ngIf="!wasClaimReceived">
-        <mat-label>Data wniesienia pozwu</mat-label>
-        <input
-          matInput
-          [matDatepicker]="pickerForFilling"
-          [(ngModel)]="proceedingsSubject.fillingDate"
-          name="fillingDate"
-          required
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="pickerForFilling"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #pickerForFilling></mat-datepicker>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill" *ngIf="wasClaimReceived">
-        <mat-label>Data otrzymania pozwu</mat-label>
-        <input
-          matInput
-          [matDatepicker]="pickerForClaiming"
-          [(ngModel)]="proceedingsSubject.claimReceiptDate"
-          name="claimReceiptDate"
-          required
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="pickerForClaiming"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #pickerForClaiming></mat-datepicker>
-      </mat-form-field>
-    </div>
+    
   </mat-card-content>
 </mat-card>

@@ -26,6 +26,7 @@ import { UserTableComponent } from './components/user-table/user-table.component
 import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './classes/auth-interceptor';
+import { ValueValidatorDirective } from './directives/value-validator-directive';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AuthInterceptor } from './classes/auth-interceptor';
     UserTableComponent,
     UpdateUserComponent,
     LoginComponent,
+    ValueValidatorDirective
   ],
   imports: [
     BrowserModule,

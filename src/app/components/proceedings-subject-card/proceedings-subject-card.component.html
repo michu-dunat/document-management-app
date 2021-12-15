@@ -1,13 +1,14 @@
 <mat-card>
   <mat-card-content>
     <mat-form-field appearance="fill">
-      <mat-label>Wartość</mat-label>
+      <mat-label>Wartość przedmiotu sporu (zaskarżenia)</mat-label>
       <input
         matInput
         type="text"
         [(ngModel)]="proceedingsSubject.value"
         name="value"
         required
+        valueMustBePositiveIntegerOrNo
       />
     </mat-form-field>
     <div>
@@ -19,36 +20,36 @@
       </mat-checkbox>
     </div>
     <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Inny podmiot występujący w sprawie</mat-label>
-      <mat-select
-        [(ngModel)]="proceedingsSubject.otherProceedingsSubjectType"
-        name="otherProceedingsSubjectType"
-      >
-        <mat-option>Brak</mat-option>
-        <mat-option
-          *ngFor="let subjectType of otherProceedingsSubjectTypeList"
-          [value]="subjectType"
+      <mat-form-field appearance="fill">
+        <mat-label>Inny podmiot występujący w sprawie</mat-label>
+        <mat-select
+          [(ngModel)]="proceedingsSubject.otherProceedingsSubjectType"
+          name="otherProceedingsSubjectType"
         >
-          {{ subjectType }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+          <mat-option>Brak</mat-option>
+          <mat-option
+            *ngFor="let subjectType of otherProceedingsSubjectTypeList"
+            [value]="subjectType"
+          >
+            {{ subjectType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field
-      appearance="fill"
-      *ngIf="proceedingsSubject.otherProceedingsSubjectType"
-    >
-      <mat-label>Imię i nazwisko/nazwa podmiotu</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="proceedingsSubject.otherProceedingsSubjectName"
-        name="otherProceedingsSubjectName"
-        required
-      />
-    </mat-form-field>
-  </div>
+      <mat-form-field
+        appearance="fill"
+        *ngIf="proceedingsSubject.otherProceedingsSubjectType"
+      >
+        <mat-label>Imię i nazwisko/nazwa podmiotu</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="proceedingsSubject.otherProceedingsSubjectName"
+          name="otherProceedingsSubjectName"
+          required
+        />
+      </mat-form-field>
+    </div>
     <mat-form-field appearance="fill">
       <mat-label>Uwagi</mat-label>
       <textarea

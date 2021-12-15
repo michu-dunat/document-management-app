@@ -11,7 +11,24 @@ export class AdversePartyAttorenyCardComponent implements OnInit {
   @Input() adversePartyAttorney: any;
   @Input() isCaseForUpdating: boolean = false;
   isMailingAddressNeeded: boolean = false;
-  jobTitleList: string[] = ['Brak', 'Adwokat', 'Radca prawny'];
+  jobTitleList: string[] = [
+    'Adwokat',
+    'Radca prawny',
+    'Rzecznik patentowy',
+    'Doradca restrukturyzacyjny',
+    'Osoba sprawująca zarząd majątkiem lub interesami strony',
+    'Osoba pozostająca ze stroną w stałym stosunku zlecenia',
+    'Współuczestnik sporu',
+    'Małżonek',
+    'Rodzeństwo',
+    'Zstępny strony',
+    'Wstępny strony',
+    'Osoba pozostająca ze stroną w stosunku przysposobienia',
+    'Pracownik jednostki/organu nadrzędnego',
+    'Przedstawiciel JST/organizacji mającej na celu idzelenie pomocy rodzinie',
+    'Przedstawiciel organizacji zrzeszającej rolników indywidualnych',
+    'Przedstawiciel organizacji konsumenckiej',
+  ];
 
   ngOnInit(): void {
     if (

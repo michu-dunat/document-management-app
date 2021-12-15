@@ -2,7 +2,7 @@ export class Address {
   id?: number;
   city: string;
   postcode: string;
-  street: string;
+  street?: string;
   buildingNumber: string;
   apartmentNumber?: string;
 }

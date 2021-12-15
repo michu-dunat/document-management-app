@@ -21,12 +21,22 @@
         required
       />
     </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Adres email</mat-label>
+      <input
+        matInput
+        type="email"
+        [(ngModel)]="adversePartyAttorney.emailAddress"
+        name="adversePartyAttorneyEmailAddress"
+        required
+      />
+    </mat-form-field>
     <div>
       <mat-form-field appearance="fill">
-        <mat-label>Tytuł zawodowy</mat-label>
+        <mat-label>Tytuł</mat-label>
         <mat-select
-          [(ngModel)]="adversePartyAttorney.jobTitle"
-          name="jobTitle"
+          [(ngModel)]="adversePartyAttorney.title"
+          name="title"
           required
         >
           <mat-option
@@ -37,13 +47,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
-      <mat-checkbox
-        [(ngModel)]="adversePartyAttorney.isAttorneyProfessional"
-        name="isAttorneyProfessional"
-      >
-        Profesjonalny pełnomocnik
-      </mat-checkbox>
     </div>
     <app-address
       [parentName]="'adversePartyAttorneyResidenceOrRegisteredOfficeAddress'"

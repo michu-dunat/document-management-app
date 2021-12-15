@@ -17,9 +17,32 @@ export class DocumentCardComponent implements OnInit {
     new EventEmitter();
   documentTypeList: string[] = [
     'Pozew',
+    'Odpowiedź na pozew',
     'Wniosek o wszczęcie postępowania nieprocesowego',
-    'Wniosek o wszczęcie egzekucji',
-    'Wniosek o przeprowadzenie dowodu',
+    'Odpowiedź na wniosek o wszczęćie postępowania nieprocesowego',
+    'Apelacja',
+    'Zażalenie',
+    'Środek zaskarżenia od nakazu zapłaty',
+    'Wniosek o przywrócenie terminu',
+    'Wniosek o zawezwanie do próby ugodowej',
+    'Skarga o wznowienie postępowania',
+    'Skarga kasacyjna',
+    'Skarga o stwierdzenie niezgodności z prawem prawomocnego orzeczenia',
+    'Wniosek o wszczęcie postępowania egzekucyjnego',
+    'Wniosek o doręczenie wyroku z uzasadnieniem',
+    'Wyrok z uzasadnieniem',
+    'Postanowienie',
+    'Nakaz zapłaty',
+    'Inne pismo przychodzące',
+    'Inne pismo wychodzące',
+    'Potwierdzenie odbioru',
+  ];
+  methodOfReceiptList: string[] = [
+    'Poczta Polska',
+    'e-mail',
+    'ePUAP',
+    'Kurier',
+    'Inne',
   ];
   file: File | null;
   fileName: string = 'Nowy plik';
@@ -82,10 +105,7 @@ export class DocumentCardComponent implements OnInit {
         },
         (error) => {
           console.error(error);
-          this.snackBar.open(
-            'Dokument nie został zaktualizowany!',
-            'Zamknij'
-          );
+          this.snackBar.open('Dokument nie został zaktualizowany!', 'Zamknij');
         }
       );
     } else {

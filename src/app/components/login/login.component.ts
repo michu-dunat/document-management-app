@@ -24,12 +24,11 @@ export class LoginComponent implements OnInit {
     this.loginService.sendLogin(this.loginCredentials).subscribe(
       (response: any) => {
         this.snackBar.open('Zalogowano pomyślnie', 'Zamknij');
-        this.loginService.setTokenAndRole(
-          btoa(
-            `${this.loginCredentials.emailAddress}:${this.loginCredentials.password}`
-          ),
-          response.code
+        const token = btoa(
+          `${this.loginCredentials.emailAddress}:${this.loginCredentials.password}`
         );
+        this.loginService.updateLocalStorage(token, response.code);
+        this.loginService.setTokenAndRole(token, response.code);
         this.router.navigate(['']);
       },
       (error) => {

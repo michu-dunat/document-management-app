@@ -99,6 +99,7 @@ export class UserCardComponent implements OnInit {
                     `${this.user.emailAddress}:${this.user.password}`
                   );
                 }
+                this.loginService.updateLocalStorage(newToken, 'ROLE_ADMIN');
                 this.loginService.setTokenAndRole(newToken, 'ROLE_ADMIN');
               }
               this.router.navigate(['']);

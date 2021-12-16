@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
+    localStorage.clear();
     this.loginService.setTokenAndRoleToUndefined();
     this.router.navigate(['']);
   }

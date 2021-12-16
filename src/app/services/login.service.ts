@@ -7,7 +7,15 @@ import { LoginCredentials } from '../classes/login-credentials';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    if (
+      localStorage.getItem('token') !== null &&
+      localStorage.getItem('role') !== null
+    ) {
+      this.tokenSource.next(<string>localStorage.getItem('token'));
+      this.roleSource.next(<string>localStorage.getItem('role'));
+    }
+  }
 
   private tokenSource = new BehaviorSubject<string | undefined>(undefined);
   private roleSource = new BehaviorSubject<string | undefined>(undefined);
@@ -27,5 +35,10 @@ export class LoginService {
 
   sendLogin(loginCredentials: LoginCredentials) {
     return this.http.post('http://localhost:8080/login', loginCredentials);
+  }
+
+  updateLocalStorage(token: string, role: string) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', role);
   }
 }

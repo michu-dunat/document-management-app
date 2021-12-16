@@ -36,17 +36,17 @@ const routes: Routes = [
   {
     path: 'user/add',
     component: UserCardComponent,
-    canActivate: [CanActivateAnyUser],
+    canActivate: [CanActivateAdmin],
   },
   {
     path: 'user/table',
     component: UserTableComponent,
-    canActivate: [CanActivateAnyUser],
+    canActivate: [CanActivateAdmin],
   },
   {
     path: 'user/update',
     component: UpdateUserComponent,
-    canActivate: [CanActivateAnyUser],
+    canActivate: [CanActivateAdmin],
   },
   { path: 'login', component: LoginComponent },
 ];

@@ -16,4 +16,9 @@ export class CourtCardComponent {
     'Apelacyjny',
     'Sąd Najwyższy',
   ];
+  unitTypeList: string[] = [
+    'Siedziba',
+    'Wydział zamiejscowy',
+    'Ośrodek zamiejscowy',
+  ];
 }

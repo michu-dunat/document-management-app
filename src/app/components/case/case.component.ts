@@ -51,7 +51,7 @@ export class CaseComponent {
   }
 
   sendCase() {
-    if (this.aCase.court.judgingPanel.length == 0) {
+    if (this.aCase.court.subjects.length == 0) {
       this.snackBar.open('Skład sędziowski nie może być pusty!', 'Zamknij');
       return;
     }
@@ -105,15 +105,15 @@ export class CaseComponent {
   }
 
   cleanUp() {
-    if (!this.clientCardComponent.isMailingAddressNeeded) {
+    if (this.clientCardComponent.isMailingAddressSameAsResidenceAddress) {
       this.aCase.client.mailingAddress = undefined;
     }
-    if (!this.adversePartyCardComponent.isMailingAddressNeeded) {
+    if (this.adversePartyCardComponent.isMailingAddressSameAsResidenceAddress) {
       this.aCase.adverseParty.mailingAddress = undefined;
     }
     if (
-      !this.adversePartyCardComponent.adverseParyAttorneyCard
-        .isMailingAddressNeeded
+      this.adversePartyCardComponent.adverseParyAttorneyCard
+        .isMailingAddressSameAsResidenceAddress
     ) {
       this.aCase.adverseParty.adversePartyAttorney.mailingAddress = undefined;
     }

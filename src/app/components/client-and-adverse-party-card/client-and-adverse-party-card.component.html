@@ -75,15 +75,15 @@
     ></app-address>
 
     <mat-checkbox
-      [(ngModel)]="isMailingAddressNeeded"
-      name="{{ nameDistinguisher }} + isMailingAddressNeeded"
+      [(ngModel)]="isMailingAddressSameAsResidenceAddress"
+      name="{{ nameDistinguisher }} + isMailingAddressSameAsResidenceAddress"
       class="mat-checkbox-mailing-address"
     >
-      Użyj adresu do korespondencji
+      Adres zamieszkania/siedziby to adres do korespondencji
     </mat-checkbox>
 
     <app-address
-      *ngIf="isMailingAddressNeeded"
+      *ngIf="!isMailingAddressSameAsResidenceAddress"
       [parentName]="nameDistinguisher + 'mailingAddress'"
       [title]="'Adres do korespondencji'"
       [address]="data.mailingAddress"

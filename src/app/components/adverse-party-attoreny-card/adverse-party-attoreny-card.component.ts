@@ -10,7 +10,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 export class AdversePartyAttorenyCardComponent implements OnInit {
   @Input() adversePartyAttorney: any;
   @Input() isCaseForUpdating: boolean = false;
-  isMailingAddressNeeded: boolean = false;
+  isMailingAddressSameAsResidenceAddress: boolean = true;
   jobTitleList: string[] = [
     'Adwokat',
     'Radca prawny',
@@ -35,7 +35,7 @@ export class AdversePartyAttorenyCardComponent implements OnInit {
       this.isCaseForUpdating &&
       this.adversePartyAttorney.mailingAddress.city !== undefined
     ) {
-      this.isMailingAddressNeeded = true;
+      this.isMailingAddressSameAsResidenceAddress = false;
     }
   }
 }

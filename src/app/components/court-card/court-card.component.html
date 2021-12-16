@@ -19,6 +19,15 @@
         required
       />
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rodzaj jednostki</mat-label>
+      <mat-select [(ngModel)]="court.unitType" name="unitType" required>
+        <mat-option *ngFor="let unitType of unitTypeList" [value]="unitType">
+          {{ unitType }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Numer telefonu</mat-label>
@@ -63,9 +72,7 @@
         />
       </mat-form-field>
     </div>
-    <app-judging-panel-card
-      [judgingPanel]="court.judgingPanel"
-    ></app-judging-panel-card>
+    <app-subjects-card [subjects]="court.subjects"></app-subjects-card>
 
     <app-address
       [parentName]="'court'"

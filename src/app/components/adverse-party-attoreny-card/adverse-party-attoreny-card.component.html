@@ -55,15 +55,15 @@
     ></app-address>
 
     <mat-checkbox
-      [(ngModel)]="isMailingAddressNeeded"
-      name="isMailingAddressNeeded"
+      [(ngModel)]="isMailingAddressSameAsResidenceAddress"
+      name="isMailingAddressSameAsResidenceAddress"
       class="mat-checkbox-mailing-address"
     >
-      Użyj adresu do korespondencji
+      Adres zamieszkania/siedziby to adres do korespondencji
     </mat-checkbox>
 
     <app-address
-      *ngIf="isMailingAddressNeeded"
+      *ngIf="!isMailingAddressSameAsResidenceAddress"
       [parentName]="'adversePartyAttorneyMailingAddress'"
       [title]="'Adres do korespondencji'"
       [address]="adversePartyAttorney.mailingAddress"

@@ -13,7 +13,7 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   @Input() data: any;
   @Input() isAdverseParty: boolean = false;
   @Input() isCaseForUpdating: boolean = false;
-  isMailingAddressNeeded: boolean = false;
+  isMailingAddressSameAsResidenceAddress: boolean = true;
   nameDistinguisher: string;
   @ViewChild('adversePartyAttorneyCard')
   adverseParyAttorneyCard: AdversePartyAttorenyCardComponent;
@@ -21,7 +21,7 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   ngOnInit() {
     this.nameDistinguisher = this.isAdverseParty ? 'adverseParty' : 'client';
     if (this.isCaseForUpdating && this.data.mailingAddress.city !== undefined) {
-      this.isMailingAddressNeeded = true;
+      this.isMailingAddressSameAsResidenceAddress = false;
     }
   }
 }

@@ -1,17 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
-import { ProceedingsSubject } from 'src/app/classes/proceedings-subject';
+import { Proceeding } from 'src/app/classes/proceeding';
 
 @Component({
-  selector: 'app-proceedings-subject-card',
-  templateUrl: './proceedings-subject-card.component.html',
-  styleUrls: ['./proceedings-subject-card.component.css'],
+  selector: 'app-proceedings-card',
+  templateUrl: './proceeding-card.component.html',
+  styleUrls: ['./proceeding-card.component.css'],
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
-export class ProceedingsSubjectCardComponent {
-  @Input() proceedingsSubject: ProceedingsSubject = new ProceedingsSubject();
+export class ProceedingCardComponent {
+  @Input() proceeding: Proceeding = new Proceeding();
   @Input() isCaseForUpdating: boolean = false;
-  otherProceedingsSubjectTypeList: string[] = [
+  positions: string[] = [
     'Prokurator',
     'Organizacja pozarządowa',
     'Inspektor pracy',

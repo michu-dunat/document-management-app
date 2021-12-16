@@ -7,7 +7,7 @@ import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
 import { ClientAndAdversePartyCardComponent } from '../client-and-adverse-party-card/client-and-adverse-party-card.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { ProceedingsSubjectCardComponent } from '../proceedings-subject-card/proceedings-subject-card.component';
+import { ProceedingCardComponent } from '../proceeding-card/proceeding-card.component';
 
 @Component({
   selector: 'app-case',
@@ -19,8 +19,8 @@ export class CaseComponent {
   @Input() aCase: Case = new Case();
   @Input() isCaseForUpdating: boolean = false;
 
-  @ViewChild(ProceedingsSubjectCardComponent)
-  proceedingsSubjectCardComponent: ProceedingsSubjectCardComponent;
+  @ViewChild(ProceedingCardComponent)
+  proceedingsSubjectCardComponent: ProceedingCardComponent;
   @ViewChild('clientCard')
   clientCardComponent: ClientAndAdversePartyCardComponent;
   @ViewChild('adversePartyCard')

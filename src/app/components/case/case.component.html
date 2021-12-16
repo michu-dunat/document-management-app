@@ -21,10 +21,10 @@
             ></app-client-and-adverse-party-card>
           </mat-tab>
           <mat-tab label="Informacje o postępowaniu">
-            <app-proceedings-subject-card
-              [proceedingsSubject]="aCase.proceedingsSubject"
+            <app-proceedings-card
+              [proceeding]="aCase.proceeding"
               [isCaseForUpdating]="isCaseForUpdating"
-            ></app-proceedings-subject-card>
+            ></app-proceedings-card>
           </mat-tab>
           <mat-tab label="Dane sądu">
             <app-court-card [court]="aCase.court"></app-court-card>

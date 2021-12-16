@@ -10,7 +10,7 @@ import { CaseComponent } from './components/case/case.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddressCardComponent } from './components/address-card/address-card.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { ProceedingsSubjectCardComponent } from './components/proceedings-subject-card/proceedings-subject-card.component';
+import { ProceedingCardComponent } from './components/proceeding-card/proceeding-card.component';
 import { ClientAndAdversePartyCardComponent } from './components/client-and-adverse-party-card/client-and-adverse-party-card.component';
 import { CourtCardComponent } from './components/court-card/court-card.component';
 import { AdversePartyAttorenyCardComponent } from './components/adverse-party-attoreny-card/adverse-party-attoreny-card.component';
@@ -33,7 +33,7 @@ import { ValueValidatorDirective } from './directives/value-validator-directive'
     AppComponent,
     CaseComponent,
     AddressCardComponent,
-    ProceedingsSubjectCardComponent,
+    ProceedingCardComponent,
     ClientAndAdversePartyCardComponent,
     CourtCardComponent,
     AdversePartyAttorenyCardComponent,

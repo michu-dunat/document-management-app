@@ -149,6 +149,15 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill">
+        <mat-label>Pracownik wysyłający</mat-label>
+        <mat-select [(ngModel)]="document.sender" name="senderNames" required>
+          <mat-option *ngFor="let user of userNamesList" [value]="user">
+            {{ user.firstNameLastName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
         <mat-label>Uwagi</mat-label>
         <textarea
           matInput

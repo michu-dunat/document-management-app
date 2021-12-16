@@ -1,3 +1,5 @@
+import { User } from './user';
+
 export class Document {
   id?: number;
   type: string;
@@ -12,4 +14,5 @@ export class Document {
   fileName: string;
   file?: any[];
   comments?: string;
+  sender: User;
 }

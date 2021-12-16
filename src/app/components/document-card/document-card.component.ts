@@ -1,7 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Document } from 'src/app/classes/document';
+import { User } from 'src/app/classes/user';
+import { UserNamesForDocumentSenderField } from 'src/app/interfaces/user-names-for-document-sender-field';
 import { DocumentService } from 'src/app/services/document.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-document-card',
@@ -36,7 +39,7 @@ export class DocumentCardComponent implements OnInit {
     'Inne pismo przychodzące',
     'Inne pismo wychodzące',
     'Potwierdzenie odbioru',
-    'Umowa o mediację'
+    'Umowa o mediację',
   ];
   methodOfReceiptList: string[] = [
     'Poczta Polska',
@@ -45,6 +48,7 @@ export class DocumentCardComponent implements OnInit {
     'Kurier',
     'Inne',
   ];
+  userNamesList: UserNamesForDocumentSenderField[] = [];
   file: File | null;
   fileName: string = 'Nowy plik';
   isBeingEdited: boolean = false;
@@ -52,13 +56,29 @@ export class DocumentCardComponent implements OnInit {
 
   constructor(
     private documentService: DocumentService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     if (this.document.id) {
       this.fileName = this.document.fileName;
     }
+    this.userService.getUserNames().subscribe(
+      (response) => {
+        this.userNamesList = response;
+        if (this.document.id !== undefined) {
+          this.userNamesList.forEach((roleInList) => {
+            if (roleInList.id === this.document.sender.id) {
+              this.document.sender = <User>roleInList;
+            }
+          });
+        }
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   async handleFileInput(files: FileList) {

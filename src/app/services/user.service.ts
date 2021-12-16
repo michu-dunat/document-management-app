@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user';
+import { UserNamesForDocumentSenderField } from '../interfaces/user-names-for-document-sender-field';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +28,11 @@ export class UserService {
 
   updateUser(user: User) {
     return this.http.put<any>(`${this.userUrl}update`, user);
+  }
+
+  getUserNames() {
+    return this.http.get<UserNamesForDocumentSenderField[]>(
+      `${this.userUrl}possible-document-senders`
+    );
   }
 }

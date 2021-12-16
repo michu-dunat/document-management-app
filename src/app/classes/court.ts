@@ -1,11 +1,11 @@
 import { Address } from './address';
-import { Subject } from './subject';
+import { Entity } from './entity';
 
 export class Court {
   id?: number;
   type: string;
   department: string;
-  subjects: Subject[] = [];
+  entities: Entity[] = [];
   phoneNumber: string;
   electronicAddressForDelivery: string;
   address: Address = new Address();

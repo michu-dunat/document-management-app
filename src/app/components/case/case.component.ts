@@ -51,7 +51,7 @@ export class CaseComponent {
   }
 
   sendCase() {
-    if (this.aCase.court.subjects.length == 0) {
+    if (this.aCase.court.entities.length == 0) {
       this.snackBar.open('Skład sędziowski nie może być pusty!', 'Zamknij');
       return;
     }

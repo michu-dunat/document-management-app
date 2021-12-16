@@ -1,5 +1,5 @@
 <mat-card>
-  <mat-card-title>Podmioty występujące w sprawie</mat-card-title>
+  <mat-card-title>{{ title }}</mat-card-title>
   <mat-card-content>
     <mat-form-field appearance="fill">
       <mat-label>Imię i nazwisko</mat-label>
@@ -7,25 +7,22 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Stanowisko</mat-label>
-      <mat-select [(ngModel)]="position" name="position" required>
-        <mat-option
-          *ngFor="let positionFromList of positionList"
-          [value]="positionFromList"
-        >
-          {{ positionFromList }}
+      <mat-select [(ngModel)]="position">
+        <mat-option *ngFor="let position of positions" [value]="position">
+          {{ position }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button (click)="addSubject()" type="button">
+    <button mat-raised-button (click)="addEntity()" type="button">
       Dodaj podmiot
     </button>
 
     <mat-list>
       <div mat-subheader>Lista podmiotów:</div>
-      <mat-list-item *ngFor="let subject of subjects">
-        {{ subject.firstNameLastName }} - {{ subject.position }}
-        <button mat-icon-button (click)="delete(subject)">
+      <mat-list-item *ngFor="let entity of entities">
+        {{ entity.firstNameLastName }} - {{ entity.position }}
+        <button mat-icon-button (click)="delete(entity)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-list-item>

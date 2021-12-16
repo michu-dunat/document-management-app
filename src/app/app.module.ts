@@ -14,7 +14,7 @@ import { ProceedingsSubjectCardComponent } from './components/proceedings-subjec
 import { ClientAndAdversePartyCardComponent } from './components/client-and-adverse-party-card/client-and-adverse-party-card.component';
 import { CourtCardComponent } from './components/court-card/court-card.component';
 import { AdversePartyAttorenyCardComponent } from './components/adverse-party-attoreny-card/adverse-party-attoreny-card.component';
-import { SubjectsCardComponent } from './components/subjects-card/subjects-card.component';
+import { EntitiesCardComponent } from './components/entities-card/entities-card.component';
 import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { CaseTableComponent } from './components/case-table/case-table.component';
 import { CaseStatusChangeDialogComponent } from './components/case-status-change-dialog/case-status-change-dialog.component';
@@ -37,7 +37,7 @@ import { ValueValidatorDirective } from './directives/value-validator-directive'
     ClientAndAdversePartyCardComponent,
     CourtCardComponent,
     AdversePartyAttorenyCardComponent,
-    SubjectsCardComponent,
+    EntitiesCardComponent,
     ConfirmationDialogComponent,
     CaseTableComponent,
     CaseStatusChangeDialogComponent,

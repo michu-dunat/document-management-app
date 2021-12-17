@@ -1,6 +1,6 @@
 <mat-card style="width: 80%; margin: auto">
-  <form #myForm="ngForm" (ngSubmit)="sendCase()">
-    <fieldset [disabled]="aCase.status === 'Zakończona'">
+  <form #caseForm="ngForm" (ngSubmit)="sendCase()">
+    <!-- <fieldset [disabled]="aCase.status === 'Zakończona'"> -->
       <mat-card-content>
         <mat-tab-group>
           <mat-tab label="Dane klienta">
@@ -36,11 +36,11 @@
         <button
           mat-raised-button
           type="submit"
-          [disabled]="!myForm.valid || aCase.status === 'Zakończona'"
+          [disabled]="!caseForm.valid || aCase.status === 'Zakończona'"
         >
           {{ buttonText }}
         </button>
       </mat-card-actions>
-    </fieldset>
+    <!-- </fieldset> -->
   </form>
 </mat-card>

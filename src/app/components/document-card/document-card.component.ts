@@ -67,10 +67,10 @@ export class DocumentCardComponent implements OnInit {
     this.userService.getUserNames().subscribe(
       (response) => {
         this.userNamesList = response;
-        if (this.document.id !== undefined) {
-          this.userNamesList.forEach((roleInList) => {
-            if (roleInList.id === this.document.sender.id) {
-              this.document.sender = <User>roleInList;
+        if (this.document.id !== undefined && !this.document.isIncoming) {
+          this.userNamesList.forEach((userInList) => {
+            if (userInList.id === this.document.sender!.id) {
+              this.document.sender = <User>userInList;
             }
           });
         }
@@ -108,13 +108,26 @@ export class DocumentCardComponent implements OnInit {
     });
   }
 
+  cleanUp() {
+    if (this.document.isIncoming) {
+      this.document.sender = undefined;
+      this.document.dateOfDelivery = undefined;
+      if (!this.document.isResponseRequired) {
+        this.document.deadlineForResponse = undefined;
+      }
+    } else {
+      this.document.deadlineForResponse = undefined;
+      this.document.isResponseRequired = false;
+      this.document.methodOfReceipt = "";
+    }
+  }
+
   sendJson() {
     if (this.file != null) {
       this.document.fileName = this.file.name;
     }
-    if (!this.document.isResponseRequired) {
-      this.document.deadlineForResponse = undefined;
-    }
+    this.cleanUp();
+
     if (this.isBeingEdited) {
       this.documentService.updateDocument(this.document).subscribe(
         (response) => {

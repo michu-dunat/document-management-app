@@ -3,11 +3,11 @@
   <mat-card-content>
     <mat-form-field appearance="fill">
       <mat-label>Imię i nazwisko</mat-label>
-      <input matInput type="text" [(ngModel)]="firstNameLastName" />
+      <input matInput type="text" [(ngModel)]="firstNameLastName" name="firstNameLastNameOfEntity" />
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Stanowisko</mat-label>
-      <mat-select [(ngModel)]="position">
+      <mat-select [(ngModel)]="position" name="positionOfEntity">
         <mat-option *ngFor="let position of positions" [value]="position">
           {{ position }}
         </mat-option>

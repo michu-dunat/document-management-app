@@ -5,6 +5,6 @@ export class Proceeding {
   value: string;
   isMediationPossible: boolean = true;
   basisForMediation?: string;
-  otherEntities: Entity[];
+  otherEntities: Entity[] = [];
   comments?: string;
 }

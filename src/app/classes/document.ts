@@ -14,5 +14,5 @@ export class Document {
   fileName: string;
   file?: any[];
   comments?: string;
-  sender: User;
+  sender?: User;
 }

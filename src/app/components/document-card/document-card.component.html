@@ -2,42 +2,62 @@
   <mat-card-title> {{ fileName }}</mat-card-title>
   <form #documentForm="ngForm" (ngSubmit)="sendJson()">
     <mat-card-content>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Rodzaj pisma</mat-label>
+          <mat-select
+            [(ngModel)]="document.type"
+            name="type"
+            required
+            [disabled]="shouldBeDisabled"
+          >
+            <mat-option
+              *ngFor="let documentType of documentTypeList"
+              [value]="documentType"
+            >
+              {{ documentType }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <label for="file" [hidden]="shouldBeDisabled">Wybierz plik: </label>
+        <input
+          type="file"
+          id="file"
+          name="file"
+          accept=".pdf"
+          required
+          (change)="handleFileInput($any($event.target).files)"
+          [hidden]="shouldBeDisabled"
+        />
+      </div>
+
       <mat-form-field appearance="fill">
-        <mat-label>Rodzaj pisma</mat-label>
-        <mat-select
-          [(ngModel)]="document.type"
-          name="type"
+        <mat-label>Data pisma</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerForLetter"
+          [(ngModel)]="document.dateOfLetter"
+          name="dateOfLetter"
           required
           [disabled]="shouldBeDisabled"
-        >
-          <mat-option
-            *ngFor="let documentType of documentTypeList"
-            [value]="documentType"
-          >
-            {{ documentType }}
-          </mat-option>
-        </mat-select>
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerForLetter"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerForLetter></mat-datepicker>
       </mat-form-field>
 
-      <label for="file" [hidden]="shouldBeDisabled">Wybierz plik: </label>
-      <input
-        type="file"
-        id="file"
-        name="file"
-        accept=".pdf"
-        required
-        (change)="handleFileInput($any($event.target).files)"
-        [hidden]="shouldBeDisabled"
-      />
-      <div>
-        <mat-checkbox
-          [(ngModel)]="document.isIncoming"
-          name="isIncoming"
-          [disabled]="shouldBeDisabled"
-        >
-          Pismo przychodzące
-        </mat-checkbox>
+      <mat-checkbox
+        [(ngModel)]="document.isIncoming"
+        name="isIncoming"
+        [disabled]="shouldBeDisabled"
+      >
+        Pismo przychodzące
+      </mat-checkbox>
 
+      <div>
         <mat-form-field appearance="fill">
           <mat-label *ngIf="!document.isIncoming">Adresat</mat-label>
           <mat-label *ngIf="document.isIncoming">Nadawca</mat-label>
@@ -70,24 +90,8 @@
           ></mat-datepicker-toggle>
           <mat-datepicker #pickerForReceiptOrDispatch></mat-datepicker>
         </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Data pisma</mat-label>
-          <input
-            matInput
-            [matDatepicker]="pickerForLetter"
-            [(ngModel)]="document.dateOfLetter"
-            name="dateOfLetter"
-            required
-            [disabled]="shouldBeDisabled"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="pickerForLetter"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #pickerForLetter></mat-datepicker>
-        </mat-form-field>
       </div>
+
       <div *ngIf="document.isIncoming">
         <mat-form-field appearance="fill">
           <mat-label>Sposób wpływu</mat-label>
@@ -131,31 +135,37 @@
         </mat-form-field>
       </div>
 
-      
-      <mat-form-field appearance="fill" *ngIf="!document.isIncoming">
-        <mat-label>Data doręczenia</mat-label>
-        <input
-          matInput
-          [matDatepicker]="pickerForDelivery"
-          [(ngModel)]="document.dateOfDelivery"
-          name="dateOfDelivery"
-          [disabled]="shouldBeDisabled"
-        />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="pickerForDelivery"
-        ></mat-datepicker-toggle>
-        <mat-datepicker #pickerForDelivery></mat-datepicker>
-      </mat-form-field>
+      <div *ngIf="!document.isIncoming">
+        <mat-form-field appearance="fill">
+          <mat-label>Pracownik wysyłający</mat-label>
+          <mat-select
+            [(ngModel)]="document.sender"
+            name="senderNames"
+            required
+            [disabled]="shouldBeDisabled"
+          >
+            <mat-option *ngFor="let user of userNamesList" [value]="user">
+              {{ user.firstNameLastName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Pracownik wysyłający</mat-label>
-        <mat-select [(ngModel)]="document.sender" name="senderNames" required>
-          <mat-option *ngFor="let user of userNamesList" [value]="user">
-            {{ user.firstNameLastName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Data doręczenia</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickerForDelivery"
+            [(ngModel)]="document.dateOfDelivery"
+            name="dateOfDelivery"
+            [disabled]="shouldBeDisabled"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="pickerForDelivery"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerForDelivery></mat-datepicker>
+        </mat-form-field>
+      </div>
 
       <mat-form-field appearance="fill">
         <mat-label>Uwagi</mat-label>

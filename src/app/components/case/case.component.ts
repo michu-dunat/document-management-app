@@ -48,7 +48,6 @@ export class CaseComponent {
 
   ngAfterViewChecked() {
     if (this.aCase.status === 'Zakończona') {
-      
       this.caseForm.form.disable();
       this.cdRef.detectChanges();
     }

@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Document } from 'src/app/classes/document';
 import { User } from 'src/app/classes/user';
@@ -54,11 +63,21 @@ export class DocumentCardComponent implements OnInit {
   isBeingEdited: boolean = false;
   clone: any;
 
+  @ViewChild('documentForm') documentForm: NgForm;
+
   constructor(
     private documentService: DocumentService,
     private snackBar: MatSnackBar,
-    private userService: UserService
+    private userService: UserService,
+    private cdRef: ChangeDetectorRef
   ) {}
+
+  ngAfterViewChecked() {
+    if (this.shouldBeDisabled) {
+      this.documentForm.form.disable();
+      this.cdRef.detectChanges();
+    }
+  }
 
   ngOnInit(): void {
     if (this.document.id) {
@@ -118,7 +137,7 @@ export class DocumentCardComponent implements OnInit {
     } else {
       this.document.deadlineForResponse = undefined;
       this.document.isResponseRequired = false;
-      this.document.methodOfReceipt = "";
+      this.document.methodOfReceipt = '';
     }
   }
 
@@ -194,5 +213,6 @@ export class DocumentCardComponent implements OnInit {
     this.clone = Object.assign({}, this.document);
     this.shouldBeDisabled = false;
     this.isBeingEdited = true;
+    this.documentForm.form.enable()
   }
 }

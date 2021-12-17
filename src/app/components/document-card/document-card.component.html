@@ -5,12 +5,7 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Rodzaj pisma</mat-label>
-          <mat-select
-            [(ngModel)]="document.type"
-            name="type"
-            required
-            [disabled]="shouldBeDisabled"
-          >
+          <mat-select [(ngModel)]="document.type" name="type" required>
             <mat-option
               *ngFor="let documentType of documentTypeList"
               [value]="documentType"
@@ -40,7 +35,6 @@
           [(ngModel)]="document.dateOfLetter"
           name="dateOfLetter"
           required
-          [disabled]="shouldBeDisabled"
         />
         <mat-datepicker-toggle
           matSuffix
@@ -49,11 +43,7 @@
         <mat-datepicker #pickerForLetter></mat-datepicker>
       </mat-form-field>
 
-      <mat-checkbox
-        [(ngModel)]="document.isIncoming"
-        name="isIncoming"
-        [disabled]="shouldBeDisabled"
-      >
+      <mat-checkbox [(ngModel)]="document.isIncoming" name="isIncoming">
         Pismo przychodzące
       </mat-checkbox>
 
@@ -67,7 +57,6 @@
             [(ngModel)]="document.addresseeOrSender"
             name="addresseeOrSender"
             required
-            [disabled]="shouldBeDisabled"
           />
         </mat-form-field>
 
@@ -82,7 +71,6 @@
             [(ngModel)]="document.dateOfReceiptOrDispatch"
             name="dateOfReceiptOrDispatch"
             required
-            [disabled]="shouldBeDisabled"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -99,7 +87,6 @@
             [(ngModel)]="document.methodOfReceipt"
             name="methodOfReceipt"
             required
-            [disabled]="shouldBeDisabled"
           >
             <mat-option
               *ngFor="let method of methodOfReceiptList"
@@ -113,7 +100,6 @@
         <mat-checkbox
           [(ngModel)]="document.isResponseRequired"
           name="isResponseRequired"
-          [disabled]="shouldBeDisabled"
         >
           Obowiązek odpowiedzi
         </mat-checkbox>
@@ -125,7 +111,6 @@
             [matDatepicker]="pickerForDeadlineForResponse"
             [(ngModel)]="document.deadlineForResponse"
             name="deadlineForResponse"
-            [disabled]="shouldBeDisabled"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -138,12 +123,7 @@
       <div *ngIf="!document.isIncoming">
         <mat-form-field appearance="fill">
           <mat-label>Pracownik wysyłający</mat-label>
-          <mat-select
-            [(ngModel)]="document.sender"
-            name="senderNames"
-            required
-            [disabled]="shouldBeDisabled"
-          >
+          <mat-select [(ngModel)]="document.sender" name="senderNames" required>
             <mat-option *ngFor="let user of userNamesList" [value]="user">
               {{ user.firstNameLastName }}
             </mat-option>
@@ -157,7 +137,6 @@
             [matDatepicker]="pickerForDelivery"
             [(ngModel)]="document.dateOfDelivery"
             name="dateOfDelivery"
-            [disabled]="shouldBeDisabled"
           />
           <mat-datepicker-toggle
             matSuffix
@@ -173,7 +152,6 @@
           matInput
           name="comments"
           [(ngModel)]="document.comments"
-          [disabled]="shouldBeDisabled"
         ></textarea>
       </mat-form-field>
     </mat-card-content>

@@ -88,9 +88,18 @@
       [title]="'Adres do korespondencji'"
       [address]="data.mailingAddress"
     ></app-address>
+    <br />
+    <mat-checkbox
+      *ngIf="isAdverseParty"
+      [(ngModel)]="isAdversePartyAttorneyPresent"
+      name="isAdversePartyAttorneyPresent"
+      class="mat-checkbox-mailing-address"
+    >
+      Pełnomocnik strony przeciwnej jest obecny
+    </mat-checkbox>
 
     <app-adverse-party-attoreny-card
-      *ngIf="isAdverseParty"
+      *ngIf="isAdverseParty && isAdversePartyAttorneyPresent"
       [adversePartyAttorney]="data.adversePartyAttorney"
       [isCaseForUpdating]="isCaseForUpdating"
       #adversePartyAttorneyCard

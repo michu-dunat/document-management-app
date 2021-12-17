@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/classes/address';
+import { AdversePartyAttorney } from 'src/app/classes/adverse-party-attorney';
 import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
 import { ClientAndAdversePartyCardComponent } from '../client-and-adverse-party-card/client-and-adverse-party-card.component';
@@ -41,10 +42,13 @@ export class CaseComponent {
       if (this.aCase.adverseParty.mailingAddress === null) {
         this.aCase.adverseParty.mailingAddress = new Address();
       }
-      if (
-        this.aCase.adverseParty.adversePartyAttorney.mailingAddress === null
+      if (this.aCase.adverseParty.adversePartyAttorney === null) {
+        this.aCase.adverseParty.adversePartyAttorney =
+          new AdversePartyAttorney();
+      } else if (
+        this.aCase.adverseParty.adversePartyAttorney!.mailingAddress === null
       ) {
-        this.aCase.adverseParty.adversePartyAttorney.mailingAddress =
+        this.aCase.adverseParty.adversePartyAttorney!.mailingAddress =
           new Address();
       }
     }
@@ -111,11 +115,15 @@ export class CaseComponent {
     if (this.adversePartyCardComponent.isMailingAddressSameAsResidenceAddress) {
       this.aCase.adverseParty.mailingAddress = undefined;
     }
-    if (
+    if (!this.adversePartyCardComponent.isAdversePartyAttorneyPresent) {
+      this.aCase.adverseParty.adversePartyAttorney = undefined;
+    } else if (
       this.adversePartyCardComponent.adverseParyAttorneyCard
         .isMailingAddressSameAsResidenceAddress
     ) {
-      this.aCase.adverseParty.adversePartyAttorney.mailingAddress = undefined;
+      (<AdversePartyAttorney>(
+        this.aCase.adverseParty.adversePartyAttorney
+      )).mailingAddress = undefined;
     }
   }
 }

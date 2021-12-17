@@ -17,9 +17,14 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   nameDistinguisher: string;
   @ViewChild('adversePartyAttorneyCard')
   adverseParyAttorneyCard: AdversePartyAttorenyCardComponent;
+  isAdversePartyAttorneyPresent: boolean = true;
 
   ngOnInit() {
     this.nameDistinguisher = this.isAdverseParty ? 'adverseParty' : 'client';
+    if (this.isCaseForUpdating && this.isAdverseParty) {
+      this.isAdversePartyAttorneyPresent =
+        this.data.adversePartyAttorney.id !== undefined;
+    }
     if (this.isCaseForUpdating && this.data.mailingAddress.city !== undefined) {
       this.isMailingAddressSameAsResidenceAddress = false;
     }

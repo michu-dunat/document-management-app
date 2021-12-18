@@ -48,7 +48,7 @@ export class CaseTableComponent implements OnInit {
           (response) => {
             this.snackBar.open('Sprawa została usunięta', 'Zamknij');
             this.cases = this.cases.filter(
-              (caseInList) => caseInList !== aCase
+              (caseInArray) => caseInArray !== aCase
             );
           },
           (error) => {
@@ -123,7 +123,7 @@ export class CaseTableComponent implements OnInit {
       return;
     }
     this.cases = this.cases.filter(
-      (aCase) => aCase.status === this.caseStatusDisplay
+      (caseInArray) => caseInArray.status === this.caseStatusDisplay
     );
   }
 }

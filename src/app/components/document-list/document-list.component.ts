@@ -62,7 +62,7 @@ export class DocumentListComponent implements OnInit {
           (response) => {
             this.snackBar.open('Dokument został usunięty', 'Zamknij');
             this.documents = this.documents.filter(
-              (documentInList) => documentInList !== document
+              (documentInArray) => documentInArray !== document
             );
           },
           (error) => {

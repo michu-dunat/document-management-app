@@ -42,7 +42,7 @@ export class UserTableComponent implements OnInit {
         this.userService.deleteUser(<number>user.id).subscribe(
           (response) => {
             this.snackBar.open('Użytkownik został usunięty', 'Zamknij');
-            this.users = this.users.filter((userInList) => userInList !== user);
+            this.users = this.users.filter((userInArray) => userInArray !== user);
           },
           (error) => {
             this.snackBar.open('Użytkownik nie został usunięty!', 'Zamknij');

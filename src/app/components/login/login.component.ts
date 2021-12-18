@@ -38,10 +38,10 @@ export class LoginComponent {
 
   fastLogin(isAdmin: boolean) {
     if (isAdmin) {
-      this.loginCredentials.emailAddress = 'michu@gmail.com';
+      this.loginCredentials.emailAddress = 'jan@gmail.com';
       this.loginCredentials.password = 'Useruseruser1';
     } else {
-      this.loginCredentials.emailAddress = 'ola@gmail.com';
+      this.loginCredentials.emailAddress = 'marta@gmail.com';
       this.loginCredentials.password = 'Useruseruser1';
     }
 

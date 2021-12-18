@@ -5,14 +5,14 @@ export class Document {
   type: string;
   addresseeOrSender: string;
   isIncoming: boolean = false;
-  methodOfReceipt?: string;
   dateOfReceiptOrDispatch: Date;
   dateOfLetter: Date;
-  dateOfDelivery?: Date;
-  isResponseRequired?: boolean;
-  deadlineForResponse?: Date;
   fileName: string;
   file?: any[];
-  comments?: string;
+  methodOfReceipt?: string;
+  isResponseRequired?: boolean;
+  deadlineForResponse?: Date;
+  dateOfDelivery?: Date;
   sender?: User;
+  comments?: string;
 }

@@ -5,11 +5,11 @@ export class Court {
   id?: number;
   type: string;
   department: string;
-  entities: Entity[] = [];
+  unitType: string;
   phoneNumber: string;
   electronicAddressForDelivery: string;
-  address: Address = new Address();
   emailAddress: string;
   caseSignature: string;
-  unitType: string;
+  entities: Entity[] = [];
+  address: Address = new Address();
 }

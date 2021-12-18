@@ -8,10 +8,10 @@
   <div *ngIf="role">
     <span class="gap"><a routerLink="/case/add">Załóż sprawę</a></span>
     <span class="gap"><a routerLink="/case/table">Przeglądaj sprawy</a></span>
-    <span class="gap" *ngIf="role === 'ROLE_ADMIN'"
+    <span class="gap" *ngIf="isAdminLoggedIn"
       ><a routerLink="/user/add">Dodaj użytkownika</a></span
     >
-    <span class="gap" *ngIf="role === 'ROLE_ADMIN'"
+    <span class="gap" *ngIf="isAdminLoggedIn"
       ><a routerLink="/user/table">Przeglądaj użytkowników</a></span
     >
     <span (click)="logout()" class="logout">Wyloguj</span>

@@ -7,6 +7,8 @@ import { LoginCredentials } from '../classes/login-credentials';
   providedIn: 'root',
 })
 export class LoginService {
+  loginUrl = 'http://localhost:8080/login';
+
   constructor(private http: HttpClient) {
     if (
       localStorage.getItem('token') !== null &&
@@ -34,7 +36,7 @@ export class LoginService {
   }
 
   sendLogin(loginCredentials: LoginCredentials) {
-    return this.http.post('http://localhost:8080/login', loginCredentials);
+    return this.http.post(this.loginUrl, loginCredentials);
   }
 
   updateLocalStorage(token: string, role: string) {

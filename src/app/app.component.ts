@@ -10,12 +10,14 @@ import { LoginService } from './services/login.service';
 export class AppComponent implements OnInit {
   title = 'document-management-app';
   role: string | undefined;
+  isAdminLoggedIn: boolean;
 
   constructor(private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {
     this.loginService.role$.subscribe((role) => {
       this.role = role;
+      this.isAdminLoggedIn = role === 'ROLE_ADMIN';
     });
   }
 

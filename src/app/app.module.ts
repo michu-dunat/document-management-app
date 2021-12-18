@@ -27,8 +27,6 @@ import { UpdateUserComponent } from './components/update-user/update-user.compon
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './classes/auth-interceptor';
 import { ValueValidatorDirective } from './directives/value-validator-directive';
-import { CanActivateAdmin } from './classes/can-activate-admin';
-import { CanActivateAnyUser } from './classes/can-activate-any-user';
 
 @NgModule({
   declarations: [
@@ -50,7 +48,7 @@ import { CanActivateAnyUser } from './classes/can-activate-any-user';
     UserTableComponent,
     UpdateUserComponent,
     LoginComponent,
-    ValueValidatorDirective
+    ValueValidatorDirective,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +60,9 @@ import { CanActivateAnyUser } from './classes/can-activate-any-user';
     MatNativeDateModule,
     ReactiveFormsModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

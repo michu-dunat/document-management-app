@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { CanActivateAdmin } from './classes/can-activate-admin';
 import { CanActivateAnyUser } from './classes/can-activate-any-user';
 import { CaseTableComponent } from './components/case-table/case-table.component';

@@ -1,13 +1,13 @@
 <mat-card>
   <mat-card-title>{{ caseLabel }}</mat-card-title>
   <mat-card-content>
-    <div *ngFor="let document of documentList">
+    <div *ngFor="let document of documents">
       <app-document-card
         *ngIf="document.id"
         [document]="document"
         [shouldBeDisabled]="true"
         [caseId]="caseId"
-        [shouldBePossibleToEdit]="caseStatus !== 'Zakończona'"
+        [shouldBePossibleToEdit]="!isCaseFinished"
       ></app-document-card>
       <app-document-card
         *ngIf="!document.id"
@@ -19,7 +19,7 @@
         mat-raised-button
         (click)="delete(document)"
         class="mat-button-delete-document"
-        *ngIf="document.id && role === 'ROLE_ADMIN' && caseStatus !== 'Zakończona'"
+        *ngIf="document.id && role === 'ROLE_ADMIN' && !isCaseFinished"
       >
         Usuń dokument
       </button>
@@ -30,7 +30,7 @@
     <button
       mat-raised-button
       (click)="addNewDocument()"
-      *ngIf="!isAddButtonHidden && caseStatus !== 'Zakończona'"
+      *ngIf="!isAddButtonHidden && !isCaseFinished"
     >
       Dodaj nowy dokument
     </button>

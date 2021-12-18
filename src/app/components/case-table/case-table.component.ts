@@ -13,19 +13,14 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   styleUrls: ['./case-table.component.css'],
 })
 export class CaseTableComponent implements OnInit {
-  caseList: CaseForTable[] = [];
-  columnsToDisplay = [
-    'label',
-    'status',
-    'delete',
-    'changeStatus',
-    'edit',
-  ];
+  columnsToDisplay = ['label', 'status', 'delete', 'changeStatus', 'edit'];
+  cases: CaseForTable[] = [];
+  casesCopy: CaseForTable[] = [];
   searchInput: string;
+  statuses = ['---', 'W toku', 'Zakończona'];
   caseStatusDisplay: string = '---';
-  statusOptions = ['---', 'W toku', 'Zakończona'];
-  caseListCopy: CaseForTable[] = [];
   role: string | undefined = '';
+  isAdminLoggedIn: boolean;
 
   constructor(
     private caseService: CaseService,
@@ -37,6 +32,7 @@ export class CaseTableComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.role$.subscribe((role) => {
       this.role = role;
+      this.isAdminLoggedIn = role === 'ROLE_ADMIN';
     });
     this.getAllCases();
   }
@@ -50,12 +46,10 @@ export class CaseTableComponent implements OnInit {
       if (result) {
         this.caseService.deleteCase(aCase.id).subscribe(
           (response) => {
-            if (response) {
-              this.snackBar.open('Sprawa została usunięta', 'Zamknij');
-              this.caseList = this.caseList.filter(
-                (caseInList) => caseInList !== aCase
-              );
-            }
+            this.snackBar.open('Sprawa została usunięta', 'Zamknij');
+            this.cases = this.cases.filter(
+              (caseInList) => caseInList !== aCase
+            );
           },
           (error) => {
             this.snackBar.open('Sprawa nie została usunięta!', 'Zamknij');
@@ -100,8 +94,8 @@ export class CaseTableComponent implements OnInit {
   search() {
     if (this.searchInput !== undefined) {
       this.caseService.searchCases(this.searchInput).subscribe((response) => {
-        this.caseList = response;
-        this.caseListCopy = response;
+        this.cases = response;
+        this.casesCopy = response;
         this.snackBar.open(
           'Ilość pasujących spraw: ' + response.length,
           'Zamknij'
@@ -112,8 +106,8 @@ export class CaseTableComponent implements OnInit {
 
   getAllCases() {
     this.caseService.getCasesForTable().subscribe((response) => {
-      this.caseList = response;
-      this.caseListCopy = response;
+      this.cases = response;
+      this.casesCopy = response;
     });
   }
 
@@ -124,12 +118,12 @@ export class CaseTableComponent implements OnInit {
   }
 
   caseStatusDisplayChange() {
-    this.caseList = this.caseListCopy;
+    this.cases = this.casesCopy;
     if (this.caseStatusDisplay === '---') {
       return;
     }
-    this.caseList = this.caseList.filter(
-      (caseInList) => caseInList.status === this.caseStatusDisplay
+    this.cases = this.cases.filter(
+      (aCase) => aCase.status === this.caseStatusDisplay
     );
   }
 }

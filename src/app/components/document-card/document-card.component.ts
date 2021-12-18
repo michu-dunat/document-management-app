@@ -25,9 +25,13 @@ export class DocumentCardComponent implements OnInit {
   @Input() shouldBeDisabled: boolean = false;
   @Input() caseId: number;
   @Input() shouldBePossibleToEdit: boolean;
+
   @Output() whatHappendWithNewDocument: EventEmitter<Document> =
     new EventEmitter();
-  documentTypeList: string[] = [
+
+  @ViewChild('documentForm') documentForm: NgForm;
+
+  documentTypes: string[] = [
     'Pozew',
     'Odpowiedź na pozew',
     'Wniosek o wszczęcie postępowania nieprocesowego',
@@ -50,20 +54,18 @@ export class DocumentCardComponent implements OnInit {
     'Potwierdzenie odbioru',
     'Umowa o mediację',
   ];
-  methodOfReceiptList: string[] = [
+  receiptMethods: string[] = [
     'Poczta Polska',
     'e-mail',
     'ePUAP',
     'Kurier',
     'Inne',
   ];
-  userNamesList: UserNamesForDocumentSenderField[] = [];
+  usersNames: UserNamesForDocumentSenderField[] = [];
   file: File | null;
   fileName: string = 'Nowy plik';
   isBeingEdited: boolean = false;
   clone: any;
-
-  @ViewChild('documentForm') documentForm: NgForm;
 
   constructor(
     private documentService: DocumentService,
@@ -85,11 +87,11 @@ export class DocumentCardComponent implements OnInit {
     }
     this.userService.getUserNames().subscribe(
       (response) => {
-        this.userNamesList = response;
+        this.usersNames = response;
         if (this.document.id !== undefined && !this.document.isIncoming) {
-          this.userNamesList.forEach((userInList) => {
-            if (userInList.id === this.document.sender!.id) {
-              this.document.sender = <User>userInList;
+          this.usersNames.forEach((user) => {
+            if (user.id === this.document.sender!.id) {
+              this.document.sender = <User>user;
             }
           });
         }
@@ -102,24 +104,24 @@ export class DocumentCardComponent implements OnInit {
 
   async handleFileInput(files: FileList) {
     this.file = files.item(0);
-    this.document.file = await this.fileToByteArrayy(this.file);
+    this.document.file = await this.convertToByteArray(this.file);
   }
 
-  fileToByteArrayy(file: any) {
+  convertToByteArray(file: any) {
     return new Promise<any[]>((resolve, reject) => {
       try {
         let reader = new FileReader();
-        let fileByteArray: any = [];
+        let fileBytes: any = [];
         reader.readAsArrayBuffer(file);
-        reader.onloadend = (evt) => {
-          if (evt.target!.readyState == FileReader.DONE) {
-            let arrayBuffer = evt.target!.result,
+        reader.onloadend = (event) => {
+          if (event.target!.readyState == FileReader.DONE) {
+            let arrayBuffer = event.target!.result,
               array = new Uint8Array(<ArrayBuffer>arrayBuffer);
             for (const byte of array) {
-              fileByteArray.push(byte);
+              fileBytes.push(byte);
             }
           }
-          resolve(fileByteArray);
+          resolve(fileBytes);
         };
       } catch (e) {
         reject(e);
@@ -192,14 +194,14 @@ export class DocumentCardComponent implements OnInit {
     this.documentService.getFile(<number>this.document!.id).subscribe(
       (response) => {
         this.document.file = response.file;
-        var byteCharacters = atob(this.document.file!.toString());
-        var byteNumbers = new Array(byteCharacters.length);
-        for (var i = 0; i < byteCharacters.length; i++) {
-          byteNumbers[i] = byteCharacters.charCodeAt(i);
+        const bytesAsChars = atob(this.document.file!.toString());
+        const bytesAsUnicodes = new Array(bytesAsChars.length);
+        for (var i = 0; i < bytesAsChars.length; i++) {
+          bytesAsUnicodes[i] = bytesAsChars.charCodeAt(i);
         }
-        var byteArray = new Uint8Array(byteNumbers);
-        var file = new Blob([byteArray], { type: 'application/pdf;base64' });
-        var fileURL = URL.createObjectURL(file);
+        const byteArray = new Uint8Array(bytesAsUnicodes);
+        const file = new Blob([byteArray], { type: 'application/pdf;base64' });
+        const fileURL = URL.createObjectURL(file);
         window.open(fileURL);
         URL.revokeObjectURL(fileURL);
       },
@@ -213,6 +215,6 @@ export class DocumentCardComponent implements OnInit {
     this.clone = Object.assign({}, this.document);
     this.shouldBeDisabled = false;
     this.isBeingEdited = true;
-    this.documentForm.form.enable()
+    this.documentForm.form.enable();
   }
 }

@@ -5,6 +5,7 @@
   text-align: center;
 }
 
-.search-functionality-div mat-form-field, button {
-    display: inline-block;
+.search-functionality-div mat-form-field,
+button {
+  display: inline-block;
 }

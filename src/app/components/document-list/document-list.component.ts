@@ -14,11 +14,12 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 })
 export class DocumentListComponent implements OnInit {
   caseId: number;
-  documentList: Document[] = [];
+  documents: Document[] = [];
   caseLabel: string | null;
   isAddButtonHidden: boolean = false;
   role: string | undefined;
   caseStatus: string | null;
+  isCaseFinished: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,13 +36,14 @@ export class DocumentListComponent implements OnInit {
     this.route.queryParamMap.subscribe((queryParams) => {
       this.caseLabel = queryParams.get('caseLabel');
       this.caseStatus = queryParams.get('caseStatus');
+      this.isCaseFinished = this.caseStatus === 'Zakończona';
     });
     this.route.params.subscribe((param) => {
       this.caseId = param.caseId;
     });
     this.documentService.getDocumentsForCase(this.caseId).subscribe(
       (response) => {
-        this.documentList = response;
+        this.documents = response;
       },
       (error) => {
         console.error(error);
@@ -59,7 +61,7 @@ export class DocumentListComponent implements OnInit {
         this.documentService.deleteDocument(<number>document.id).subscribe(
           (response) => {
             this.snackBar.open('Dokument został usunięty', 'Zamknij');
-            this.documentList = this.documentList.filter(
+            this.documents = this.documents.filter(
               (documentInList) => documentInList !== document
             );
           },
@@ -73,15 +75,15 @@ export class DocumentListComponent implements OnInit {
   }
 
   handleWhatHappenedWithNewDocument(newDocument: Document) {
-    this.documentList.pop();
+    this.documents.pop();
     if (newDocument.id != undefined) {
-      this.documentList.push(newDocument);
+      this.documents.push(newDocument);
     }
     this.isAddButtonHidden = false;
   }
 
   addNewDocument() {
-    this.documentList.push(new Document());
+    this.documents.push(new Document());
     this.isAddButtonHidden = true;
   }
 }

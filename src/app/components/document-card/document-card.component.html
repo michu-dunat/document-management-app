@@ -7,7 +7,7 @@
           <mat-label>Rodzaj pisma</mat-label>
           <mat-select [(ngModel)]="document.type" name="type" required>
             <mat-option
-              *ngFor="let documentType of documentTypeList"
+              *ngFor="let documentType of documentTypes"
               [value]="documentType"
             >
               {{ documentType }}
@@ -88,10 +88,7 @@
             name="methodOfReceipt"
             required
           >
-            <mat-option
-              *ngFor="let method of methodOfReceiptList"
-              [value]="method"
-            >
+            <mat-option *ngFor="let method of receiptMethods" [value]="method">
               {{ method }}
             </mat-option>
           </mat-select>
@@ -124,7 +121,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Pracownik wysyłający</mat-label>
           <mat-select [(ngModel)]="document.sender" name="senderNames" required>
-            <mat-option *ngFor="let user of userNamesList" [value]="user">
+            <mat-option *ngFor="let user of usersNames" [value]="user">
               {{ user.firstNameLastName }}
             </mat-option>
           </mat-select>
@@ -164,7 +161,6 @@
       >
         Anuluj
       </button>
-      <!-- <button mat-raised-button type="submit" *ngIf="!shouldBeDisabled"> -->
       <button
         mat-raised-button
         type="submit"

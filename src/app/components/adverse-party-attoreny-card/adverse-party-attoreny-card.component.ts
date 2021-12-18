@@ -11,7 +11,7 @@ export class AdversePartyAttorenyCardComponent implements OnInit {
   @Input() adversePartyAttorney: any;
   @Input() isCaseForUpdating: boolean = false;
   isMailingAddressSameAsResidenceAddress: boolean = true;
-  jobTitleList: string[] = [
+  titles: string[] = [
     'Adwokat',
     'Radca prawny',
     'Rzecznik patentowy',

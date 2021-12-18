@@ -7,7 +7,7 @@
         matInput
         type="text"
         [(ngModel)]="adversePartyAttorney.firstNameLastName"
-        name="firstNameLastName"
+        name="adversePartyAttorneyFirstNameLastName"
         required
       />
     </mat-form-field>
@@ -17,7 +17,7 @@
         matInput
         type="text"
         [(ngModel)]="adversePartyAttorney.phoneNumber"
-        name="phoneNumber"
+        name="adversePartyAttorneyPhoneNumber"
         required
       />
     </mat-form-field>
@@ -36,14 +36,11 @@
         <mat-label>Tytuł</mat-label>
         <mat-select
           [(ngModel)]="adversePartyAttorney.title"
-          name="title"
+          name="adversePartyAttorneyTitle"
           required
         >
-          <mat-option
-            *ngFor="let jobTitleFromList of jobTitleList"
-            [value]="jobTitleFromList"
-          >
-            {{ jobTitleFromList }}
+          <mat-option *ngFor="let title of titles" [value]="title">
+            {{ title }}
           </mat-option>
         </mat-select>
       </mat-form-field>

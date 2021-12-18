@@ -7,7 +7,7 @@
         matInput
         type="text"
         [(ngModel)]="address.city"
-        name="{{ parentName }} + city"
+        name="{{ parentName }} + City"
         required
       />
     </mat-form-field>
@@ -17,8 +17,9 @@
         matInput
         type="text"
         [(ngModel)]="address.postcode"
-        name="{{ parentName }} + postcode"
+        name="{{ parentName }} + Postcode"
         required
+        pattern="[0-9]{2}-[0-9]{3}"
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -27,7 +28,7 @@
         matInput
         type="text"
         [(ngModel)]="address.street"
-        name="{{ parentName }} + street"
+        name="{{ parentName }} + Street"
       />
     </mat-form-field>
     <mat-form-field appearance="fill">
@@ -36,7 +37,7 @@
         matInput
         type="text"
         [(ngModel)]="address.buildingNumber"
-        name="{{ parentName }} + buildingNumber"
+        name="{{ parentName }} + BuildingNumber"
         required
       />
     </mat-form-field>
@@ -46,7 +47,7 @@
         matInput
         type="text"
         [(ngModel)]="address.apartmentNumber"
-        name="{{ parentName }} + apartmentNumber"
+        name="{{ parentName }} + ApartmentNumber"
       />
     </mat-form-field>
   </mat-card-content>

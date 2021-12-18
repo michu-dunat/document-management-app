@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { LoginCredentials } from '../classes/login-credentials';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  loginUrl = 'http://localhost:8080/login';
+  loginUrl = `${environment.serverUrl}/login`;
 
   constructor(private http: HttpClient) {
     if (

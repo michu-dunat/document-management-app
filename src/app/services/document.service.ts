@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Document } from '../classes/document';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DocumentService {
-  documentUrl = 'http://localhost:8080/document';
+  documentUrl = `${environment.serverUrl}/document`;
   
   constructor(private http: HttpClient) {}
 

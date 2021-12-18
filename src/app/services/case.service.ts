@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Case } from '../classes/case';
 import { CaseForTable } from '../interfaces/case-for-table';
 
@@ -7,8 +8,8 @@ import { CaseForTable } from '../interfaces/case-for-table';
   providedIn: 'root',
 })
 export class CaseService {
-  casesUrl = 'http://localhost:8080/case';
-  
+  casesUrl = `${environment.serverUrl}/case`;
+
   constructor(private http: HttpClient) {}
 
   addCase(aCase: Case) {

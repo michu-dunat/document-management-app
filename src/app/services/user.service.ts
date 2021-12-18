@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { User } from '../classes/user';
 import { UserNamesForDocumentSenderField } from '../interfaces/user-names-for-document-sender-field';
 
@@ -7,7 +8,7 @@ import { UserNamesForDocumentSenderField } from '../interfaces/user-names-for-do
   providedIn: 'root',
 })
 export class UserService {
-  userUrl = 'http://localhost:8080/user';
+  userUrl = `${environment.serverUrl}/user`;
 
   constructor(private http: HttpClient) {}
 

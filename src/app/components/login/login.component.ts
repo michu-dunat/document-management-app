@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { LoginCredentials } from 'src/app/classes/login-credentials';
@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginCredentials: LoginCredentials = new LoginCredentials();
 
   constructor(
@@ -17,8 +17,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
-
-  ngOnInit(): void {}
 
   login() {
     this.loginService.sendLogin(this.loginCredentials).subscribe(

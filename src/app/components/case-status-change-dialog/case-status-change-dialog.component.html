@@ -1,11 +1,11 @@
 <h2 mat-dialog-title>Wybierz status sprawy</h2>
 
 <mat-dialog-content>
-  <form #modalForm="ngForm">
+  <form #caseStatusChangeDialogForm="ngForm">
     <div>
       <mat-form-field>
         <mat-select [(ngModel)]="data.currentStatus" name="newCaseStatus">
-          <mat-option *ngFor="let status of statusList" [value]="status">
+          <mat-option *ngFor="let status of statuses" [value]="status">
             {{ status }}
           </mat-option>
         </mat-select>
@@ -16,5 +16,7 @@
 
 <mat-dialog-actions>
   <button mat-button [mat-dialog-close]>Cofnij</button>
-  <button mat-button [mat-dialog-close]="modalForm.value">Wybierz</button>
+  <button mat-button [mat-dialog-close]="caseStatusChangeDialogForm.value">
+    Wybierz
+  </button>
 </mat-dialog-actions>

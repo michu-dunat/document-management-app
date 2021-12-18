@@ -7,7 +7,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./case-status-change-dialog.component.css'],
 })
 export class CaseStatusChangeDialogComponent {
-  statusList: string[] = ['W toku', 'Zakończona'];
+  statuses: string[] = ['W toku', 'Zakończona'];
+
   constructor(
     public dialogRef: MatDialogRef<CaseStatusChangeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { currentStatus: string }

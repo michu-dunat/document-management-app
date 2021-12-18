@@ -6,7 +6,7 @@
         matInput
         type="text"
         [(ngModel)]="data.firstNameLastNameCompanyName"
-        name="{{ nameDistinguisher }} + firstNameLastNameCompanyName"
+        name="{{ nameDistinguisher }} + FirstNameLastNameCompanyName"
         required
       />
     </mat-form-field>
@@ -16,7 +16,7 @@
         matInput
         type="text"
         [(ngModel)]="data.phoneNumber"
-        name="{{ nameDistinguisher }} + phoneNumber"
+        name="{{ nameDistinguisher }} + PhoneNumber"
         required
       />
     </mat-form-field>
@@ -26,7 +26,7 @@
         matInput
         type="email"
         [(ngModel)]="data.emailAddress"
-        name="{{ nameDistinguisher }} + email"
+        name="{{ nameDistinguisher }} + EmailAddress"
         required
       />
     </mat-form-field>
@@ -37,7 +37,7 @@
           matInput
           type="text"
           [(ngModel)]="data.pesel"
-          name="{{ nameDistinguisher }} + PESEL"
+          name="{{ nameDistinguisher }} + Pesel"
         />
       </mat-form-field>
       <mat-form-field appearance="fill">
@@ -46,7 +46,7 @@
           matInput
           type="text"
           [(ngModel)]="data.nip"
-          name="{{ nameDistinguisher }} + NIP"
+          name="{{ nameDistinguisher }} + Nip"
         />
       </mat-form-field>
       <mat-form-field appearance="fill">
@@ -55,7 +55,7 @@
           matInput
           type="text"
           [(ngModel)]="data.krs"
-          name="{{ nameDistinguisher }} + KRS"
+          name="{{ nameDistinguisher }} + Krs"
         />
       </mat-form-field>
       <mat-form-field appearance="fill">
@@ -64,19 +64,19 @@
           matInput
           type="text"
           [(ngModel)]="data.regon"
-          name="{{ nameDistinguisher }} + REGON"
+          name="{{ nameDistinguisher }} + Regon"
         />
       </mat-form-field>
     </div>
     <app-address
-      [parentName]="nameDistinguisher + 'residenceOrRegisteredOfficeAddress'"
+      [parentName]="nameDistinguisher + 'ResidenceOrRegisteredOfficeAddress'"
       [title]="'Adres zamieszkania/siedziby'"
       [address]="data.residenceOrRegisteredOfficeAddress"
     ></app-address>
 
     <mat-checkbox
       [(ngModel)]="isMailingAddressSameAsResidenceAddress"
-      name="{{ nameDistinguisher }} + isMailingAddressSameAsResidenceAddress"
+      name="{{ nameDistinguisher }} + IsMailingAddressSameAsResidenceAddress"
       class="mat-checkbox-mailing-address"
     >
       Adres zamieszkania/siedziby to adres do korespondencji
@@ -84,7 +84,7 @@
 
     <app-address
       *ngIf="!isMailingAddressSameAsResidenceAddress"
-      [parentName]="nameDistinguisher + 'mailingAddress'"
+      [parentName]="nameDistinguisher + 'MailingAddress'"
       [title]="'Adres do korespondencji'"
       [address]="data.mailingAddress"
     ></app-address>

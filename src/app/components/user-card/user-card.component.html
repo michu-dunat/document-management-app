@@ -70,14 +70,13 @@
       <mat-form-field appearance="fill">
         <mat-label>Rola</mat-label>
         <mat-select [(ngModel)]="user.role" name="role" required>
-          <mat-option *ngFor="let roleInList of roleList" [value]="roleInList">
-            {{ roleInList.name }}
+          <mat-option *ngFor="let role of roles" [value]="role">
+            {{ role.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <!-- <button mat-raised-button type="submit"> -->
       <button
         mat-raised-button
         type="submit"

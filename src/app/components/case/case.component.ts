@@ -1,11 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  Input,
-  QueryList,
-  ViewChild,
-  ViewChildren,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,7 +9,6 @@ import { Case } from 'src/app/classes/case';
 import { CaseService } from 'src/app/services/case.service';
 import { ClientAndAdversePartyCardComponent } from '../client-and-adverse-party-card/client-and-adverse-party-card.component';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { EntitiesCardComponent } from '../entities-card/entities-card.component';
 import { ProceedingCardComponent } from '../proceeding-card/proceeding-card.component';
 
 @Component({
@@ -38,6 +30,8 @@ export class CaseComponent {
 
   @ViewChild('caseForm') caseForm: NgForm;
 
+  isCaseFinished: boolean;
+
   constructor(
     private caseService: CaseService,
     private router: Router,
@@ -47,14 +41,14 @@ export class CaseComponent {
   ) {}
 
   ngAfterViewChecked() {
-    if (this.aCase.status === 'Zakończona') {
+    if (this.isCaseFinished) {
       this.caseForm.form.disable();
       this.cdRef.detectChanges();
     }
   }
 
   ngOnInit() {
-    
+    this.isCaseFinished = this.aCase.status === 'Zakończona';
     if (this.isCaseForUpdating) {
       if (this.aCase.client.mailingAddress === null) {
         this.aCase.client.mailingAddress = new Address();
@@ -87,7 +81,6 @@ export class CaseComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.cleanUp();
-        console.log(this.aCase);
 
         if (this.isCaseForUpdating) {
           this.caseService.updateCase(this.aCase).subscribe(

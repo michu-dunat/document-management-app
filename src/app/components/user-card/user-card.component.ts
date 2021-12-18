@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/classes/user';
@@ -16,7 +16,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class UserCardComponent implements OnInit {
   @Input() user: User = new User();
-  roleList: Role[] = [];
+  roles: Role[] = [];
   buttonText: string = 'Dodaj użytkownika';
   repeatedPassword: string;
   repeatedEmailAddress: string;
@@ -48,13 +48,11 @@ export class UserCardComponent implements OnInit {
     }
     this.roleService.getRoles().subscribe(
       (response) => {
-        this.roleList = response;
+        this.roles = response;
         if (this.user.id !== undefined) {
-          this.roleList.forEach((roleInList) => {
-            if (roleInList.id === this.user.role.id) {
-              console.log(roleInList.id);
-
-              this.user.role = roleInList;
+          this.roles.forEach((role) => {
+            if (role.id === this.user.role.id) {
+              this.user.role = role;
             }
           });
         }

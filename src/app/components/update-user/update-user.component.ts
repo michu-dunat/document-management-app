@@ -21,7 +21,6 @@ export class UpdateUserComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.userService.getUser(params['id']).subscribe((response) => {
         this.user = response;
-
         this.isUserLoaded = true;
       });
     });

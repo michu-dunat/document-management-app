@@ -13,10 +13,12 @@ export class ClientAndAdversePartyCardComponent implements OnInit {
   @Input() data: any;
   @Input() isAdverseParty: boolean = false;
   @Input() isCaseForUpdating: boolean = false;
-  isMailingAddressSameAsResidenceAddress: boolean = true;
-  nameDistinguisher: string;
+
   @ViewChild('adversePartyAttorneyCard')
   adverseParyAttorneyCard: AdversePartyAttorenyCardComponent;
+
+  isMailingAddressSameAsResidenceAddress: boolean = true;
+  nameDistinguisher: string;
   isAdversePartyAttorneyPresent: boolean = true;
 
   ngOnInit() {

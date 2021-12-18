@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { Proceeding } from 'src/app/classes/proceeding';
 
@@ -11,6 +11,7 @@ import { Proceeding } from 'src/app/classes/proceeding';
 export class ProceedingCardComponent {
   @Input() proceeding: Proceeding = new Proceeding();
   @Input() isCaseForUpdating: boolean = false;
+
   positions: string[] = [
     'Prokurator',
     'Organizacja pozarządowa',
@@ -19,6 +20,4 @@ export class ProceedingCardComponent {
     'Miejski rzecznik konsumentów',
   ];
   basisForMediationList: string[] = ['Umowa o mediację', 'Postanowienie sądu'];
-
-  ngOnInit() {}
 }

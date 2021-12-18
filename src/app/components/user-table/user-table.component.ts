@@ -11,7 +11,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   styleUrls: ['./user-table.component.css'],
 })
 export class UserTableComponent implements OnInit {
-  userList: User[] = [];
+  users: User[] = [];
   columnsToDisplay = [
     'firstNameLastName',
     'emailAddress',
@@ -28,7 +28,7 @@ export class UserTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe((response) => {
-      this.userList = response;
+      this.users = response;
     });
   }
 
@@ -41,12 +41,8 @@ export class UserTableComponent implements OnInit {
       if (result) {
         this.userService.deleteUser(<number>user.id).subscribe(
           (response) => {
-            if (response) {
-              this.snackBar.open('Użytkownik został usunięty', 'Zamknij');
-              this.userList = this.userList.filter(
-                (userInList) => userInList !== user
-              );
-            }
+            this.snackBar.open('Użytkownik został usunięty', 'Zamknij');
+            this.users = this.users.filter((userInList) => userInList !== user);
           },
           (error) => {
             this.snackBar.open('Użytkownik nie został usunięty!', 'Zamknij');

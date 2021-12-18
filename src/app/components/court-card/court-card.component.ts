@@ -10,13 +10,13 @@ import { Court } from 'src/app/classes/court';
 })
 export class CourtCardComponent {
   @Input() court: Court;
-  courtTypeList: string[] = [
+  courtTypes: string[] = [
     'Rejonowy',
     'Okręgowy',
     'Apelacyjny',
     'Sąd Najwyższy',
   ];
-  unitTypeList: string[] = [
+  unitTypes: string[] = [
     'Siedziba',
     'Wydział zamiejscowy',
     'Ośrodek zamiejscowy',

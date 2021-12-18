@@ -3,7 +3,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Typ sądu</mat-label>
       <mat-select [(ngModel)]="court.type" name="type" required>
-        <mat-option *ngFor="let courtType of courtTypeList" [value]="courtType">
+        <mat-option *ngFor="let courtType of courtTypes" [value]="courtType">
           {{ courtType }}
         </mat-option>
       </mat-select>
@@ -23,7 +23,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Rodzaj jednostki</mat-label>
       <mat-select [(ngModel)]="court.unitType" name="unitType" required>
-        <mat-option *ngFor="let unitType of unitTypeList" [value]="unitType">
+        <mat-option *ngFor="let unitType of unitTypes" [value]="unitType">
           {{ unitType }}
         </mat-option>
       </mat-select>
@@ -55,7 +55,7 @@
           matInput
           type="email"
           [(ngModel)]="court.emailAddress"
-          name="courtemailAddress"
+          name="courtEmailAddress"
           required
         />
       </mat-form-field>

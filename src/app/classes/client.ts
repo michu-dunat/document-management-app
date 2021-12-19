@@ -11,4 +11,5 @@ export class Client {
   krs: string;
   residenceOrRegisteredOfficeAddress: Address = new Address();
   mailingAddress?: Address = new Address();
+  comments?: string;
 }

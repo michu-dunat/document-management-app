@@ -8,9 +8,12 @@
         [(ngModel)]="proceeding.value"
         name="value"
         required
+        placeholder="1000"
         valueMustBePositiveIntegerOrNo
       />
+      <mat-hint>Możliwa wartość to Brak</mat-hint>
     </mat-form-field>
+
     <div>
       <mat-checkbox
         [(ngModel)]="proceeding.isMediationPossible"

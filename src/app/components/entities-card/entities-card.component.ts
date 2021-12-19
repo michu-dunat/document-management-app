@@ -10,7 +10,7 @@ import { Entity } from 'src/app/classes/entity';
 })
 export class EntitiesCardComponent {
   @Input() entities: Entity[] = [];
-  @Input() title: string = 'Podmioty występujące w sprawie';
+  @Input() title: string = 'Podmioty występujące w obsłudze sprawy';
   @Input() positions: string[] = [
     'Sędzia',
     'Aseror sądowy',

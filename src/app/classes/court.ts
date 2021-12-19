@@ -12,4 +12,5 @@ export class Court {
   caseSignature: string;
   entities: Entity[] = [];
   address: Address = new Address();
+  comments?: string;
 }

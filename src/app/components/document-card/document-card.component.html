@@ -3,7 +3,7 @@
   <form #documentForm="ngForm" (ngSubmit)="sendJson()">
     <mat-card-content>
       <div>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" style="width: 45%">
           <mat-label>Rodzaj pisma</mat-label>
           <mat-select [(ngModel)]="document.type" name="type" required>
             <mat-option

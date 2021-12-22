@@ -18,6 +18,7 @@ export class ProceedingCardComponent {
     'Inspektor pracy',
     'Powiatowy rzecznik konsumentów',
     'Miejski rzecznik konsumentów',
+    'Komornik',
   ];
   basisForMediationList: string[] = ['Umowa o mediację', 'Postanowienie sądu'];
 }

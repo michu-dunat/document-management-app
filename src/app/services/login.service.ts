@@ -12,11 +12,11 @@ export class LoginService {
 
   constructor(private http: HttpClient) {
     if (
-      localStorage.getItem('token') !== null &&
-      localStorage.getItem('role') !== null
+      sessionStorage.getItem('token') !== null &&
+      sessionStorage.getItem('role') !== null
     ) {
-      this.tokenSource.next(<string>localStorage.getItem('token'));
-      this.roleSource.next(<string>localStorage.getItem('role'));
+      this.tokenSource.next(<string>sessionStorage.getItem('token'));
+      this.roleSource.next(<string>sessionStorage.getItem('role'));
     }
   }
 
@@ -40,7 +40,7 @@ export class LoginService {
     return this.http.post(this.loginUrl, loginCredentials);
   }
 
-  updateLocalStorage(token: string, role: string) {
+  updateSessionStorage(token: string, role: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('role', role);
   }

@@ -25,7 +25,7 @@ export class LoginComponent {
         const token = btoa(
           `${this.loginCredentials.emailAddress}:${this.loginCredentials.password}`
         );
-        this.loginService.updateLocalStorage(token, response.code);
+        this.loginService.updateSessionStorage(token, response.code);
         this.loginService.setTokenAndRole(token, response.code);
         this.router.navigate(['']);
       },

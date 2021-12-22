@@ -35,7 +35,7 @@ export class DocumentCardComponent implements OnInit {
     'Pozew',
     'Odpowiedź na pozew',
     'Wniosek o wszczęcie postępowania nieprocesowego',
-    'Odpowiedź na wniosek o wszczęćie postępowania nieprocesowego',
+    'Odpowiedź na wniosek o wszczęcie postępowania nieprocesowego',
     'Apelacja',
     'Zażalenie',
     'Środek zaskarżenia od nakazu zapłaty',
@@ -53,6 +53,7 @@ export class DocumentCardComponent implements OnInit {
     'Inne pismo wychodzące',
     'Potwierdzenie odbioru',
     'Umowa o mediację',
+    'Wniosek o zawieszenie postępowania',
   ];
   receiptMethods: string[] = [
     'Poczta Polska',
